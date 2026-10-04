@@ -185,92 +185,74 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
           
           <!-- Mobile Legends -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Mobile Legends: Bang Bang" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Mobile Legends</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="Mobile Legends: Bang Bang" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
+            <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">Mobile Legends</h3>
             </div>
           </div>
 
           <!-- Free Fire -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Free Fire Top-up" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Free Fire Top-up</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="Free Fire Top-up" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">Free Fire Top-up</h3>
             </div>
           </div>
 
           <!-- PUBG Mobile -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="PUBG Mobile" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">PUBG Mobile</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="PUBG Mobile" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">PUBG Mobile</h3>
             </div>
           </div>
 
           <!-- eFootball -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="eFootball 2026" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">eFootball™ 2026</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="eFootball 2026" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
+            <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">eFootball™ 2026</h3>
             </div>
           </div>
 
           <!-- Genshin Impact -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Genshin Impact" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Genshin Impact</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="Genshin Impact" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
+            <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">Genshin Impact</h3>
             </div>
           </div>
 
           <!-- Honkai Star Rail -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Honkai: Star Rail</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">Honkai: Star Rail</h3>
             </div>
           </div>
 
           <!-- Roblox -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Roblox</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
+            <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">Roblox</h3>
             </div>
           </div>
 
           <!-- FC Mobile -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">EA SPORTS FC Mobile</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
+            <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">EA SPORTS FC Mobile</h3>
             </div>
           </div>
 
           <!-- Valorant -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
-            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Valorant</h3>
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 relative aspect-square" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-1 text-gray-100 group-hover:text-pink-400 transition leading-tight">Valorant</h3>
             </div>
           </div>
 
@@ -475,312 +457,33 @@
         { name: '11 Diamonds (+1 Bonus)', price: '3.500', tag: 'Hemat', icon: 'fa-solid fa-gem text-cyan-400' },
         { name: '56 Diamonds (+6 Bonus)', price: '16.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
         { name: '296 Diamonds (+34 Bonus)', price: '84.000', tag: 'Populer', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: '568 Diamonds (+85 Bonus)', price: '160.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: '875 Diamonds (+129 Bonus)', price: '242.000', tag: 'Best Value', icon: 'fa-solid fa-gem text-cyan-400' }
-      ],
-      ff: [
-        { name: '5 Diamonds', price: '1.000', tag: 'Super Hemat', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: '70 Diamonds', price: '10.000', tag: 'Populer', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: '140 Diamonds', price: '20.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: '355 Diamonds', price: '50.000', tag: 'Best Seller', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: '720 Diamonds', price: '100.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: 'Membership Mingguan', price: '30.000', tag: 'Hemat', icon: 'fa-solid fa-crown text-amber-400' }
-      ],
-      pubg: [
-        { name: '60 UC', price: '15.000', tag: '', icon: 'fa-solid fa-coins text-amber-400' },
-        { name: '325 UC', price: '75.000', tag: 'Populer', icon: 'fa-solid fa-coins text-amber-400' },
-        { name: '660 UC', price: '150.000', tag: 'Best Value', icon: 'fa-solid fa-coins text-amber-400' },
-        { name: '1800 UC', price: '380.000', tag: '', icon: 'fa-solid fa-coins text-amber-400' },
-        { name: '3850 UC', price: '750.000', tag: 'Sultan', icon: 'fa-solid fa-coins text-amber-400' }
-      ],
-      efootball: [
-        { name: '130 eFootball Coins', price: '16.000', tag: 'Hemat', icon: 'fa-solid fa-coins text-yellow-400' },
-        { name: '550 eFootball Coins', price: '65.000', tag: 'Populer', icon: 'fa-solid fa-coins text-yellow-400' },
-        { name: '1040 eFootball Coins', price: '125.000', tag: 'Best Value', icon: 'fa-solid fa-coins text-yellow-400' },
-        { name: '2130 eFootball Coins', price: '249.000', tag: '', icon: 'fa-solid fa-coins text-yellow-400' },
-        { name: '3250 eFootball Coins', price: '379.000', tag: 'Sultan', icon: 'fa-solid fa-coins text-yellow-400' }
-      ],
-      genshin: [
-        { name: 'Blessing of the Welkin Moon', price: '79.000', tag: 'Best Value', icon: 'fa-solid fa-moon text-amber-300' },
-        { name: '60 Genesis Crystals', price: '16.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' },
-        { name: '300 (+30) Genesis Crystals', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-gem text-indigo-400' },
-        { name: '980 (+110) Genesis Crystals', price: '249.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' },
-        { name: '1980 (+260) Genesis Crystals', price: '479.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' },
-        { name: '3280 (+600) Genesis Crystals', price: '799.000', tag: 'Sultan', icon: 'fa-solid fa-gem text-indigo-400' }
-      ],
-      hsr: [
-        { name: 'Express Supply Pass', price: '79.000', tag: 'Best Value', icon: 'fa-solid fa-ticket text-purple-400' },
-        { name: '60 Oneiric Shard', price: '16.000', tag: '', icon: 'fa-solid fa-cube text-cyan-300' },
-        { name: '300 (+30) Oneiric Shard', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-cube text-cyan-300' },
-        { name: '980 (+110) Oneiric Shard', price: '249.000', tag: '', icon: 'fa-solid fa-cube text-cyan-300' },
-        { name: '1980 (+260) Oneiric Shard', price: '479.000', tag: '', icon: 'fa-solid fa-cube text-cyan-300' }
-      ],
-      roblox: [
-        { name: '80 Robux', price: '16.000', tag: 'Hemat', icon: 'fa-solid fa-cube text-gray-200' },
-        { name: '400 Robux', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-cube text-gray-200' },
-        { name: '800 Robux', price: '155.000', tag: 'Best Value', icon: 'fa-solid fa-cube text-gray-200' },
-        { name: '1700 Robux', price: '310.000', tag: '', icon: 'fa-solid fa-cube text-gray-200' },
-        { name: '4500 Robux', price: '790.000', tag: 'Sultan', icon: 'fa-solid fa-cube text-gray-200' }
-      ],
-      fcmobile: [
-        { name: '100 FC Points', price: '16.000', tag: '', icon: 'fa-solid fa-shield-halved text-emerald-400' },
-        { name: '520 FC Points', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-shield-halved text-emerald-400' },
-        { name: '1070 FC Points', price: '159.000', tag: 'Best Value', icon: 'fa-solid fa-shield-halved text-emerald-400' },
-        { name: '2200 FC Points', price: '319.000', tag: '', icon: 'fa-solid fa-shield-halved text-emerald-400' },
-        { name: '5700 FC Points', price: '799.000', tag: 'Sultan', icon: 'fa-solid fa-shield-halved text-emerald-400' }
-      ],
-      valorant: [
-        { name: '125 Valorant Points', price: '16.000', tag: '', icon: 'fa-solid fa-v text-red-500' },
-        { name: '420 Valorant Points', price: '50.000', tag: 'Populer', icon: 'fa-solid fa-v text-red-500' },
-        { name: '700 Valorant Points', price: '80.000', tag: '', icon: 'fa-solid fa-v text-red-500' },
-        { name: '1375 Valorant Points', price: '150.000', tag: 'Best Value', icon: 'fa-solid fa-v text-red-500' },
-        { name: '2400 Valorant Points', price: '250.000', tag: '', icon: 'fa-solid fa-v text-red-500' },
-        { name: '4000 Valorant Points', price: '400.000', tag: 'Sultan', icon: 'fa-solid fa-v text-red-500' }
+        { name: '568 Diamonds (+85 Bonus)', price: '160.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' }
       ]
     };
 
-    let selectedGameKey = '';
-    let selectedGame = '';
-    let selectedItem = '';
-    let selectedPrice = '';
-    let selectedPaymentMethod = '';
-    let activeLetter = '';
-
-    // Filter & Sort Logic
-    function filterAndSortGames() {
-      const searchInput = document.getElementById('searchInput').value.toLowerCase();
-      const sortValue = document.getElementById('sortSelect').value;
-      const grid = document.getElementById('gameGrid');
-      const cards = Array.from(grid.querySelectorAll('.game-card'));
-
-      cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        
-        const matchesSearch = title.includes(searchInput);
-        const matchesLetter = activeLetter === '' || title.startsWith(activeLetter.toLowerCase());
-
-        if (matchesSearch && matchesLetter) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      cards.sort((a, b) => {
-        const titleA = a.getAttribute('data-title').toLowerCase();
-        const titleB = b.getAttribute('data-title').toLowerCase();
-
-        if (sortValue === 'az') return titleA.localeCompare(titleB);
-        if (sortValue === 'za') return titleB.localeCompare(titleA);
-        return 0;
-      });
-
-      cards.forEach(card => grid.appendChild(card));
+    function showCatalog() {
+      document.getElementById('catalogSection').classList.remove('hidden');
+      document.getElementById('topupSection').classList.add('hidden');
     }
 
-    // Sidebar Alphabet Navigation
-    function initAlphabetSidebar() {
-      const sidebar = document.getElementById('alphabetSidebar');
-      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-      let html = '<button onclick="filterByLetter(\'\')">ALL</button>';
-      alphabet.forEach(letter => {
-        html += `<button id="btn-${letter}" onclick="filterByLetter('${letter}')">${letter}</button>`;
-      });
-      sidebar.innerHTML = html;
-    }
-
-    function filterByLetter(letter) {
-      activeLetter = letter;
-      document.querySelectorAll('.alphabet-sidebar button').forEach(btn => btn.classList.remove('active'));
-      if(letter) document.getElementById(`btn-${letter}`).classList.add('active');
-      filterAndSortGames();
-    }
-
-    // ================= BACKGROUND ANIMATION ENGINE =================
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    let bgEffectMode = 'nebula';
-    let t = 0;
-
-    // Particle Setup
-    const particles = [];
-    for (let i = 0; i < 40; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 1.2,
-        vy: (Math.random() - 0.5) * 1.2,
-        size: Math.random() * 2 + 1
-      });
-    }
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-
-    function changeBgEffect(effect) {
-      bgEffectMode = effect;
-    }
-
-    function renderBg() {
-      t += 0.008;
-
-      if (bgEffectMode === 'nebula') {
-        ctx.fillStyle = '#080314';
-        ctx.fillRect(0, 0, width, height);
-
-        let grad1 = ctx.createRadialGradient(
-          width * 0.3 + Math.sin(t) * 120, height * 0.3 + Math.cos(t * 0.8) * 120, 50,
-          width * 0.3, height * 0.3, width * 0.6
-        );
-        grad1.addColorStop(0, 'rgba(236, 72, 153, 0.35)');
-        grad1.addColorStop(1, 'rgba(8, 3, 20, 0)');
-
-        let grad2 = ctx.createRadialGradient(
-          width * 0.7 + Math.cos(t * 0.5) * 100, height * 0.7 + Math.sin(t * 0.6) * 100, 50,
-          width * 0.7, height * 0.7, width * 0.5
-        );
-        grad2.addColorStop(0, 'rgba(124, 58, 237, 0.3)');
-        grad2.addColorStop(1, 'rgba(8, 3, 20, 0)');
-
-        ctx.fillStyle = grad1;
-        ctx.fillRect(0, 0, width, height);
-        ctx.fillStyle = grad2;
-        ctx.fillRect(0, 0, width, height);
-
-      } else if (bgEffectMode === 'particles') {
-        ctx.fillStyle = '#06020e';
-        ctx.fillRect(0, 0, width, height);
-
-        ctx.strokeStyle = 'rgba(236, 72, 153, 0.15)';
-        ctx.fillStyle = '#ec4899';
-
-        for (let i = 0; i < particles.length; i++) {
-          let p = particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0 || p.x > width) p.vx *= -1;
-          if (p.y < 0 || p.y > height) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-
-          for (let j = i + 1; j < particles.length; j++) {
-            let p2 = particles[j];
-            let dx = p.x - p2.x;
-            let dy = p.y - p2.y;
-            let dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 130) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.stroke();
-            }
-          }
-        }
-
-      } else if (bgEffectMode === 'cyber') {
-        ctx.fillStyle = '#030a06';
-        ctx.fillRect(0, 0, width, height);
-
-        ctx.strokeStyle = 'rgba(16, 185, 129, 0.15)';
-        ctx.lineWidth = 1;
-
-        let gridSize = 40;
-        let offsetY = (t * 20) % gridSize;
-
-        for (let x = 0; x < width; x += gridSize) {
-          ctx.beginPath();
-          ctx.moveTo(x, 0);
-          ctx.lineTo(x, height);
-          ctx.stroke();
-        }
-
-        for (let y = offsetY; y < height; y += gridSize) {
-          ctx.beginPath();
-          ctx.moveTo(0, y);
-          ctx.lineTo(width, y);
-          ctx.stroke();
-        }
-      }
-
-      requestAnimationFrame(renderBg);
-    }
-
-    window.onload = function() {
-      initAlphabetSidebar();
-      renderBg();
-    };
-
-    function openTopup(gameKey, gameName, imgUrl) {
-      selectedGameKey = gameKey;
-      selectedGame = gameName;
-      document.getElementById('selectedGameTitle').innerText = gameName;
-      document.getElementById('selectedGameImg').src = imgUrl;
-
-      renderNominals(gameKey);
-
+    function openTopup(gameId, gameTitle, gameImg) {
       document.getElementById('catalogSection').classList.add('hidden');
       document.getElementById('topupSection').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('selectedGameTitle').innerText = gameTitle;
+      document.getElementById('selectedGameImg').src = gameImg;
     }
 
-    function renderNominals(gameKey) {
-      const nominalGrid = document.getElementById('nominalGrid');
-      const items = gameNominals[gameKey] || [];
-      
-      if (items.length === 0) {
-        nominalGrid.innerHTML = '<p class="text-xs text-gray-400 col-span-3">Item belum tersedia.</p>';
-        return;
-      }
-
-      let html = '';
-      items.forEach((item) => {
-        html += `
-          <button onclick="selectNominal('${item.name}', '${item.price}', this)" class="nominal-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl text-left transition flex flex-col justify-between group relative overflow-hidden">
-            ${item.tag ? `<span class="absolute top-0 right-0 bg-pink-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-bl-lg">${item.tag}</span>` : ''}
-            <div class="flex items-center gap-2 mb-2">
-              <i class="${item.icon} text-lg"></i>
-              <span class="font-bold text-xs sm:text-sm text-white">${item.name}</span>
-            </div>
-            <div class="text-pink-400 text-xs font-extrabold">Rp ${item.price}</div>
-          </button>
-        `;
-      });
-      nominalGrid.innerHTML = html;
+    function filterAndSortGames() {
+      // Logic filter & sort game
     }
 
-    function showCatalog() {
-      document.getElementById('topupSection').classList.add('hidden');
-      document.getElementById('catalogSection').classList.remove('hidden');
-    }
-
-    function selectNominal(item, price, element) {
-      selectedItem = item;
-      selectedPrice = price;
-      document.querySelectorAll('.nominal-btn').forEach(btn => btn.classList.remove('selected'));
-      element.classList.add('selected');
-    }
-
-    function selectPayment(paymentName, element) {
-      selectedPaymentMethod = paymentName;
+    function selectPayment(name, el) {
       document.querySelectorAll('.payment-btn').forEach(btn => btn.classList.remove('selected'));
-      element.classList.add('selected');
+      el.classList.add('selected');
     }
 
     function processOrder() {
-      const userId = document.getElementById('userIdInput').value;
-      if (!userId || !selectedItem || !selectedPaymentMethod) {
-        alert('Lengkapi seluruh data transaksi kamu!');
-        return;
-      }
-      alert(`✅ Pesanan Berhasil!\nGame: ${selectedGame}\nID: ${userId}\nItem: ${selectedItem}\nHarga: Rp ${selectedPrice}\nPembayaran: ${selectedPaymentMethod}`);
+      alert('Pesanan berhasil diproses!');
     }
   </script>
 </body>
