@@ -121,6 +121,9 @@
           <span class="text-2xl font-black tracking-wider text-pink-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]">
             exo<span class="text-white">GAME</span>
           </span>
+          <span class="bg-pink-500/20 text-pink-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-500/30 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-pink-400 animate-ping"></span> LIVE BG ACTIVE
+          </span>
         </div>
 
         <!-- Controls: Effect & Search -->
@@ -129,6 +132,7 @@
           <!-- Background Effect Selector -->
           <div class="flex items-center bg-gray-900/80 border border-pink-500/40 rounded-full px-2.5 py-1 text-xs text-gray-300 gap-1.5 shadow-lg">
             <i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i>
+            <span class="text-gray-400">Effect:</span>
             <select id="bgEffectSelect" onchange="changeBgEffect(this.value)" class="bg-transparent text-pink-300 font-semibold focus:outline-none cursor-pointer text-xs">
               <option value="nebula" class="bg-gray-900 text-white">✨ Glowing Nebula</option>
               <option value="particles" class="bg-gray-900 text-white">🌌 Particle Network</option>
@@ -138,7 +142,7 @@
 
           <!-- Search Bar -->
           <div class="relative">
-            <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari game..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-32 sm:w-44 transition-all">
+            <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-48 transition-all">
             <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
           </div>
         </div>
@@ -157,8 +161,11 @@
           <h1 class="text-2xl sm:text-4xl font-extrabold mb-2 text-white drop-shadow-md">
             TOP UP GAME INSTAN HARGA TERMURAH
           </h1>
-          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
-            Nikmati top up diamond, UC, VP, V-Bucks, dan membership game favoritmu dengan pengiriman instan!
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-2">
+            Nikmati top up diamond, voucher, dan membership favoritmu dengan efek animasi live wallpaper interaktif.
+          </p>
+          <p class="text-[11px] text-pink-300/80 italic">
+            Gerakkan kursor di layar untuk melihat interaksi efek background!
           </p>
         </div>
         <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-pink-500/30 rounded-full blur-3xl pointer-events-none"></div>
@@ -181,7 +188,7 @@
           </div>
         </div>
         
-        <!-- Game Cards Grid (Ukuran foto 1:1 dengan aspect-square) -->
+        <!-- Game Cards Grid (Rasio Foto 1:1) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
           
           <!-- Mobile Legends -->
@@ -191,6 +198,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Mobile Legends</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Moonton</span>
             </div>
           </div>
 
@@ -201,6 +209,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Free Fire Top-up</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Garena</span>
             </div>
           </div>
 
@@ -211,6 +220,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">PUBG Mobile</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Tencent Games</span>
             </div>
           </div>
 
@@ -221,6 +231,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">eFootball™ 2026</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Konami</span>
             </div>
           </div>
 
@@ -231,6 +242,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Genshin Impact</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">HoYoverse</span>
             </div>
           </div>
 
@@ -241,6 +253,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Honkai: Star Rail</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">HoYoverse</span>
             </div>
           </div>
 
@@ -251,6 +264,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Roblox</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Roblox Corporation</span>
             </div>
           </div>
 
@@ -261,6 +275,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">EA SPORTS FC Mobile</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">ELECTRONIC ARTS</span>
             </div>
           </div>
 
@@ -271,6 +286,7 @@
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Valorant</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Riot Games</span>
             </div>
           </div>
 
@@ -657,10 +673,26 @@
       document.querySelectorAll('.alphabet-sidebar button').forEach(b => b.classList.remove('active'));
     }
 
-    // Interactive Animated Background Canvas Engine (Fitur Ganti Background Tetap Utuh)
+    // Interactive Animated Background Canvas Engine (Fully Restored Mouse Interactivity)
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let currentEffect = 'nebula';
+
+    let mouse = {
+      x: null,
+      y: null,
+      radius: 140
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('mouseout', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -670,13 +702,13 @@
     resizeCanvas();
 
     let particles = [];
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < 75; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 1,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6
+        radius: Math.random() * 2 + 1.2,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7
       });
     }
 
@@ -710,12 +742,21 @@
         ctx.fillStyle = grad2;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        // Subtle mouse follower for nebula
+        if (mouse.x !== null && mouse.y !== null) {
+          let mouseGrad = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 200);
+          mouseGrad.addColorStop(0, 'rgba(236, 72, 153, 0.25)');
+          mouseGrad.addColorStop(1, 'transparent');
+          ctx.fillStyle = mouseGrad;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
       } else if (currentEffect === 'particles') {
         ctx.fillStyle = '#080314';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = 'rgba(236, 72, 153, 0.7)';
-        ctx.strokeStyle = 'rgba(236, 72, 153, 0.12)';
+        ctx.fillStyle = 'rgba(236, 72, 153, 0.8)';
+        ctx.strokeStyle = 'rgba(236, 72, 153, 0.15)';
         ctx.lineWidth = 1;
 
         particles.forEach((p, idx) => {
@@ -729,14 +770,28 @@
           ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
           ctx.fill();
 
+          // Connect particles to each other
           for (let j = idx + 1; j < particles.length; j++) {
             let p2 = particles[j];
             let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (dist < 120) {
+            if (dist < 130) {
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(p2.x, p2.y);
               ctx.stroke();
+            }
+          }
+
+          // Interactivity with Mouse Cursor
+          if (mouse.x !== null && mouse.y !== null) {
+            let distToMouse = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+            if (distToMouse < mouse.radius) {
+              ctx.strokeStyle = 'rgba(236, 72, 153, 0.5)';
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+              ctx.strokeStyle = 'rgba(236, 72, 153, 0.15)'; // reset
             }
           }
         });
@@ -746,10 +801,10 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         cyberGridOffset = (cyberGridOffset + 0.8) % 40;
-        ctx.strokeStyle = 'rgba(236, 72, 153, 0.12)';
+        ctx.strokeStyle = 'rgba(34, 197, 94, 0.15)';
         ctx.lineWidth = 1;
 
-        // Garis Vertikal Perspektif / Grid
+        // Grid Vertikal
         for (let x = 0; x < canvas.width; x += 40) {
           ctx.beginPath();
           ctx.moveTo(x, 0);
@@ -757,12 +812,28 @@
           ctx.stroke();
         }
 
-        // Garis Horizontal Bergerak
+        // Grid Horizontal Bergerak
         for (let y = cyberGridOffset; y < canvas.height; y += 40) {
           ctx.beginPath();
           ctx.moveTo(0, y);
           ctx.lineTo(canvas.width, y);
           ctx.stroke();
+        }
+
+        // Area Hijau Interaktif Mengikuti Kursor (Matrix Cyber Glow)
+        if (mouse.x !== null && mouse.y !== null) {
+          let cyberGlow = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 250);
+          cyberGlow.addColorStop(0, 'rgba(34, 197, 94, 0.35)');
+          cyberGlow.addColorStop(0.5, 'rgba(34, 197, 94, 0.12)');
+          cyberGlow.addColorStop(1, 'transparent');
+          ctx.fillStyle = cyberGlow;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          // Center cursor dot for cyber grid
+          ctx.fillStyle = 'rgba(34, 197, 94, 0.8)';
+          ctx.beginPath();
+          ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2);
+          ctx.fill();
         }
       }
 
