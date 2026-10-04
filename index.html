@@ -1,423 +1,913 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>exoGAME - Top Up Game Murah & Cepat</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>exoGAME - Top Up Game Murah & Cepat (Animated Background)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
   <style>
-    /* RESET & BASE STYLES */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
     body {
-      background-color: #0d021a;
-      color: #ffffff;
-      min-height: 100vh;
+      color: #f3f4f6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow-x: hidden;
-      position: relative;
+      background-color: #080314;
     }
 
-    /* 1. ANIMASI BACKGROUND GERAK (EFEK PARTIKEL & ORB NEON) */
-    .animated-bg-container {
+    /* Fixed Canvas for Animated Background */
+    #bgCanvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -3;
-      overflow: hidden;
-      background: linear-gradient(135deg, #0d021a 0%, #17052e 50%, #090114 100%);
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.6;
-      animation: floatOrb 12s infinite alternate ease-in-out;
-    }
-
-    .orb-1 {
-      width: 350px;
-      height: 350px;
-      background: #7c3aed;
-      top: -50px;
-      left: -50px;
-    }
-
-    .orb-2 {
-      width: 450px;
-      height: 450px;
-      background: #c084fc;
-      bottom: -100px;
-      right: -100px;
-      animation-delay: -4s;
-    }
-
-    .orb-3 {
-      width: 300px;
-      height: 300px;
-      background: #2563eb;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation-delay: -8s;
-    }
-
-    @keyframes floatOrb {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-      50% {
-        transform: translate(60px, 80px) scale(1.2);
-      }
-      100% {
-        transform: translate(-40px, 40px) scale(0.9);
-      }
-    }
-
-    /* 2. BACKGROUND VIDEO (JIKA KAMU UNGGAT FILE MP4 SENDIRI) */
-    #bgVideo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      display: none;
-    }
-
-    /* OVERLAY AGAR KONTEN TETAP JELAS DIBACA */
-    .bg-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(13, 2, 26, 0.45);
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
+      pointer-events: none;
     }
 
-    /* NAVBAR & HEADER */
-    header {
-      background: rgba(22, 5, 43, 0.85);
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: rgba(17, 24, 39, 0.75);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(236, 72, 153, 0.2);
     }
 
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      color: #e0b0ff;
-      text-decoration: none;
-      letter-spacing: 1px;
+    .glass-card:hover {
+      border-color: rgba(236, 72, 153, 0.6);
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);
     }
 
-    .logo span {
-      color: #00ffcc;
+    .glass-header {
+      background: rgba(15, 10, 30, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(236, 72, 153, 0.2);
     }
 
-    /* UPLOADER WALLPAPER */
-    .bg-uploader {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .bg-uploader label {
-      cursor: pointer;
-      color: #00ffcc;
-      font-weight: 600;
-    }
-
-    .bg-uploader input[type="file"] {
-      display: none;
-    }
-
-    /* MAIN CONTAINER */
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    .section-title {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    /* GRID KARTU GAME */
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 18px;
-    }
-
-    /* KARTU GAME SAMA SEPERTI REFERENSI FOTO */
-    .game-card {
-      background: #2b1248;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      cursor: pointer;
+    /* Sidebar Alphabet A-Z */
+    .alphabet-sidebar {
+      position: fixed;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
       display: flex;
       flex-direction: column;
-      position: relative;
-    }
-
-    .game-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 25px rgba(168, 85, 247, 0.4);
-    }
-
-    /* CONTAINER GAMBAR (PERSEGI 1:1) */
-    .poster-container {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      background: #1a0830;
-    }
-
-    .poster-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* BADGE PROMO */
-    .badge-discount {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #eab308;
-      color: #000;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 20px;
-      transform: rotate(-45deg) translate(-18px, -12px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      text-align: center;
-      width: 90px;
-      z-index: 2;
-    }
-
-    .badge-max {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #f97316;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 20px;
-      transform: rotate(-45deg) translate(-18px, -12px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      text-align: center;
-      width: 90px;
-      z-index: 2;
-    }
-
-    /* GELOMBANG (WAVY DIVIDER) */
-    .wavy-divider {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      line-height: 0;
-      z-index: 2;
-    }
-
-    .wavy-divider svg {
-      position: relative;
-      display: block;
-      width: 100%;
-      height: 16px;
-      fill: #2b1248;
-    }
-
-    /* JUDUL GAME */
-    .game-title {
-      padding: 10px 8px 14px 8px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1.3;
-      min-height: 48px;
-      display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 2px;
+      background: rgba(15, 10, 30, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 6px 4px;
+      border-radius: 12px;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
 
-    /* FOOTER */
-    footer {
-      margin-top: 60px;
-      background: rgba(15, 3, 30, 0.9);
-      padding: 25px;
-      text-align: center;
-      font-size: 13px;
-      color: #a0aec0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    .alphabet-sidebar button {
+      font-size: 10px;
+      font-weight: bold;
+      color: #9ca3af;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .alphabet-sidebar button:hover, .alphabet-sidebar button.active {
+      color: #ec4899;
+      background-color: rgba(236, 72, 153, 0.3);
+      text-shadow: 0 0 8px #ec4899;
+    }
+
+    /* Selection Highlighting */
+    .nominal-btn.selected, .payment-btn.selected {
+      border-color: #ec4899 !important;
+      background-color: rgba(236, 72, 153, 0.25) !important;
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090514;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ec4899;
+      border-radius: 10px;
     }
   </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between pr-8 sm:pr-10">
 
-  <!-- BACKGROUND BERGERAK (EFEK ORB & NEON GLOW) -->
-  <div class="animated-bg-container">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
+  <!-- Interactive Animated Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
 
-  <!-- OVERLAY MENTERANGKAN TEKS -->
-  <div class="bg-overlay"></div>
-
-  <!-- BACKGROUND VIDEO JIKA DI-UPLOAD KONSUMEN -->
-  <video id="bgVideo" autoplay muted loop playsinline></video>
-
-  <!-- NAVBAR -->
-  <header>
-    <a href="#" class="logo">exo<span>GAME</span></a>
+  <!-- Main Container -->
+  <div class="relative z-10">
     
-    <div class="bg-uploader">
-      <span>Ganti Video Wallpaper:</span>
-      <label for="bgInput">📁 Upload MP4/GIF</label>
-      <input type="file" id="bgInput" accept="video/mp4, video/webm, image/gif" />
-    </div>
-  </header>
+    <!-- Alphabet Sidebar -->
+    <div class="alphabet-sidebar" id="alphabetSidebar"></div>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="section-title">⚡ Top Up Game Populer</div>
+    <!-- Header / Navbar -->
+    <header class="glass-header sticky top-0 z-50 transition-all duration-300">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 cursor-pointer" onclick="showCatalog()">
+          <span class="text-2xl font-black tracking-wider text-pink-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]">
+            exo<span class="text-white">GAME</span>
+          </span>
+          <span class="hidden sm:inline-block bg-pink-500/20 text-pink-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-500/30">
+            LIVE BG ACTIVE⚡
+          </span>
+        </div>
 
-    <div class="game-grid">
+        <!-- Background Effect Switcher & Search Bar -->
+        <div class="flex items-center gap-2 sm:gap-4 flex-wrap">
+          <!-- Background Effect Selector -->
+          <div class="flex items-center bg-gray-900/80 border border-pink-500/40 rounded-full px-2 py-1 text-xs text-gray-300 gap-1.5 shadow-lg">
+            <i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i>
+            <span class="hidden md:inline font-medium">Effect:</span>
+            <select id="bgEffectSelect" onchange="changeBgEffect(this.value)" class="bg-transparent text-pink-300 font-semibold focus:outline-none cursor-pointer text-xs">
+              <option value="nebula" class="bg-gray-900 text-white">✨ Glowing Nebula</option>
+              <option value="particles" class="bg-gray-900 text-white">🌌 Particle Network</option>
+              <option value="cyber" class="bg-gray-900 text-white">🟩 Matrix Cyber Grid</option>
+            </select>
+          </div>
 
-      <!-- 1. Mobile Legends -->
-      <div class="game-card">
-        <div class="poster-container">
-          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&auto=format&fit=crop&q=80" alt="Mobile Legends" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
+          <!-- Search Bar -->
+          <div class="relative">
+            <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-56 transition-all">
+            <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
           </div>
         </div>
-        <div class="game-title">Mobile Legends: Bang Bang</div>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 mt-6 mb-12">
+      
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl border border-pink-500/30 bg-gradient-to-r from-purple-900/80 via-pink-900/60 to-indigo-950/80 backdrop-blur-md">
+        <div class="relative z-10 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/20 border border-pink-500/40 text-pink-300 text-xs font-semibold mb-3">
+            <span class="w-2 h-2 rounded-full bg-pink-500 animate-ping"></span>
+            Proses Otomatis 24/7 Fast & Safe
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-extrabold mb-2 text-white drop-shadow-md">
+            TOP UP GAME INSTAN HARGA TERMURAH
+          </h1>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+            Nikmati top up diamond, voucher, dan membership favoritmu dengan efek animasi live wallpaper interaktif. Klik layar untuk melihat interaksi efek!
+          </p>
+        </div>
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-pink-500/30 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
-      <!-- 2. Free Fire Top-up -->
-      <div class="game-card">
-        <div class="poster-container">
-          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&auto=format&fit=crop&q=80" alt="Free Fire" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
+      <!-- CATALOG SECTION -->
+      <section id="catalogSection">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 glass-card p-4 rounded-xl">
+          <h2 class="text-lg sm:text-xl font-bold text-gray-100 border-l-4 border-pink-500 pl-3 flex items-center gap-2">
+            <i class="fa-solid fa-gamepad text-pink-500"></i> Katalog Game Top-Up
+          </h2>
+          
+          <div class="flex items-center gap-3">
+            <label for="sortSelect" class="text-xs sm:text-sm font-medium text-gray-400 whitespace-nowrap">Urutkan:</label>
+            <select id="sortSelect" onchange="filterAndSortGames()" class="bg-gray-900/90 border border-gray-700 text-xs sm:text-sm rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-pink-500 cursor-pointer">
+              <option value="az">Urutan Abjad (A - Z)</option>
+              <option value="za">Urutan Abjad (Z - A)</option>
+              <option value="default">Populer / Rekomendasi</option>
+            </select>
           </div>
         </div>
-        <div class="game-title">Free Fire Top-up</div>
-      </div>
+        
+        <!-- Game Cards Grid: 2 kolom (layar kecil), 3 kolom (HP besar), 4 (tablet), 6 (laptop/desktop) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
+          
+          <!-- Mobile Legends -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Mobile Legends: Bang Bang" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Mobile Legends: Bang Bang</h3>
+            </div>
+          </div>
 
-      <!-- 3. Magic Chess -->
-      <div class="game-card">
-        <div class="poster-container">
-          <div class="badge-discount">Diskon 10%</div>
-          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&auto=format&fit=crop&q=80" alt="Magic Chess" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
+          <!-- Free Fire -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Free Fire Top-up" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Free Fire Top-up</h3>
+            </div>
+          </div>
+
+          <!-- PUBG Mobile -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="PUBG Mobile" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">PUBG Mobile</h3>
+            </div>
+          </div>
+
+          <!-- eFootball -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="eFootball 2026" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">eFootball™ 2026</h3>
+            </div>
+          </div>
+
+          <!-- Genshin Impact -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Genshin Impact" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Genshin Impact</h3>
+            </div>
+          </div>
+
+          <!-- Honkai Star Rail -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Honkai: Star Rail</h3>
+            </div>
+          </div>
+
+          <!-- Roblox -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Roblox</h3>
+            </div>
+          </div>
+
+          <!-- FC Mobile -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">EA SPORTS FC Mobile</h3>
+            </div>
+          </div>
+
+          <!-- Valorant -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
+            <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Valorant</h3>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TOP UP FORM SECTION -->
+      <section id="topupSection" class="hidden">
+        <button onclick="showCatalog()" class="mb-4 text-xs sm:text-sm bg-gray-800/80 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Catalog Game
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Game Information Sidebar -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center h-fit sticky top-20">
+            <img id="selectedGameImg" src="" class="w-32 h-32 object-cover rounded-2xl mb-4 border-2 border-pink-500 shadow-xl shadow-pink-500/20">
+            <h2 id="selectedGameTitle" class="text-xl sm:text-2xl font-bold text-white mb-1">Nama Game</h2>
+            <p class="text-xs text-gray-400 mb-4">Proses Instant & Garansi Resmi exoGAME</p>
+            <div class="w-full border-t border-gray-700/80 pt-4 text-left space-y-2 text-xs text-gray-300">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-400"></i> Pengiriman Otomatis</div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-headset text-pink-400"></i> Layanan CS 24 Jam</div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Transaksi Safe & Secure</div>
+            </div>
+          </div>
+
+          <!-- Steps Container -->
+          <div class="md:col-span-2 space-y-6">
+            
+            <!-- Step 1: User Data -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">1</span>
+                MASUKKAN DATA AKUN
+              </h3>
+              <div>
+                <input type="text" id="userIdInput" placeholder="Masukkan User ID / Zone ID Anda" class="w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm">
+              </div>
+            </div>
+
+            <!-- Step 2: Nominal Top Up -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">2</span>
+                PILIH NOMINAL TOP UP
+              </h3>
+              <div id="nominalGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Step 3: Payment Method -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">3</span>
+                PILIH PEMBAYARAN
+              </h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="paymentGrid">
+                
+                <button onclick="selectPayment('GoPay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-wallet text-sky-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">GoPay</span>
+                </button>
+
+                <button onclick="selectPayment('DANA', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-mobile-screen-button text-blue-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Dana</span>
+                </button>
+
+                <button onclick="selectPayment('QRIS', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-qrcode text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">QRIS</span>
+                </button>
+
+                <button onclick="selectPayment('Bank Transfer', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-building-columns text-emerald-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Bank Transfer</span>
+                </button>
+
+                <button onclick="selectPayment('ShopeePay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-bag-shopping text-orange-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">ShopeePay</span>
+                </button>
+
+                <button onclick="selectPayment('OVO', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-circle-dollar-to-slot text-purple-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">OVO</span>
+                </button>
+
+                <button onclick="selectPayment('Kredivo', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-credit-card text-amber-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kredivo</span>
+                </button>
+
+                <button onclick="selectPayment('Indomaret', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-store text-blue-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Indomaret</span>
+                </button>
+
+                <button onclick="selectPayment('Alfamart', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-shop text-red-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Alfamart</span>
+                </button>
+
+                <button onclick="selectPayment('Kartu Kredit', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-regular fa-credit-card text-yellow-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kartu Kredit</span>
+                </button>
+
+                <button onclick="selectPayment('LinkAja', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-hand-holding-dollar text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">LinkAja</span>
+                </button>
+
+                <button onclick="selectPayment('DOKU Wallet', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-vault text-rose-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">DOKU Wallet</span>
+                </button>
+
+              </div>
+            </div>
+
+            <!-- Step 4: Email & Confirmation -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-2 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">4</span>
+                MASUKKAN DETAIL
+              </h3>
+              
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  <span class="font-semibold text-white">Opsional:</span> Jika anda ingin mendapatkan bukti pembayaran atas pembelian anda, harap mengisi alamat emailnya exoGAME Rewards sebesar <span class="text-amber-400 font-bold">0.5%</span> yang terkirim akan di notify ke email kamu.
+                </p>
+                <div class="text-amber-400 text-2xl flex-shrink-0 animate-bounce">
+                  🪙
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <input type="email" id="userEmailInput" placeholder="Harap masukkan email" class="w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm">
+              </div>
+
+              <label class="flex items-center gap-2 cursor-pointer text-xs text-gray-300">
+                <input type="checkbox" id="promoConsent" class="w-4 h-4 rounded accent-pink-500 cursor-pointer">
+                <span>Ya, Saya ingin menerima berita dan promosi melalui SMS atau WhatsApp</span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button onclick="processOrder()" class="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 font-bold py-3.5 rounded-xl transition text-white shadow-lg shadow-pink-600/40 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
+              <i class="fa-solid fa-cart-shopping"></i> BELI SEKARANG
+            </button>
           </div>
         </div>
-        <div class="game-title">Magic Chess: Go Go</div>
-      </div>
+      </section>
 
-      <!-- 4. Free Fire MAX -->
-      <div class="game-card">
-        <div class="poster-container">
-          <div class="badge-max">MAX</div>
-          <img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=400&auto=format&fit=crop&q=80" alt="Free Fire MAX" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-gradient-to-r from-purple-950 via-gray-950 to-slate-950 border-t border-purple-800/40 pt-10 pb-8 text-gray-300 backdrop-blur-lg">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
+          
+          <!-- Column 1: Logo & Description -->
+          <div class="md:col-span-5 space-y-4">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl font-black tracking-wider text-pink-500 drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
+                exo<span class="text-white">GAME</span>
+              </span>
+            </div>
+            <p class="text-xs leading-relaxed text-gray-400">
+              exoGAME Top Up adalah platform top up game termurah, tercepat, dan terpercaya di Indonesia. Nikmati top up diamond, voucher, dan membership untuk Mobile Legends, Free Fire, PUBG Mobile, Valorant, Genshin Impact, Roblox, dan ratusan game lainnya. Proses instan kurang dari 1 menit, pembayaran mudah melalui e-wallet hingga transfer bank, dengan layanan 24 jam nonstop.
+            </p>
+            <!-- Social Icons -->
+            <div class="flex items-center gap-2 pt-2">
+              <a href="#" class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center hover:scale-110 transition">
+                <i class="fa-brands fa-facebook-f text-xs"></i>
+              </a>
+              <a href="#" class="w-8 h-8 rounded-lg bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white flex items-center justify-center hover:scale-110 transition">
+                <i class="fa-brands fa-instagram text-xs"></i>
+              </a>
+              <a href="#" class="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center hover:scale-110 transition">
+                <i class="fa-brands fa-youtube text-xs"></i>
+              </a>
+              <a href="#" class="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center border border-gray-700 hover:scale-110 transition">
+                <i class="fa-brands fa-tiktok text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 2: Peta Situs -->
+          <div class="md:col-span-2">
+            <h4 class="text-pink-400 font-bold text-xs uppercase tracking-wider mb-4 border-b border-pink-500/20 pb-1">Peta Situs</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="#" onclick="showCatalog()" class="hover:text-pink-400 transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-pink-500"></i> Home</a></li>
+              <li><a href="#" class="hover:text-pink-400 transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-pink-500"></i> Lacak Pesanan</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Game Lainnya -->
+          <div class="md:col-span-2">
+            <h4 class="text-pink-400 font-bold text-xs uppercase tracking-wider mb-4 border-b border-pink-500/20 pb-1">Game Lainnya</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="#" onclick="openTopup('mlbb', 'Mobile Legends', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')" class="hover:text-pink-400 transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-pink-500"></i> Mobile Legends</a></li>
+              <li><a href="#" onclick="openTopup('ff', 'Free Fire', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')" class="hover:text-pink-400 transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-pink-500"></i> Free Fire</a></li>
+              <li><a href="#" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')" class="hover:text-pink-400 transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-pink-500"></i> PUBG Mobile</a></li>
+              <li><a href="#" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')" class="hover:text-pink-400 transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-pink-500"></i> Genshin Impact</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Legalitas -->
+          <div class="md:col-span-3">
+            <h4 class="text-pink-400 font-bold text-xs uppercase tracking-wider mb-4 border-b border-pink-500/20 pb-1">Legalitas</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="#" class="hover:text-pink-400 transition flex items-center gap-1.5"><i class="fa-solid fa-shield text-[10px] text-pink-500"></i> Syarat & Ketentuan</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-800/80 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-2">
+          <p>© 2026 exoGAME TOP UP. All Rights Reserved.</p>
+          <div class="flex gap-4 text-gray-400">
+            <span>Powered by ExoEngine</span>
+            <span>•</span>
+            <span>24/7 Support</span>
           </div>
         </div>
-        <div class="game-title">Free Fire MAX Top-up</div>
       </div>
+    </footer>
 
-      <!-- 5. Call of Duty Mobile -->
-      <div class="game-card">
-        <div class="poster-container">
-          <img src="https://images.unsplash.com/photo-1589241062272-c0a000072dfa?w=400&auto=format&fit=crop&q=80" alt="CODM" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="game-title">Call of Duty Mobile</div>
-      </div>
-
-      <!-- 6. Hago -->
-      <div class="game-card">
-        <div class="poster-container">
-          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400&auto=format&fit=crop&q=80" alt="Hago" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="game-title">Hago</div>
-      </div>
-
-    </div>
   </div>
-
-  <footer>
-    &copy; 2026 exoGAME. All rights reserved.
-  </footer>
 
   <script>
-    const bgInput = document.getElementById('bgInput');
-    const bgVideo = document.getElementById('bgVideo');
+    // Database Item Nominal
+    const gameNominals = {
+      mlbb: [
+        { name: 'Weekly Diamond Pass', price: '28.000', tag: 'Best Seller', icon: 'fa-solid fa-id-card text-cyan-300' },
+        { name: '11 Diamonds (+1 Bonus)', price: '3.500', tag: 'Hemat', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '56 Diamonds (+6 Bonus)', price: '16.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '85 Diamonds (+9 Bonus)', price: '24.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '170 Diamonds (+19 Bonus)', price: '48.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '296 Diamonds (+34 Bonus)', price: '84.000', tag: 'Populer', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '568 Diamonds (+71 Bonus)', price: '160.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '2010 Diamonds (+270 Bonus)', price: '560.000', tag: 'Sultan', icon: 'fa-solid fa-gem text-cyan-400' }
+      ],
+      ff: [
+        { name: '5 Diamonds', price: '1.000', tag: 'Super Hemat', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '50 Diamonds', price: '8.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '70 Diamonds', price: '10.000', tag: 'Populer', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '140 Diamonds', price: '20.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '355 Diamonds', price: '50.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '720 Diamonds', price: '100.000', tag: 'Best Value', icon: 'fa-solid fa-gem text-cyan-400' }
+      ],
+      pubg: [
+        { name: '60 UC', price: '15.000', tag: '', icon: 'fa-solid fa-coins text-amber-400' },
+        { name: '325 UC', price: '75.000', tag: 'Populer', icon: 'fa-solid fa-coins text-amber-400' },
+        { name: '660 UC', price: '150.000', tag: 'Royale Pass', icon: 'fa-solid fa-coins text-amber-400' },
+        { name: '1800 UC', price: '380.000', tag: '', icon: 'fa-solid fa-coins text-amber-400' },
+        { name: '3850 UC', price: '750.000', tag: '', icon: 'fa-solid fa-coins text-amber-400' }
+      ],
+      efootball: [
+        { name: '130 eFootball™ Coins', price: '16.000', tag: '', icon: 'fa-solid fa-circle-dot text-yellow-400' },
+        { name: '550 eFootball™ Coins', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-circle-dot text-yellow-400' },
+        { name: '1040 eFootball™ Coins', price: '159.000', tag: '', icon: 'fa-solid fa-circle-dot text-yellow-400' },
+        { name: '2130 eFootball™ Coins', price: '329.000', tag: '', icon: 'fa-solid fa-circle-dot text-yellow-400' }
+      ],
+      roblox: [
+        { name: '80 Robux', price: '16.000', tag: '', icon: 'fa-solid fa-cube text-slate-200' },
+        { name: '400 Robux', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-cube text-slate-200' },
+        { name: '800 Robux', price: '159.000', tag: '', icon: 'fa-solid fa-cube text-slate-200' },
+        { name: '1700 Robux', price: '329.000', tag: '', icon: 'fa-solid fa-cube text-slate-200' }
+      ],
+      fcmobile: [
+        { name: '100 FC Points', price: '16.000', tag: '', icon: 'fa-solid fa-shield-halved text-emerald-400' },
+        { name: '520 FC Points', price: '79.000', tag: '', icon: 'fa-solid fa-shield-halved text-emerald-400' },
+        { name: '1070 FC Points', price: '159.000', tag: 'Populer', icon: 'fa-solid fa-shield-halved text-emerald-400' },
+        { name: '2200 FC Points', price: '329.000', tag: '', icon: 'fa-solid fa-shield-halved text-emerald-400' }
+      ],
+      valorant: [
+        { name: '300 VP', price: '35.000', tag: '', icon: 'fa-solid fa-v text-red-500' },
+        { name: '625 VP', price: '70.000', tag: '', icon: 'fa-solid fa-v text-red-500' },
+        { name: '1125 VP', price: '135.000', tag: 'Night Market', icon: 'fa-solid fa-v text-red-500' },
+        { name: '1650 VP', price: '190.000', tag: 'Battlepass', icon: 'fa-solid fa-v text-red-500' }
+      ],
+      genshin: [
+        { name: 'Blessing of the Welkin Moon', price: '79.000', tag: 'Best Value', icon: 'fa-solid fa-moon text-amber-300' },
+        { name: '300 (+30) Genesis Crystals', price: '79.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' },
+        { name: '980 (+110) Genesis Crystals', price: '249.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' },
+        { name: '1980 (+260) Genesis Crystals', price: '479.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' }
+      ],
+      hsr: [
+        { name: 'Express Supply Pass', price: '79.000', tag: 'Best Value', icon: 'fa-solid fa-ticket text-purple-400' },
+        { name: '300 (+30) Oneiric Shard', price: '79.000', tag: '', icon: 'fa-solid fa-gem text-purple-300' },
+        { name: '980 (+110) Oneiric Shard', price: '249.000', tag: '', icon: 'fa-solid fa-gem text-purple-300' },
+        { name: '1980 (+260) Oneiric Shard', price: '479.000', tag: '', icon: 'fa-solid fa-gem text-purple-300' }
+      ]
+    };
 
-    bgInput.addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const fileURL = URL.createObjectURL(file);
-        bgVideo.src = fileURL;
-        bgVideo.style.display = 'block';
-        bgVideo.play();
-      }
+    let selectedGameKey = '';
+    let selectedGame = '';
+    let selectedItem = '';
+    let selectedPrice = '';
+    let selectedPaymentMethod = '';
+    let activeLetter = '';
+
+    // Canvas Background Engine
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    let bgEffectMode = 'nebula'; // 'nebula', 'particles', 'cyber'
+    let mouse = { x: width / 2, y: height / 2, radius: 150 };
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initParticles();
     });
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    // Particles Data
+    let particlesArray = [];
+    const particleCount = 65;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.2;
+        this.speedY = (Math.random() - 0.5) * 1.2;
+        this.color = Math.random() > 0.5 ? '#ec4899' : '#a855f7';
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > width) this.speedX *= -1;
+        if (this.y < 0 || this.y > height) this.speedY *= -1;
+
+        // Mouse interaction
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < mouse.radius) {
+          this.x -= (dx / distance) * 2;
+          this.y -= (dy / distance) * 2;
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < particleCount; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    // Animation variables for Glowing Nebula
+    let t = 0;
+
+    function renderBg() {
+      ctx.clearRect(0, 0, width, height);
+
+      if (bgEffectMode === 'nebula') {
+        // Glowing Nebula Plasma Effect
+        t += 0.008;
+        let grad1 = ctx.createRadialGradient(
+          width * 0.3 + Math.sin(t) * 100, height * 0.3 + Math.cos(t * 0.8) * 100, 50,
+          width * 0.3, height * 0.3, width * 0.6
+        );
+        grad1.addColorStop(0, 'rgba(236, 72, 153, 0.35)');
+        grad1.addColorStop(1, 'rgba(8, 3, 20, 0)');
+
+        let grad2 = ctx.createRadialGradient(
+          width * 0.7 + Math.cos(t * 1.2) * 120, height * 0.7 + Math.sin(t * 0.9) * 120, 50,
+          width * 0.7, height * 0.7, width * 0.7
+        );
+        grad2.addColorStop(0, 'rgba(147, 51, 234, 0.35)');
+        grad2.addColorStop(1, 'rgba(8, 3, 20, 0)');
+
+        ctx.fillStyle = '#080314';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = grad1;
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = grad2;
+        ctx.fillRect(0, 0, width, height);
+
+        // Subtle moving glowing orb under mouse
+        let mouseGrad = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 200);
+        mouseGrad.addColorStop(0, 'rgba(236, 72, 153, 0.2)');
+        mouseGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = mouseGrad;
+        ctx.fillRect(0, 0, width, height);
+
+      } else if (bgEffectMode === 'particles') {
+        // Particle Net Mode
+        ctx.fillStyle = '#060210';
+        ctx.fillRect(0, 0, width, height);
+
+        for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update();
+          particlesArray[i].draw();
+
+          for (let j = i; j < particlesArray.length; j++) {
+            let dx = particlesArray[i].x - particlesArray[j].x;
+            let dy = particlesArray[i].y - particlesArray[j].y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 110) {
+              ctx.strokeStyle = `rgba(236, 72, 153, ${1 - dist / 110})`;
+              ctx.lineWidth = 0.6;
+              ctx.beginPath();
+              ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+              ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+      } else if (bgEffectMode === 'cyber') {
+        // Cyber Matrix Grid Mode
+        t += 0.02;
+        ctx.fillStyle = '#03080e';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.strokeStyle = 'rgba(16, 185, 129, 0.15)';
+        ctx.lineWidth = 1;
+
+        let gridSize = 40;
+        let offsetY = (t * 20) % gridSize;
+
+        for (let x = 0; x < width; x += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.stroke();
+        }
+
+        for (let y = offsetY; y < height; y += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.stroke();
+        }
+
+        // Cyber mouse spotlight
+        let cyberGlow = ctx.createRadialGradient(mouse.x, mouse.y, 5, mouse.x, mouse.y, 250);
+        cyberGlow.addColorStop(0, 'rgba(16, 185, 129, 0.25)');
+        cyberGlow.addColorStop(1, 'transparent');
+        ctx.fillStyle = cyberGlow;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      requestAnimationFrame(renderBg);
+    }
+
+    function changeBgEffect(effect) {
+      bgEffectMode = effect;
+      if (effect === 'particles') {
+        initParticles();
+      }
+    }
+
+    window.onload = function() {
+      initAlphabetSidebar();
+      initParticles();
+      renderBg();
+    };
+
+    function initAlphabetSidebar() {
+      const sidebar = document.getElementById('alphabetSidebar');
+      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      
+      let html = '<button onclick="filterByLetter(\'\')">ALL</button>';
+      alphabet.forEach(letter => {
+        html += `<button id="btn-${letter}" onclick="filterByLetter('${letter}')">${letter}</button>`;
+      });
+      sidebar.innerHTML = html;
+    }
+
+    function filterByLetter(letter) {
+      activeLetter = letter;
+      document.querySelectorAll('.alphabet-sidebar button').forEach(btn => btn.classList.remove('active'));
+      if(letter) {
+        document.getElementById(`btn-${letter}`).classList.add('active');
+      }
+      filterAndSortGames();
+    }
+
+    function filterAndSortGames() {
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const sortValue = document.getElementById('sortSelect').value;
+      const grid = document.getElementById('gameGrid');
+      const cards = Array.from(grid.querySelectorAll('.game-card'));
+
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const matchesSearch = title.includes(searchInput);
+        const matchesLetter = activeLetter === '' || title.startsWith(activeLetter.toLowerCase());
+
+        if (matchesSearch && matchesLetter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      cards.sort((a, b) => {
+        const titleA = a.getAttribute('data-title').toLowerCase();
+        const titleB = b.getAttribute('data-title').toLowerCase();
+
+        if (sortValue === 'az') {
+          return titleA.localeCompare(titleB);
+        } else if (sortValue === 'za') {
+          return titleB.localeCompare(titleA);
+        } else {
+          return 0;
+        }
+      });
+
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    function openTopup(gameKey, gameName, imgUrl) {
+      selectedGameKey = gameKey;
+      selectedGame = gameName;
+      selectedItem = '';
+      selectedPrice = '';
+      selectedPaymentMethod = '';
+
+      // Reset Inputs
+      document.getElementById('userIdInput').value = '';
+      document.getElementById('userEmailInput').value = '';
+      document.getElementById('promoConsent').checked = false;
+
+      // Reset Payment Selections
+      document.querySelectorAll('.payment-btn').forEach(btn => btn.classList.remove('selected'));
+
+      document.getElementById('selectedGameTitle').innerText = gameName;
+      document.getElementById('selectedGameImg').src = imgUrl;
+
+      renderNominals(gameKey);
+
+      document.getElementById('catalogSection').classList.add('hidden');
+      document.getElementById('topupSection').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderNominals(gameKey) {
+      const nominalGrid = document.getElementById('nominalGrid');
+      const items = gameNominals[gameKey] || [];
+
+      let html = '';
+      items.forEach((item) => {
+        html += `
+          <button onclick="selectNominal('${item.name}', '${item.price}', this)" class="nominal-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl text-left transition flex flex-col justify-between group">
+            <div class="flex items-center gap-2 mb-1.5">
+              <i class="${item.icon} text-sm"></i>
+              <span class="text-[9px] text-pink-400 font-bold uppercase tracking-wider">${item.tag ? item.tag : 'Item'}</span>
+            </div>
+            <div>
+              <div class="font-bold text-xs sm:text-sm text-white mb-0.5 leading-tight group-hover:text-pink-300 transition">${item.name}</div>
+              <div class="text-pink-400 text-xs font-extrabold">Rp ${item.price}</div>
+            </div>
+          </button>
+        `;
+      });
+
+      nominalGrid.innerHTML = html;
+    }
+
+    function showCatalog() {
+      document.getElementById('topupSection').classList.add('hidden');
+      document.getElementById('catalogSection').classList.remove('hidden');
+    }
+
+    function selectNominal(item, price, element) {
+      selectedItem = item;
+      selectedPrice = price;
+
+      document.querySelectorAll('.nominal-btn').forEach(btn => btn.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    function selectPayment(paymentName, element) {
+      selectedPaymentMethod = paymentName;
+
+      document.querySelectorAll('.payment-btn').forEach(btn => btn.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    function processOrder() {
+      const userId = document.getElementById('userIdInput').value;
+      const userEmail = document.getElementById('userEmailInput').value;
+      const promoConsent = document.getElementById('promoConsent').checked;
+
+      if (!userId) {
+        alert('Mohon masukkan User ID / Zone ID kamu!');
+        return;
+      }
+      if (!selectedItem) {
+        alert('Mohon pilih nominal top up!');
+        return;
+      }
+      if (!selectedPaymentMethod) {
+        alert('Mohon pilih metode pembayaran!');
+        return;
+      }
+
+      let emailMsg = userEmail ? `\nEmail Bukti: ${userEmail}` : '\nEmail Bukti: (Tidak Diisi)';
+      let promoMsg = promoConsent ? '\nLangganan Promo: Ya (SMS/WhatsApp)' : '';
+
+      alert(`✅ PESANAN BERHASIL DIPROSES!\n\nGame: ${selectedGame}\nUser ID: ${userId}\nNominal: ${selectedItem}\nHarga: Rp ${selectedPrice}\nPembayaran: ${selectedPaymentMethod}${emailMsg}${promoMsg}\n\nTerima kasih telah top-up di exoGAME!`);
+    }
   </script>
 </body>
 </html>
