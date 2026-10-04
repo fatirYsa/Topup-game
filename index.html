@@ -108,7 +108,7 @@
   <canvas id="bgCanvas"></canvas>
 
   <!-- Main Container -->
-  <div class="relative z-10">
+  <div class="relative z-10 flex-1 flex flex-col justify-between">
     
     <!-- Alphabet Sidebar -->
     <div class="alphabet-sidebar" id="alphabetSidebar"></div>
@@ -148,7 +148,7 @@
       </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 mt-6 mb-12">
+    <main class="max-w-6xl mx-auto px-4 mt-6 mb-12 w-full">
       
       <!-- Hero Banner -->
       <div class="relative overflow-hidden rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl border border-pink-500/30 bg-gradient-to-r from-purple-900/80 via-pink-900/60 to-indigo-950/80 backdrop-blur-md">
@@ -324,7 +324,7 @@
               </div>
             </div>
 
-            <!-- Step 3: Payment Method -->
+            <!-- Step 3: Payment Method (Sesuai Referensi Gambar) -->
             <div class="glass-card p-5 rounded-xl">
               <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
                 <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">3</span>
@@ -332,24 +332,82 @@
               </h3>
               <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="paymentGrid">
                 
+                <!-- GoPay -->
                 <button onclick="selectPayment('GoPay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-wallet text-sky-400 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">GoPay</span>
                 </button>
 
+                <!-- DANA -->
                 <button onclick="selectPayment('DANA', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-mobile-screen-button text-blue-500 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">Dana</span>
                 </button>
 
+                <!-- QRIS -->
                 <button onclick="selectPayment('QRIS', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-qrcode text-red-500 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">QRIS</span>
                 </button>
 
+                <!-- Bank Transfer -->
                 <button onclick="selectPayment('Bank Transfer', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-building-columns text-emerald-400 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">Bank Transfer</span>
+                </button>
+
+                <!-- ShopeePay -->
+                <button onclick="selectPayment('ShopeePay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-bag-shopping text-orange-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">ShopeePay</span>
+                </button>
+
+                <!-- OVO -->
+                <button onclick="selectPayment('OVO', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-coins text-purple-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">OVO</span>
+                </button>
+
+                <!-- Kredivo -->
+                <button onclick="selectPayment('Kredivo', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-credit-card text-amber-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kredivo</span>
+                </button>
+
+                <!-- Indomaret -->
+                <button onclick="selectPayment('Indomaret', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-store text-blue-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Indomaret</span>
+                </button>
+
+                <!-- Alfamart -->
+                <button onclick="selectPayment('Alfamart', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-shop text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Alfamart</span>
+                </button>
+
+                <!-- Kartu Kredit -->
+                <button onclick="selectPayment('Kartu Kredit', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-credit-card text-indigo-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kartu Kredit</span>
+                </button>
+
+                <!-- LinkAja -->
+                <button onclick="selectPayment('LinkAja', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-link text-red-600 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">LinkAja</span>
+                </button>
+
+                <!-- DOKU Wallet -->
+                <button onclick="selectPayment('DOKU Wallet', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-wallet text-red-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">DOKU Wallet</span>
+                </button>
+
+                <!-- PayPal -->
+                <button onclick="selectPayment('PayPal', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-brands fa-paypal text-blue-600 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">PayPal</span>
                 </button>
 
               </div>
@@ -377,9 +435,63 @@
 
     </main>
 
-    <!-- FOOTER SECTION -->
-    <footer class="bg-gradient-to-r from-purple-950 via-gray-950 to-slate-950 border-t border-purple-800/40 pt-10 pb-8 text-gray-300 backdrop-blur-lg">
-      <div class="max-w-6xl mx-auto px-4 text-center text-xs text-gray-500">
+    <!-- FOOTER SECTION (Sesuai Referensi Gambar) -->
+    <footer class="bg-gradient-to-r from-purple-950 via-gray-950 to-slate-950 border-t border-purple-800/40 pt-12 pb-8 text-gray-300 backdrop-blur-lg mt-auto">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        
+        <!-- Brand & About -->
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl font-black tracking-wider text-pink-500">
+              exo<span class="text-white">GAME</span>
+            </span>
+            <span class="bg-pink-500/20 text-pink-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-500/30">
+              ⚡ Powered by exo
+            </span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed mb-4">
+            exoGAME Top Up adalah platform top up game termurah, tercepat, dan terpercaya di Indonesia. Nikmati top up diamond, voucher, dan membership untuk Mobile Legends, Free Fire, PUBG Mobile, Valorant, Genshin Impact, Roblox, dan ratusan game lainnya. Proses instan kurang dari 1 menit, pembayaran mudah melalui e-wallet hingga transfer bank, dengan layanan 24 jam nonstop.
+          </p>
+          <div class="flex items-center gap-2">
+            <a href="#" class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs hover:opacity-80 transition"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-pink-600 flex items-center justify-center text-white text-xs hover:opacity-80 transition"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white text-xs hover:opacity-80 transition"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-black border border-gray-700 flex items-center justify-center text-white text-xs hover:opacity-80 transition"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Peta Situs -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Peta Situs</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" onclick="showCatalog()" class="hover:text-pink-400 transition">Home</a></li>
+            <li><a href="#" class="hover:text-pink-400 transition">Lacak Pesanan</a></li>
+          </ul>
+        </div>
+
+        <!-- Game Lainnya -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Game Lainnya</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')" class="hover:text-pink-400 transition">Mobile Legends</a></li>
+            <li><a href="#" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')" class="hover:text-pink-400 transition">Free Fire</a></li>
+            <li><a href="#" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')" class="hover:text-pink-400 transition">PUBG Mobile</a></li>
+            <li><a href="#" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')" class="hover:text-pink-400 transition">Genshin Impact</a></li>
+          </ul>
+        </div>
+
+        <!-- Legalitas -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Legalitas</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" class="hover:text-pink-400 transition">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bottom -->
+      <div class="border-t border-gray-800/80 pt-4 text-center text-xs text-gray-500 max-w-6xl mx-auto px-4">
         <p>© 2026 exoGAME TOP UP. All Rights Reserved.</p>
       </div>
     </footer>
@@ -387,7 +499,7 @@
   </div>
 
   <script>
-    // Database Item Nominal Semua Game Lengkap
+    // Database Item Nominal Semua Game
     const gameNominals = {
       mlbb: [
         { name: 'Weekly Diamond Pass', price: '28.000', tag: 'Best Seller', icon: 'fa-solid fa-id-card text-cyan-300' },
@@ -465,7 +577,7 @@
     let selectedPaymentMethod = '';
     let activeLetter = '';
 
-    // Filter & Sort Logic (Search & Alphabet Filter)
+    // Filter & Sort Logic
     function filterAndSortGames() {
       const searchInput = document.getElementById('searchInput').value.toLowerCase();
       const sortValue = document.getElementById('sortSelect').value;
