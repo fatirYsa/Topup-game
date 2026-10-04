@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>exoGAME - Top Up Game Murah & Cepat (Multi-Region)</title>
+  <title>exoGAME - Top Up Game Murah & Cepat</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
@@ -126,23 +126,9 @@
           </span>
         </div>
 
-        <!-- Controls: Region, Effect, Search -->
+        <!-- Controls: Effect & Search -->
         <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
           
-          <!-- Region Selector (Sudah Ditambahkan Inggris / UK) -->
-          <div class="flex items-center bg-gray-900/80 border border-pink-500/40 rounded-full px-2.5 py-1 text-xs text-gray-300 gap-1.5 shadow-lg">
-            <i class="fa-solid fa-globe text-pink-400"></i>
-            <select id="regionSelect" onchange="filterAndSortGames()" class="bg-transparent text-pink-300 font-bold focus:outline-none cursor-pointer text-xs">
-              <option value="all" class="bg-gray-900 text-white">🌐 Semua Region</option>
-              <option value="id" class="bg-gray-900 text-white">🇮🇩 Indonesia</option>
-              <option value="uk" class="bg-gray-900 text-white">🇬🇧 United Kingdom (Inggris)</option>
-              <option value="my" class="bg-gray-900 text-white">🇲🇾 Malaysia</option>
-              <option value="sg" class="bg-gray-900 text-white">🇸🇬 Singapore</option>
-              <option value="ph" class="bg-gray-900 text-white">🇵🇭 Philippines</option>
-              <option value="global" class="bg-gray-900 text-white">🌍 Global</option>
-            </select>
-          </div>
-
           <!-- Background Effect Selector -->
           <div class="flex items-center bg-gray-900/80 border border-pink-500/40 rounded-full px-2.5 py-1 text-xs text-gray-300 gap-1.5 shadow-lg">
             <i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i>
@@ -175,7 +161,7 @@
             TOP UP GAME INSTAN HARGA TERMURAH
           </h1>
           <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
-            Nikmati top up diamond, voucher, dan membership favoritmu. Pilih server/region game kamu langsung dari menu di atas!
+            Nikmati top up diamond, UC, VP, V-Bucks, dan membership game favoritmu dengan pengiriman instan!
           </p>
         </div>
         <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-pink-500/30 rounded-full blur-3xl pointer-events-none"></div>
@@ -198,21 +184,21 @@
           </div>
         </div>
         
-        <!-- Game Cards Grid (ditambahkan atribut data-region 'uk' pada game yang mendukung) -->
+        <!-- Game Cards Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
           
-          <!-- Mobile Legends (ID, UK, MY, SG, PH, Global) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Mobile Legends: Bang Bang" data-region="id uk my sg ph global" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
+          <!-- Mobile Legends -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Mobile Legends: Bang Bang" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center rounded-b-2xl">
-              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Mobile Legends: Bang Bang</h3>
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Mobile Legends</h3>
             </div>
           </div>
 
-          <!-- Free Fire (ID, MY, PH) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Free Fire Top-up" data-region="id my ph" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
+          <!-- Free Fire -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Free Fire Top-up" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -221,8 +207,8 @@
             </div>
           </div>
 
-          <!-- PUBG Mobile (ID, UK, Global) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="PUBG Mobile" data-region="id uk global" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
+          <!-- PUBG Mobile -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="PUBG Mobile" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -231,8 +217,8 @@
             </div>
           </div>
 
-          <!-- eFootball (UK, Global) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="eFootball 2026" data-region="id uk global" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
+          <!-- eFootball -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="eFootball 2026" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -241,8 +227,8 @@
             </div>
           </div>
 
-          <!-- Genshin Impact (ID, UK, MY, SG, PH, Global) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Genshin Impact" data-region="id uk my sg ph global" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
+          <!-- Genshin Impact -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Genshin Impact" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -251,8 +237,8 @@
             </div>
           </div>
 
-          <!-- Honkai Star Rail (UK, Global) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Honkai: Star Rail" data-region="id uk global" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
+          <!-- Honkai Star Rail -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -261,8 +247,8 @@
             </div>
           </div>
 
-          <!-- Roblox (UK, Global) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Roblox" data-region="uk global" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
+          <!-- Roblox -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -271,8 +257,8 @@
             </div>
           </div>
 
-          <!-- FC Mobile (ID, UK, MY, SG) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="FC Mobile" data-region="id uk my sg" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
+          <!-- FC Mobile -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -281,8 +267,8 @@
             </div>
           </div>
 
-          <!-- Valorant (ID, UK, MY, SG, PH) -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Valorant" data-region="id uk my sg ph" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
+          <!-- Valorant -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
             <div class="relative w-full aspect-square overflow-hidden rounded-t-2xl">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -334,7 +320,7 @@
                 PILIH NOMINAL TOP UP
               </h3>
               <div id="nominalGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <!-- Rendered dynamically -->
+                <!-- Rendered dynamically via JS -->
               </div>
             </div>
 
@@ -401,25 +387,74 @@
   </div>
 
   <script>
-    // Database Item Nominal
+    // Database Item Nominal Semua Game Lengkap
     const gameNominals = {
       mlbb: [
         { name: 'Weekly Diamond Pass', price: '28.000', tag: 'Best Seller', icon: 'fa-solid fa-id-card text-cyan-300' },
         { name: '11 Diamonds (+1 Bonus)', price: '3.500', tag: 'Hemat', icon: 'fa-solid fa-gem text-cyan-400' },
         { name: '56 Diamonds (+6 Bonus)', price: '16.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: '296 Diamonds (+34 Bonus)', price: '84.000', tag: 'Populer', icon: 'fa-solid fa-gem text-cyan-400' }
+        { name: '296 Diamonds (+34 Bonus)', price: '84.000', tag: 'Populer', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '568 Diamonds (+85 Bonus)', price: '160.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '875 Diamonds (+129 Bonus)', price: '242.000', tag: 'Best Value', icon: 'fa-solid fa-gem text-cyan-400' }
       ],
       ff: [
         { name: '5 Diamonds', price: '1.000', tag: 'Super Hemat', icon: 'fa-solid fa-gem text-cyan-400' },
-        { name: '70 Diamonds', price: '10.000', tag: 'Populer', icon: 'fa-solid fa-gem text-cyan-400' }
+        { name: '70 Diamonds', price: '10.000', tag: 'Populer', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '140 Diamonds', price: '20.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '355 Diamonds', price: '50.000', tag: 'Best Seller', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: '720 Diamonds', price: '100.000', tag: '', icon: 'fa-solid fa-gem text-cyan-400' },
+        { name: 'Membership Mingguan', price: '30.000', tag: 'Hemat', icon: 'fa-solid fa-crown text-amber-400' }
       ],
       pubg: [
         { name: '60 UC', price: '15.000', tag: '', icon: 'fa-solid fa-coins text-amber-400' },
-        { name: '325 UC', price: '75.000', tag: 'Populer', icon: 'fa-solid fa-coins text-amber-400' }
+        { name: '325 UC', price: '75.000', tag: 'Populer', icon: 'fa-solid fa-coins text-amber-400' },
+        { name: '660 UC', price: '150.000', tag: 'Best Value', icon: 'fa-solid fa-coins text-amber-400' },
+        { name: '1800 UC', price: '380.000', tag: '', icon: 'fa-solid fa-coins text-amber-400' },
+        { name: '3850 UC', price: '750.000', tag: 'Sultan', icon: 'fa-solid fa-coins text-amber-400' }
+      ],
+      efootball: [
+        { name: '130 eFootball Coins', price: '16.000', tag: 'Hemat', icon: 'fa-solid fa-coins text-yellow-400' },
+        { name: '550 eFootball Coins', price: '65.000', tag: 'Populer', icon: 'fa-solid fa-coins text-yellow-400' },
+        { name: '1040 eFootball Coins', price: '125.000', tag: 'Best Value', icon: 'fa-solid fa-coins text-yellow-400' },
+        { name: '2130 eFootball Coins', price: '249.000', tag: '', icon: 'fa-solid fa-coins text-yellow-400' },
+        { name: '3250 eFootball Coins', price: '379.000', tag: 'Sultan', icon: 'fa-solid fa-coins text-yellow-400' }
       ],
       genshin: [
         { name: 'Blessing of the Welkin Moon', price: '79.000', tag: 'Best Value', icon: 'fa-solid fa-moon text-amber-300' },
-        { name: '300 (+30) Genesis Crystals', price: '79.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' }
+        { name: '60 Genesis Crystals', price: '16.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' },
+        { name: '300 (+30) Genesis Crystals', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-gem text-indigo-400' },
+        { name: '980 (+110) Genesis Crystals', price: '249.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' },
+        { name: '1980 (+260) Genesis Crystals', price: '479.000', tag: '', icon: 'fa-solid fa-gem text-indigo-400' },
+        { name: '3280 (+600) Genesis Crystals', price: '799.000', tag: 'Sultan', icon: 'fa-solid fa-gem text-indigo-400' }
+      ],
+      hsr: [
+        { name: 'Express Supply Pass', price: '79.000', tag: 'Best Value', icon: 'fa-solid fa-ticket text-purple-400' },
+        { name: '60 Oneiric Shard', price: '16.000', tag: '', icon: 'fa-solid fa-cube text-cyan-300' },
+        { name: '300 (+30) Oneiric Shard', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-cube text-cyan-300' },
+        { name: '980 (+110) Oneiric Shard', price: '249.000', tag: '', icon: 'fa-solid fa-cube text-cyan-300' },
+        { name: '1980 (+260) Oneiric Shard', price: '479.000', tag: '', icon: 'fa-solid fa-cube text-cyan-300' }
+      ],
+      roblox: [
+        { name: '80 Robux', price: '16.000', tag: 'Hemat', icon: 'fa-solid fa-cube text-gray-200' },
+        { name: '400 Robux', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-cube text-gray-200' },
+        { name: '800 Robux', price: '155.000', tag: 'Best Value', icon: 'fa-solid fa-cube text-gray-200' },
+        { name: '1700 Robux', price: '310.000', tag: '', icon: 'fa-solid fa-cube text-gray-200' },
+        { name: '4500 Robux', price: '790.000', tag: 'Sultan', icon: 'fa-solid fa-cube text-gray-200' }
+      ],
+      fcmobile: [
+        { name: '100 FC Points', price: '16.000', tag: '', icon: 'fa-solid fa-shield-halved text-emerald-400' },
+        { name: '520 FC Points', price: '79.000', tag: 'Populer', icon: 'fa-solid fa-shield-halved text-emerald-400' },
+        { name: '1070 FC Points', price: '159.000', tag: 'Best Value', icon: 'fa-solid fa-shield-halved text-emerald-400' },
+        { name: '2200 FC Points', price: '319.000', tag: '', icon: 'fa-solid fa-shield-halved text-emerald-400' },
+        { name: '5700 FC Points', price: '799.000', tag: 'Sultan', icon: 'fa-solid fa-shield-halved text-emerald-400' }
+      ],
+      valorant: [
+        { name: '125 Valorant Points', price: '16.000', tag: '', icon: 'fa-solid fa-v text-red-500' },
+        { name: '420 Valorant Points', price: '50.000', tag: 'Populer', icon: 'fa-solid fa-v text-red-500' },
+        { name: '700 Valorant Points', price: '80.000', tag: '', icon: 'fa-solid fa-v text-red-500' },
+        { name: '1375 Valorant Points', price: '150.000', tag: 'Best Value', icon: 'fa-solid fa-v text-red-500' },
+        { name: '2400 Valorant Points', price: '250.000', tag: '', icon: 'fa-solid fa-v text-red-500' },
+        { name: '4000 Valorant Points', price: '400.000', tag: 'Sultan', icon: 'fa-solid fa-v text-red-500' }
       ]
     };
 
@@ -430,23 +465,20 @@
     let selectedPaymentMethod = '';
     let activeLetter = '';
 
-    // Filter & Sort Logic (Search, Region, & Alphabet Filter)
+    // Filter & Sort Logic (Search & Alphabet Filter)
     function filterAndSortGames() {
       const searchInput = document.getElementById('searchInput').value.toLowerCase();
-      const selectedRegion = document.getElementById('regionSelect').value;
       const sortValue = document.getElementById('sortSelect').value;
       const grid = document.getElementById('gameGrid');
       const cards = Array.from(grid.querySelectorAll('.game-card'));
 
       cards.forEach(card => {
         const title = card.getAttribute('data-title').toLowerCase();
-        const regions = (card.getAttribute('data-region') || '').split(' ');
         
         const matchesSearch = title.includes(searchInput);
         const matchesLetter = activeLetter === '' || title.startsWith(activeLetter.toLowerCase());
-        const matchesRegion = selectedRegion === 'all' || regions.includes(selectedRegion);
 
-        if (matchesSearch && matchesLetter && matchesRegion) {
+        if (matchesSearch && matchesLetter) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
@@ -538,11 +570,21 @@
     function renderNominals(gameKey) {
       const nominalGrid = document.getElementById('nominalGrid');
       const items = gameNominals[gameKey] || [];
+      
+      if (items.length === 0) {
+        nominalGrid.innerHTML = '<p class="text-xs text-gray-400 col-span-3">Item belum tersedia.</p>';
+        return;
+      }
+
       let html = '';
       items.forEach((item) => {
         html += `
-          <button onclick="selectNominal('${item.name}', '${item.price}', this)" class="nominal-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl text-left transition flex flex-col justify-between group">
-            <div class="font-bold text-xs sm:text-sm text-white">${item.name}</div>
+          <button onclick="selectNominal('${item.name}', '${item.price}', this)" class="nominal-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl text-left transition flex flex-col justify-between group relative overflow-hidden">
+            ${item.tag ? `<span class="absolute top-0 right-0 bg-pink-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-bl-lg">${item.tag}</span>` : ''}
+            <div class="flex items-center gap-2 mb-2">
+              <i class="${item.icon} text-lg"></i>
+              <span class="font-bold text-xs sm:text-sm text-white">${item.name}</span>
+            </div>
             <div class="text-pink-400 text-xs font-extrabold">Rp ${item.price}</div>
           </button>
         `;
@@ -574,7 +616,7 @@
         alert('Lengkapi seluruh data transaksi kamu!');
         return;
       }
-      alert(`✅ Pesanan Berhasil!\nGame: ${selectedGame}\nID: ${userId}\nItem: ${selectedItem}`);
+      alert(`✅ Pesanan Berhasil!\nGame: ${selectedGame}\nID: ${userId}\nItem: ${selectedItem}\nHarga: Rp ${selectedPrice}\nPembayaran: ${selectedPaymentMethod}`);
     }
   </script>
 </body>
