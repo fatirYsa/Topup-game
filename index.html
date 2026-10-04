@@ -485,6 +485,149 @@
     function processOrder() {
       alert('Pesanan berhasil diproses!');
     }
+
+    /* --- ANIMATED BACKGROUND SCRIPT (FITUR GANTI BACKGROUND) --- */
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let currentEffect = 'nebula';
+    let animationFrameId;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function changeBgEffect(effect) {
+      currentEffect = effect;
+      cancelAnimationFrame(animationFrameId);
+      initBackground();
+    }
+
+    // Effect 1: Glowing Nebula
+    let orbs = [];
+    function initNebula() {
+      orbs = [];
+      for (let i = 0; i < 5; i++) {
+        orbs.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 200 + 150,
+          color: i % 2 === 0 ? 'rgba(236, 72, 153, 0.15)' : 'rgba(126, 34, 206, 0.15)',
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8
+        });
+      }
+    }
+    function drawNebula() {
+      ctx.fillStyle = '#080314';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      orbs.forEach(orb => {
+        orb.x += orb.vx;
+        orb.y += orb.vy;
+        if (orb.x < -orb.radius) orb.x = canvas.width + orb.radius;
+        if (orb.x > canvas.width + orb.radius) orb.x = -orb.radius;
+        if (orb.y < -orb.radius) orb.y = canvas.height + orb.radius;
+        if (orb.y > canvas.height + orb.radius) orb.y = -orb.radius;
+
+        let grad = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.radius);
+        grad.addColorStop(0, orb.color);
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      animationFrameId = requestAnimationFrame(drawNebula);
+    }
+
+    // Effect 2: Particle Network
+    let particles = [];
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 45; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: (Math.random() - 0.5) * 1.2,
+          radius: Math.random() * 2 + 1
+        });
+      }
+    }
+    function drawParticles() {
+      ctx.fillStyle = '#080314';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach((p, index) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.fillStyle = '#ec4899';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = index + 1; j < particles.length; j++) {
+          let p2 = particles[j];
+          let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(236, 72, 153, ${1 - dist / 120})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      });
+      animationFrameId = requestAnimationFrame(drawParticles);
+    }
+
+    // Effect 3: Matrix Cyber Grid
+    let matrixDrops = [];
+    function initMatrix() {
+      matrixDrops = [];
+      let columns = Math.floor(canvas.width / 25);
+      for (let i = 0; i < columns; i++) {
+        matrixDrops[i] = Math.random() * canvas.height;
+      }
+    }
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(8, 3, 20, 0.15)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#10b981';
+      ctx.font = '12px monospace';
+      for (let i = 0; i < matrixDrops.length; i++) {
+        let text = String.fromCharCode(0x30A0 + Math.floor(Math.random() * 96));
+        ctx.fillText(text, i * 25, matrixDrops[i]);
+        if (matrixDrops[i] > canvas.height && Math.random() > 0.975) {
+          matrixDrops[i] = 0;
+        }
+        matrixDrops[i] += 15;
+      }
+      animationFrameId = requestAnimationFrame(drawMatrix);
+    }
+
+    function initBackground() {
+      if (currentEffect === 'nebula') {
+        initNebula();
+        drawNebula();
+      } else if (currentEffect === 'particles') {
+        initParticles();
+        drawParticles();
+      } else if (currentEffect === 'cyber') {
+        initMatrix();
+        drawMatrix();
+      }
+    }
+
+    // Start default background
+    initBackground();
   </script>
 </body>
 </html>
