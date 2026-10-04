@@ -48,275 +48,344 @@
     }
   </style>
 </head>
-<body class="min-h-screen pb-12 pr-8 sm:pr-12">
+<body class="min-h-screen flex flex-col justify-between pr-8 sm:pr-12">
 
-  <!-- Sidebar Navigasi Abjad A-Z (Kanan) -->
-  <div class="alphabet-sidebar" id="alphabetSidebar"></div>
+  <div>
+    <!-- Sidebar Navigasi Abjad A-Z (Kanan) -->
+    <div class="alphabet-sidebar" id="alphabetSidebar"></div>
 
-  <!-- Header / Navbar -->
-  <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center gap-2">
-      <div class="flex items-center gap-2 cursor-pointer" onclick="showCatalog()">
-        <span class="text-xl sm:text-2xl font-black tracking-wider text-pink-500">exo<span class="text-white">GAME</span></span>
-      </div>
-      
-      <div class="flex items-center gap-4">
-        <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari di exoGAME..." class="bg-gray-800 border border-gray-700 px-4 py-1.5 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-64">
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-6xl mx-auto px-4 mt-6">
-    
-    <!-- Banner Informasi -->
-    <div class="bg-gradient-to-r from-pink-600 to-purple-800 rounded-2xl p-6 mb-8 shadow-xl text-white">
-      <h1 class="text-2xl sm:text-3xl font-bold mb-2">PROSES OTOMATIS 24/7 ⚡</h1>
-      <p class="text-sm sm:text-base opacity-90">Top Up Game Favoritmu secara instant dengan harga termurah dan metode pembayaran lengkap!</p>
-    </div>
-
-    <!-- KATALOG GAME -->
-    <section id="catalogSection">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 bg-gray-900/50 p-4 rounded-xl border border-gray-800">
-        <h2 class="text-xl font-bold text-gray-200 border-l-4 border-pink-500 pl-3">Daftar Game</h2>
+    <!-- Header / Navbar -->
+    <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center gap-2">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="showCatalog()">
+          <span class="text-xl sm:text-2xl font-black tracking-wider text-pink-500">exo<span class="text-white">GAME</span></span>
+        </div>
         
-        <div class="flex items-center gap-3">
-          <label for="sortSelect" class="text-xs sm:text-sm font-medium text-gray-400 whitespace-nowrap">Urutkan Berdasarkan:</label>
-          <select id="sortSelect" onchange="filterAndSortGames()" class="bg-gray-800 border border-gray-700 text-xs sm:text-sm rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-pink-500 cursor-pointer">
-            <option value="az">Urutan Abjad (A sampai Z)</option>
-            <option value="za">Urutan Abjad (Z sampai A)</option>
-            <option value="default">Popularitas</option>
-          </select>
+        <div class="flex items-center gap-4">
+          <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari di exoGAME..." class="bg-gray-800 border border-gray-700 px-4 py-1.5 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-64">
         </div>
       </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 mt-6 mb-12">
       
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="gameGrid">
-        
-        <!-- eFootball -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="eFootball 2026" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
-          <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">eFootball™ 2026</h3>
-            <p class="text-xs text-gray-400">Konami</p>
-          </div>
-        </div>
-
-        <!-- Free Fire -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Free Fire" onclick="openTopup('ff', 'Free Fire', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Free Fire</h3>
-            <p class="text-xs text-gray-400">Garena</p>
-          </div>
-        </div>
-
-        <!-- Mobile Legends -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Mobile Legends" onclick="openTopup('mlbb', 'Mobile Legends', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
-          <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Mobile Legends</h3>
-            <p class="text-xs text-gray-400">Moonton</p>
-          </div>
-        </div>
-
-        <!-- Roblox -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
-          <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Roblox</h3>
-            <p class="text-xs text-gray-400">Roblox Corporation</p>
-          </div>
-        </div>
-
-        <!-- PUBG Mobile -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="PUBG Mobile" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">PUBG Mobile</h3>
-            <p class="text-xs text-gray-400">Tencent Games</p>
-          </div>
-        </div>
-
-        <!-- FC Mobile -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
-          <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">EA SPORTS FC Mobile</h3>
-            <p class="text-xs text-gray-400">EA Sports</p>
-          </div>
-        </div>
-
-        <!-- Valorant -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Valorant</h3>
-            <p class="text-xs text-gray-400">Riot Games</p>
-          </div>
-        </div>
-
-        <!-- Genshin Impact -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Genshin Impact" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
-          <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Genshin Impact</h3>
-            <p class="text-xs text-gray-400">HoYoverse</p>
-          </div>
-        </div>
-
-        <!-- Honkai: Star Rail -->
-        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
-          <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
-            <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Honkai: Star Rail</h3>
-            <p class="text-xs text-gray-400">HoYoverse</p>
-          </div>
-        </div>
-
+      <!-- Banner Informasi -->
+      <div class="bg-gradient-to-r from-pink-600 to-purple-800 rounded-2xl p-6 mb-8 shadow-xl text-white">
+        <h1 class="text-2xl sm:text-3xl font-bold mb-2">PROSES OTOMATIS 24/7 ⚡</h1>
+        <p class="text-sm sm:text-base opacity-90">Top Up Game Favoritmu secara instant dengan harga termurah dan metode pembayaran lengkap!</p>
       </div>
-    </section>
 
-    <!-- FORM TOP UP -->
-    <section id="topupSection" class="hidden">
-      <button onclick="showCatalog()" class="mb-4 text-sm bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition">
-        ← Kembali ke Catalog Game
-      </button>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-gray-800/80 p-6 rounded-2xl border border-gray-700 flex flex-col items-center text-center">
-          <img id="selectedGameImg" src="" class="w-32 h-32 object-cover rounded-xl mb-4 border-2 border-pink-500 shadow-lg">
-          <h2 id="selectedGameTitle" class="text-2xl font-bold text-white mb-1">Nama Game</h2>
-          <p class="text-xs text-gray-400 mb-4">Proses Instant & Garansi Resmi</p>
+      <!-- KATALOG GAME -->
+      <section id="catalogSection">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 bg-gray-900/50 p-4 rounded-xl border border-gray-800">
+          <h2 class="text-xl font-bold text-gray-200 border-l-4 border-pink-500 pl-3">Daftar Game</h2>
+          
+          <div class="flex items-center gap-3">
+            <label for="sortSelect" class="text-xs sm:text-sm font-medium text-gray-400 whitespace-nowrap">Urutkan Berdasarkan:</label>
+            <select id="sortSelect" onchange="filterAndSortGames()" class="bg-gray-800 border border-gray-700 text-xs sm:text-sm rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-pink-500 cursor-pointer">
+              <option value="az">Urutan Abjad (A sampai Z)</option>
+              <option value="za">Urutan Abjad (Z sampai A)</option>
+              <option value="default">Popularitas</option>
+            </select>
+          </div>
         </div>
-
-        <div class="md:col-span-2 space-y-6">
-          <!-- Step 1: ID Akun -->
-          <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
-            <h3 class="font-bold text-pink-500 mb-3 text-sm flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">1</span>
-              MASUKKAN DATA AKUN
-            </h3>
-            <div>
-              <input type="text" id="userIdInput" placeholder="Masukkan User ID / Zone ID" class="w-full bg-gray-900 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500">
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="gameGrid">
+          
+          <!-- eFootball -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="eFootball 2026" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
+            <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">eFootball™ 2026</h3>
+              <p class="text-xs text-gray-400">Konami</p>
             </div>
           </div>
 
-          <!-- Step 2: Nominal Top Up -->
-          <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
-            <h3 class="font-bold text-pink-500 mb-3 text-sm flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">2</span>
-              PILIH NOMINAL TOP UP
-            </h3>
-            <div id="nominalGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <!-- Item nominal di-render via JavaScript -->
+          <!-- Free Fire -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Free Fire" onclick="openTopup('ff', 'Free Fire', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Free Fire</h3>
+              <p class="text-xs text-gray-400">Garena</p>
             </div>
           </div>
 
-          <!-- Step 3: Metode Pembayaran -->
-          <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
-            <h3 class="font-bold text-pink-500 mb-3 text-sm flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">3</span>
-              PILIH PEMBAYARAN
-            </h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="paymentGrid">
-              
-              <button onclick="selectPayment('GoPay', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-wallet text-sky-400 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">GoPay</span>
-              </button>
-
-              <button onclick="selectPayment('DANA', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-mobile-screen-button text-blue-500 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">Dana</span>
-              </button>
-
-              <button onclick="selectPayment('QRIS', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-qrcode text-red-500 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">QRIS</span>
-              </button>
-
-              <button onclick="selectPayment('Bank Transfer', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-building-columns text-emerald-400 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">Bank Transfer</span>
-              </button>
-
-              <button onclick="selectPayment('ShopeePay', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-bag-shopping text-orange-500 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">ShopeePay</span>
-              </button>
-
-              <button onclick="selectPayment('OVO', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-circle-dollar-to-slot text-purple-400 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">OVO</span>
-              </button>
-
-              <button onclick="selectPayment('Kredivo', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-credit-card text-amber-500 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">Kredivo</span>
-              </button>
-
-              <button onclick="selectPayment('Indomaret', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-store text-blue-400 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">Indomaret</span>
-              </button>
-
-              <button onclick="selectPayment('Alfamart', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-shop text-red-400 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">Alfamart</span>
-              </button>
-
-              <button onclick="selectPayment('Kartu Kredit', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-regular fa-credit-card text-yellow-400 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">Kartu Kredit</span>
-              </button>
-
-              <button onclick="selectPayment('LinkAja', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-hand-holding-dollar text-red-500 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">LinkAja</span>
-              </button>
-
-              <button onclick="selectPayment('DOKU Wallet', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-vault text-rose-500 text-2xl mb-1"></i>
-                <span class="text-xs font-bold text-white">DOKU Wallet</span>
-              </button>
-
+          <!-- Mobile Legends -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Mobile Legends" onclick="openTopup('mlbb', 'Mobile Legends', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
+            <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Mobile Legends</h3>
+              <p class="text-xs text-gray-400">Moonton</p>
             </div>
           </div>
 
-          <!-- Step 4: Masukkan Detail Email -->
-          <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
-            <h3 class="font-bold text-pink-500 mb-2 text-sm flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">4</span>
-              MASUKKAN DETAIL
-            </h3>
-            
-            <div class="flex items-start justify-between gap-3 mb-3">
-              <p class="text-xs text-gray-300 leading-relaxed">
-                <span class="font-semibold text-white">Opsional:</span> Jika anda ingin mendapatkan bukti pembayaran atas pembelian anda, harap mengisi alamat emailnya exoGAME Rewards sebesar <span class="text-amber-400 font-bold">0.5%</span> yang terkirim akan di notify ke email kamu
-              </p>
-              <div class="text-amber-400 text-2xl flex-shrink-0">
-                <i class="fa-solid fa-[#000]">🪙</i>
+          <!-- Roblox -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
+            <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Roblox</h3>
+              <p class="text-xs text-gray-400">Roblox Corporation</p>
+            </div>
+          </div>
+
+          <!-- PUBG Mobile -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="PUBG Mobile" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">PUBG Mobile</h3>
+              <p class="text-xs text-gray-400">Tencent Games</p>
+            </div>
+          </div>
+
+          <!-- FC Mobile -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
+            <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">EA SPORTS FC Mobile</h3>
+              <p class="text-xs text-gray-400">EA Sports</p>
+            </div>
+          </div>
+
+          <!-- Valorant -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Valorant</h3>
+              <p class="text-xs text-gray-400">Riot Games</p>
+            </div>
+          </div>
+
+          <!-- Genshin Impact -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Genshin Impact" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
+            <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Genshin Impact</h3>
+              <p class="text-xs text-gray-400">HoYoverse</p>
+            </div>
+          </div>
+
+          <!-- Honkai: Star Rail -->
+          <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col group" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-36 object-cover group-hover:scale-105 transition duration-300">
+            <div class="p-3 bg-gray-800/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1 group-hover:text-pink-400 transition">Honkai: Star Rail</h3>
+              <p class="text-xs text-gray-400">HoYoverse</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FORM TOP UP -->
+      <section id="topupSection" class="hidden">
+        <button onclick="showCatalog()" class="mb-4 text-sm bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition">
+          ← Kembali ke Catalog Game
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gray-800/80 p-6 rounded-2xl border border-gray-700 flex flex-col items-center text-center">
+            <img id="selectedGameImg" src="" class="w-32 h-32 object-cover rounded-xl mb-4 border-2 border-pink-500 shadow-lg">
+            <h2 id="selectedGameTitle" class="text-2xl font-bold text-white mb-1">Nama Game</h2>
+            <p class="text-xs text-gray-400 mb-4">Proses Instant & Garansi Resmi</p>
+          </div>
+
+          <div class="md:col-span-2 space-y-6">
+            <!-- Step 1: ID Akun -->
+            <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
+              <h3 class="font-bold text-pink-500 mb-3 text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">1</span>
+                MASUKKAN DATA AKUN
+              </h3>
+              <div>
+                <input type="text" id="userIdInput" placeholder="Masukkan User ID / Zone ID" class="w-full bg-gray-900 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500">
               </div>
             </div>
 
-            <div class="mb-3">
-              <input type="email" id="userEmailInput" placeholder="Harap masukkan email" class="w-full bg-gray-900 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-sm">
+            <!-- Step 2: Nominal Top Up -->
+            <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
+              <h3 class="font-bold text-pink-500 mb-3 text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">2</span>
+                PILIH NOMINAL TOP UP
+              </h3>
+              <div id="nominalGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <!-- Item nominal di-render via JavaScript -->
+              </div>
             </div>
 
-            <label class="flex items-center gap-2 cursor-pointer text-xs text-gray-300">
-              <input type="checkbox" id="promoConsent" class="w-4 h-4 rounded accent-pink-500 cursor-pointer">
-              <span>Ya, Saya ingin menerima berita dan promosi melalui SMS atau WhatsApp</span>
-            </label>
+            <!-- Step 3: Metode Pembayaran -->
+            <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
+              <h3 class="font-bold text-pink-500 mb-3 text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">3</span>
+                PILIH PEMBAYARAN
+              </h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="paymentGrid">
+                
+                <button onclick="selectPayment('GoPay', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-wallet text-sky-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">GoPay</span>
+                </button>
+
+                <button onclick="selectPayment('DANA', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-mobile-screen-button text-blue-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Dana</span>
+                </button>
+
+                <button onclick="selectPayment('QRIS', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-qrcode text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">QRIS</span>
+                </button>
+
+                <button onclick="selectPayment('Bank Transfer', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-building-columns text-emerald-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Bank Transfer</span>
+                </button>
+
+                <button onclick="selectPayment('ShopeePay', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-bag-shopping text-orange-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">ShopeePay</span>
+                </button>
+
+                <button onclick="selectPayment('OVO', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-circle-dollar-to-slot text-purple-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">OVO</span>
+                </button>
+
+                <button onclick="selectPayment('Kredivo', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-credit-card text-amber-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kredivo</span>
+                </button>
+
+                <button onclick="selectPayment('Indomaret', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-store text-blue-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Indomaret</span>
+                </button>
+
+                <button onclick="selectPayment('Alfamart', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-shop text-red-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Alfamart</span>
+                </button>
+
+                <button onclick="selectPayment('Kartu Kredit', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-regular fa-credit-card text-yellow-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kartu Kredit</span>
+                </button>
+
+                <button onclick="selectPayment('LinkAja', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-hand-holding-dollar text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">LinkAja</span>
+                </button>
+
+                <button onclick="selectPayment('DOKU Wallet', this)" class="payment-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-vault text-rose-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">DOKU Wallet</span>
+                </button>
+
+              </div>
+            </div>
+
+            <!-- Step 4: Masukkan Detail Email -->
+            <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
+              <h3 class="font-bold text-pink-500 mb-2 text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">4</span>
+                MASUKKAN DETAIL
+              </h3>
+              
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  <span class="font-semibold text-white">Opsional:</span> Jika anda ingin mendapatkan bukti pembayaran atas pembelian anda, harap mengisi alamat emailnya exoGAME Rewards sebesar <span class="text-amber-400 font-bold">0.5%</span> yang terkirim akan di notify ke email kamu
+                </p>
+                <div class="text-amber-400 text-2xl flex-shrink-0">
+                  🪙
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <input type="email" id="userEmailInput" placeholder="Harap masukkan email" class="w-full bg-gray-900 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-sm">
+              </div>
+
+              <label class="flex items-center gap-2 cursor-pointer text-xs text-gray-300">
+                <input type="checkbox" id="promoConsent" class="w-4 h-4 rounded accent-pink-500 cursor-pointer">
+                <span>Ya, Saya ingin menerima berita dan promosi melalui SMS atau WhatsApp</span>
+              </label>
+            </div>
+
+            <!-- Tombol Beli -->
+            <button onclick="processOrder()" class="w-full bg-pink-600 hover:bg-pink-700 font-bold py-3.5 rounded-xl transition text-white shadow-lg shadow-pink-600/30 text-base">
+              BELI SEKARANG
+            </button>
           </div>
-
-          <!-- Tombol Beli -->
-          <button onclick="processOrder()" class="w-full bg-pink-600 hover:bg-pink-700 font-bold py-3.5 rounded-xl transition text-white shadow-lg shadow-pink-600/30 text-base">
-            BELI SEKARANG
-          </button>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-gradient-to-r from-purple-900 via-gray-900 to-slate-900 border-t border-purple-800/50 pt-10 pb-8 text-gray-300">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
+        
+        <!-- Column 1: Logo & Deskripsi -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-black tracking-wider text-pink-500">exo<span class="text-white">GAME</span></span>
+          </div>
+          <p class="text-xs leading-relaxed text-gray-400">
+            exoGAME Top Up adalah platform top up game termurah, tercepat, dan terpercaya di Indonesia. Nikmati top up diamond, voucher, dan membership untuk Mobile Legends, Free Fire, PUBG Mobile, Valorant, Genshin Impact, Roblox, dan ratusan game lainnya. Proses instan kurang dari 1 menit, pembayaran mudah melalui e-wallet hingga transfer bank, dengan layanan 24 jam nonstop.
+          </p>
+          <!-- Social Icons -->
+          <div class="flex items-center gap-2 pt-2">
+            <a href="#" class="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center hover:opacity-80 transition">
+              <i class="fa-brands fa-facebook-f text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white flex items-center justify-center hover:opacity-80 transition">
+              <i class="fa-brands fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded bg-red-600 text-white flex items-center justify-center hover:opacity-80 transition">
+              <i class="fa-brands fa-youtube text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded bg-black text-white flex items-center justify-center border border-gray-700 hover:opacity-80 transition">
+              <i class="fa-brands fa-tiktok text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Peta Situs -->
+        <div class="md:col-span-2">
+          <h4 class="text-pink-400 font-bold text-sm mb-4">Peta Situs</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#" onclick="showCatalog()" class="hover:text-pink-400 transition">Home</a></li>
+            <li><a href="#" class="hover:text-pink-400 transition">Lacak Pesanan</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Game Lainnya -->
+        <div class="md:col-span-2">
+          <h4 class="text-pink-400 font-bold text-sm mb-4">Game Lainnya</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#" onclick="openTopup('mlbb', 'Mobile Legends', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')" class="hover:text-pink-400 transition">Mobile Legends</a></li>
+            <li><a href="#" onclick="openTopup('ff', 'Free Fire', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')" class="hover:text-pink-400 transition">Free Fire</a></li>
+            <li><a href="#" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')" class="hover:text-pink-400 transition">PUBG Mobile</a></li>
+            <li><a href="#" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')" class="hover:text-pink-400 transition">Genshin Impact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Legalitas -->
+        <div class="md:col-span-3">
+          <h4 class="text-pink-400 font-bold text-sm mb-4">Legalitas</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#" class="hover:text-pink-400 transition">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-gray-800 pt-6 text-xs text-gray-500">
+        <p>© 2026 exoGAME TOP UP. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     // Database Nominal Lengkap
