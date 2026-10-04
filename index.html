@@ -1,471 +1,364 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up eFootball Coins Murah & Cepat - eFootStore</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0b0f19;
-            color: #f3f4f6;
-        }
-        .bg-card {
-            background-color: #111827;
-            border: 1px solid #1f2937;
-        }
-        .glow-effect {
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.15);
-        }
-        .custom-ring:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px #ec4899;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameStore - Top Up Game Murah & Cepat</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #f3f4f6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    /* Style untuk sidebar abjad di sebelah kanan */
+    .alphabet-sidebar {
+      position: fixed;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      background: rgba(17, 24, 39, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 8px 4px;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.5);
+    }
+    .alphabet-sidebar button {
+      font-size: 10px;
+      font-weight: bold;
+      color: #9ca3af;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .alphabet-sidebar button:hover, .alphabet-sidebar button.active {
+      color: #ec4899;
+      background-color: rgba(236, 72, 153, 0.2);
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-pink-500 selection:text-white">
+<body class="min-h-screen pb-12 pr-8 sm:pr-12">
 
-    <!-- Navbar -->
-    <header class="sticky top-0 z-40 bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-400 via-pink-500 to-cyan-400 flex items-center justify-center font-black text-xl text-gray-900 shadow-lg">
-                    eF
-                </div>
-                <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-yellow-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
-                    eFootStore
-                </span>
-            </div>
-            <a href="#faq" class="text-sm font-semibold text-gray-400 hover:text-white transition">Bantuan & FAQ</a>
-        </div>
-    </header>
+  <!-- Sidebar Navigasi Abjad A-Z (Kanan) -->
+  <div class="alphabet-sidebar" id="alphabetSidebar">
+    <!-- JS akan mengisi huruf A-Z secara otomatis -->
+  </div>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow">
-        
-        <!-- Banner & Header Title -->
-        <div class="relative rounded-2xl overflow-hidden mb-8 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 p-6 sm:p-8 border border-gray-800 shadow-2xl">
-            <div class="relative z-10 max-w-2xl">
-                <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-yellow-300 bg-yellow-900/50 rounded-full border border-yellow-500/30">
-                    Proses Otomatis 24/7
-                </span>
-                <h1 class="text-3xl sm:text-4xl font-extrabold mt-3 text-white">
-                    Top Up eFootball™ Coins
-                </h1>
-                <p class="text-gray-300 mt-2 text-sm sm:text-base leading-relaxed">
-                    Beli eFootball Coins dengan harga termurah, aman, legal, dan langsung masuk secara instan ke akun game Anda.
-                </p>
-            </div>
-            <div class="absolute right-0 bottom-0 top-0 w-1/3 opacity-20 bg-no-repeat bg-right bg-contain hidden sm:block pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80');"></div>
-        </div>
+  <!-- Header / Navbar -->
+  <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center gap-2">
+      <div class="flex items-center gap-2 cursor-pointer" onclick="showCatalog()">
+        <span class="text-xl sm:text-2xl font-black tracking-wider text-pink-500">GAME<span class="text-white">STORE</span></span>
+      </div>
+      
+      <!-- Input Pencarian -->
+      <div class="flex items-center gap-4">
+        <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari di GameStore..." class="bg-gray-800 border border-gray-700 px-4 py-1.5 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-64">
+      </div>
+    </div>
+  </header>
 
-        <form id="orderForm" onsubmit="handleFormSubmit(event)" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            <!-- Left Column: Steps -->
-            <div class="lg:col-span-2 space-y-8">
-                
-                <!-- STEP 1: ID Akun -->
-                <section class="bg-card rounded-2xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 font-bold flex items-center justify-center text-sm border border-pink-500/30">1</span>
-                        <h2 class="text-lg font-bold text-white">Masukkan User ID / KONAMI ID</h2>
-                    </div>
-                    <div>
-                        <label for="userId" class="block text-xs font-medium text-gray-400 mb-2">User ID eFootball (Mobile / Console / PC)</label>
-                        <div class="relative">
-                            <input type="text" id="userId" required placeholder="Contoh: 123456789" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 custom-ring transition">
-                            <i class="fa-solid fa-[#10B981] fa-circle-check absolute right-4 top-1/2 -translate-y-1/2 text-green-500 hidden" id="validIcon"></i>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-2 flex items-center gap-1">
-                            <i class="fa-solid fa-circle-info text-cyan-400"></i>
-                            Buka eFootball &gt; Ekstra &gt; Informasi Pengguna &gt; Detail Pengguna.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- STEP 2: Pilih Nominal -->
-                <section class="bg-card rounded-2xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 font-bold flex items-center justify-center text-sm border border-pink-500/30">2</span>
-                        <h2 class="text-lg font-bold text-white">Pilih Nominal eFootball Coins</h2>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="itemContainer">
-                        <!-- Items populated by JavaScript -->
-                    </div>
-                </section>
-
-                <!-- STEP 3: Metode Pembayaran -->
-                <section class="bg-card rounded-2xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 font-bold flex items-center justify-center text-sm border border-pink-500/30">3</span>
-                        <h2 class="text-lg font-bold text-white">Pilih Metode Pembayaran</h2>
-                    </div>
-
-                    <div class="space-y-4" id="paymentContainer">
-                        <!-- Payment Groups populated by JavaScript -->
-                    </div>
-                </section>
-
-                <!-- STEP 4: Kontak WhatsApp -->
-                <section class="bg-card rounded-2xl p-6 shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 font-bold flex items-center justify-center text-sm border border-pink-500/30">4</span>
-                        <h2 class="text-lg font-bold text-white">Nomor WhatsApp (Bukti Transaksi)</h2>
-                    </div>
-                    <div>
-                        <label for="waNumber" class="block text-xs font-medium text-gray-400 mb-2">Nomor WhatsApp Aktif</label>
-                        <input type="tel" id="waNumber" required placeholder="081234567890" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 custom-ring transition">
-                        <p class="text-xs text-gray-400 mt-2">Bukti transaksi & update status pengiriman akan dikirim via WhatsApp.</p>
-                    </div>
-                </section>
-
-            </div>
-
-            <!-- Right Column: Order Summary (Sticky) -->
-            <div class="lg:col-span-1">
-                <div class="bg-card rounded-2xl p-6 shadow-xl sticky top-24 border border-gray-800 space-y-5">
-                    <h3 class="text-lg font-bold text-white border-b border-gray-800 pb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-receipt text-pink-500"></i> Ringkasan Pesanan
-                    </h3>
-
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between text-gray-400">
-                            <span>User ID:</span>
-                            <span id="summaryUserId" class="font-semibold text-white">-[Belum Diisi]-</span>
-                        </div>
-                        <div class="flex justify-between text-gray-400">
-                            <span>Item:</span>
-                            <span id="summaryItem" class="font-semibold text-yellow-400">-[Pilih Item]-</span>
-                        </div>
-                        <div class="flex justify-between text-gray-400">
-                            <span>Pembayaran:</span>
-                            <span id="summaryPayment" class="font-semibold text-white">-[Pilih Metode]-</span>
-                        </div>
-                        <div class="border-t border-gray-800 pt-3 flex justify-between items-center">
-                            <span class="text-base font-bold text-white">Total Bayar:</span>
-                            <span id="summaryPrice" class="text-xl font-extrabold text-pink-500">Rp 0</span>
-                        </div>
-                    </div>
-
-                    <button type="submit" id="submitBtn" disabled class="w-full py-4 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-center block">
-                        <i class="fa-solid fa-bolt mr-2"></i> Beli Sekarang
-                    </button>
-
-                    <div class="text-center">
-                        <span class="text-xs text-gray-400 flex items-center justify-center gap-1">
-                            <i class="fa-solid fa-shield-halved text-green-400"></i> Garansi Uang Kembali 100%
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-        </form>
-
-        <!-- FAQ Section -->
-        <section id="faq" class="mt-16 bg-card rounded-2xl p-6 sm:p-8">
-            <h2 class="text-2xl font-bold text-white mb-6 text-center">Pertanyaan Sering Diajukan (FAQ)</h2>
-            <div class="space-y-4 max-w-3xl mx-auto">
-                <details class="group bg-gray-800/50 rounded-xl p-4 border border-gray-700/50">
-                    <summary class="flex justify-between items-center font-semibold text-white cursor-pointer list-none">
-                        <span>Berapa lama proses top up eFootball Coins?</span>
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-sm text-gray-400 mt-3 leading-relaxed">
-                        Proses otomatis instan memakan waktu sekitar 1 - 3 menit setelah pembayaran terkonfirmasi oleh sistem kami.
-                    </p>
-                </details>
-                <details class="group bg-gray-800/50 rounded-xl p-4 border border-gray-700/50">
-                    <summary class="flex justify-between items-center font-semibold text-white cursor-pointer list-none">
-                        <span>Apakah top up ini legal dan aman?</span>
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-sm text-gray-400 mt-3 leading-relaxed">
-                        Sangat aman & 100% legal. Kami mengisi ulang melalui jalur resmi mitra eFootball Konami tanpa memerlukan kata sandi akun Anda.
-                    </p>
-                </details>
-                <details class="group bg-gray-800/50 rounded-xl p-4 border border-gray-700/50">
-                    <summary class="flex justify-between items-center font-semibold text-white cursor-pointer list-none">
-                        <span>Bagaimana jika Coins tidak kunjung masuk?</span>
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-sm text-gray-400 mt-3 leading-relaxed">
-                        Anda dapat menghubungi CS 24 Jam kami melalui tombol Customer Service di pojok kanan bawah dengan melampirkan nomor bukti transaksi.
-                    </p>
-                </details>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Modal Konfirmasi Pesanan -->
-    <div id="modalOverlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-gray-900 border border-gray-800 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-
-            <div class="text-center">
-                <div class="w-12 h-12 rounded-full bg-pink-500/20 text-pink-500 flex items-center justify-center mx-auto mb-3 text-2xl">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white">Konfirmasi Pesanan</h3>
-                <p class="text-xs text-gray-400 mt-1">Mohon pastikan data akun dan nominal sudah benar.</p>
-            </div>
-
-            <div class="bg-gray-800/60 rounded-xl p-4 space-y-3 text-sm border border-gray-700/50">
-                <div class="flex justify-between">
-                    <span class="text-gray-400">User ID:</span>
-                    <span id="modalUserId" class="font-bold text-white"></span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-400">Item Produk:</span>
-                    <span id="modalItem" class="font-bold text-yellow-400"></span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-400">Metode Bayar:</span>
-                    <span id="modalPayment" class="font-bold text-white"></span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-400">WhatsApp:</span>
-                    <span id="modalWa" class="font-bold text-white"></span>
-                </div>
-                <div class="border-t border-gray-700 pt-2 flex justify-between text-base">
-                    <span class="font-bold text-white">Total Tagihan:</span>
-                    <span id="modalPrice" class="font-extrabold text-pink-500"></span>
-                </div>
-            </div>
-
-            <div class="flex gap-3">
-                <button onclick="closeModal()" class="w-1/2 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl text-sm transition">
-                    Batal
-                </button>
-                <button onclick="processPayment()" class="w-1/2 py-3 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl text-sm shadow-lg transition">
-                    Bayar Sekarang
-                </button>
-            </div>
-        </div>
+  <main class="max-w-6xl mx-auto px-4 mt-6">
+    
+    <!-- Banner Informasi -->
+    <div class="bg-gradient-to-r from-pink-600 to-purple-800 rounded-2xl p-6 mb-8 shadow-xl text-white">
+      <h1 class="text-2xl sm:text-3xl font-bold mb-2">PROSES OTOMATIS 24/7 ⚡</h1>
+      <p class="text-sm sm:text-base opacity-90">Top Up Game Favoritmu secara instant dengan harga termurah dan metode pembayaran lengkap!</p>
     </div>
 
-    <!-- Floating CS Button -->
-    <a href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-40 flex items-center justify-center transition hover:scale-110">
-        <i class="fa-brands fa-whatsapp text-2xl"></i>
-    </a>
-
-    <!-- Footer -->
-    <footer class="bg-gray-950 border-t border-gray-900 py-6 mt-12">
-        <div class="max-w-6xl mx-auto px-4 text-center text-xs text-gray-400">
-            <p>&copy; 2026 eFootStore - Platform Top Up eFootball Terpercaya. All rights reserved.</p>
-            <p class="mt-1">eFootball™ is a registered trademark of Konami Digital Entertainment.</p>
+    <!-- HALAMAN 1: KATALOG GAME -->
+    <section id="catalogSection">
+      
+      <!-- Filter Bar / Urutkan Berdasarkan -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 bg-gray-900/50 p-4 rounded-xl border border-gray-800">
+        <h2 class="text-xl font-bold text-gray-200 border-l-4 border-pink-500 pl-3">Daftar Game</h2>
+        
+        <div class="flex items-center gap-3">
+          <label for="sortSelect" class="text-xs sm:text-sm font-medium text-gray-400 whitespace-nowrap">Urutkan Berdasarkan:</label>
+          <select id="sortSelect" onchange="filterAndSortGames()" class="bg-gray-800 border border-gray-700 text-xs sm:text-sm rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-pink-500 cursor-pointer">
+            <option value="az">Urutan Abjad (A sampai Z)</option>
+            <option value="za">Urutan Abjad (Z sampai A)</option>
+            <option value="default">Popularitas</option>
+          </select>
         </div>
-    </footer>
+      </div>
+      
+      <!-- Container Kartu Game -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="gameGrid">
+        
+        <!-- Game Item 1 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="eFootball 2026" onclick="openTopup('eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
+          <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">eFootball™ 2026</h3>
+              <p class="text-xs text-gray-400">Konami</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
 
-    <!-- JavaScript Application Logic -->
-    <script>
-        // Data Nominal eFootball Coins
-        const coinItems = [
-            { id: 'c1', name: '130 eFootball Coins', price: 16000, promo: 'Bonus 10 Coins' },
-            { id: 'c2', name: '320 eFootball Coins', price: 39000, promo: 'Terlaris' },
-            { id: 'c3', name: '550 eFootball Coins', price: 79000, promo: '' },
-            { id: 'c4', name: '1,040 eFootball Coins', price: 159000, promo: 'Populer' },
-            { id: 'c5', name: '2,130 eFootball Coins', price: 319000, promo: 'Hemat 10%' },
-            { id: 'c6', name: '3,250 eFootball Coins', price: 479000, promo: '' },
-            { id: 'c7', name: '5,700 eFootball Coins', price: 799000, promo: 'Best Value' },
-            { id: 'c8', name: '12,800 eFootball Coins', price: 1750000, promo: 'Sultan Pack' }
-        ];
+        <!-- Game Item 2 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="Free Fire" onclick="openTopup('Free Fire', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">Free Fire</h3>
+              <p class="text-xs text-gray-400">Garena</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
 
-        // Data Metode Pembayaran
-        const paymentMethods = [
-            {
-                category: 'E-Wallet & QRIS',
-                items: [
-                    { id: 'qris', name: 'QRIS (All E-Wallet / BCA / Mandiri)', fee: 0, icon: 'fa-qrcode' },
-                    { id: 'gopay', name: 'GoPay', fee: 1000, icon: 'fa-wallet' },
-                    { id: 'dana', name: 'DANA', fee: 1000, icon: 'fa-wallet' },
-                    { id: 'ovo', name: 'OVO', fee: 1000, icon: 'fa-wallet' }
-                ]
-            },
-            {
-                category: 'Virtual Account Bank',
-                items: [
-                    { id: 'bca', name: 'BCA Virtual Account', fee: 2500, icon: 'fa-building-columns' },
-                    { id: 'mandiri', name: 'Mandiri Virtual Account', fee: 2500, icon: 'fa-building-columns' },
-                    { id: 'bri', name: 'BRI Virtual Account', fee: 2500, icon: 'fa-building-columns' }
-                ]
-            },
-            {
-                category: 'Convenience Store',
-                items: [
-                    { id: 'indomaret', name: 'Indomaret / Ceriamart', fee: 3500, icon: 'fa-store' },
-                    { id: 'alfamart', name: 'Alfamart / Alfa Express', fee: 3500, icon: 'fa-store' }
-                ]
-            }
-        ];
+        <!-- Game Item 3 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="Mobile Legends" onclick="openTopup('Mobile Legends', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
+          <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">Mobile Legends</h3>
+              <p class="text-xs text-gray-400">Moonton</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
 
-        // State Aplikasi
-        let selectedItem = null;
-        let selectedPayment = null;
+        <!-- Game Item 4 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="Roblox" onclick="openTopup('Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
+          <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">Roblox</h3>
+              <p class="text-xs text-gray-400">Roblox Corporation</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
 
-        // Utility: Format Rupiah
-        function formatRupiah(number) {
-            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+        <!-- Game Item 5 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="PUBG Mobile" onclick="openTopup('PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">PUBG Mobile</h3>
+              <p class="text-xs text-gray-400">Tencent Games</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
+
+        <!-- Game Item 6 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="FC Mobile" onclick="openTopup('FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
+          <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">EA SPORTS FC Mobile</h3>
+              <p class="text-xs text-gray-400">EA Sports</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
+
+        <!-- Game Item 7 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="Valorant" onclick="openTopup('Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">Valorant</h3>
+              <p class="text-xs text-gray-400">Riot Games</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
+
+        <!-- Game Item 8 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="Genshin Impact" onclick="openTopup('Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
+          <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">Genshin Impact</h3>
+              <p class="text-xs text-gray-400">HoYoverse</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
+
+        <!-- Game Item 9 -->
+        <div class="game-card bg-gray-800/80 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500 transition cursor-pointer flex flex-col" data-title="Honkai: Star Rail" onclick="openTopup('Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-36 object-cover">
+          <div class="p-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base line-clamp-1">Honkai: Star Rail</h3>
+              <p class="text-xs text-gray-400">HoYoverse</p>
+            </div>
+            <button class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-1.5 text-xs font-bold rounded-lg transition">TOP UP</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HALAMAN 2: FORM TOP UP -->
+    <section id="topupSection" class="hidden">
+      <button onclick="showCatalog()" class="mb-4 text-sm bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition">
+        ← Kembali ke Catalog Game
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-800/80 p-6 rounded-2xl border border-gray-700 flex flex-col items-center text-center">
+          <img id="selectedGameImg" src="" class="w-32 h-32 object-cover rounded-xl mb-4 border-2 border-pink-500 shadow-lg">
+          <h2 id="selectedGameTitle" class="text-2xl font-bold text-white mb-1">Nama Game</h2>
+          <p class="text-xs text-gray-400 mb-4">Proses Instant & Garansi Resmi</p>
+        </div>
+
+        <div class="md:col-span-2 space-y-6">
+          <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
+            <h3 class="font-bold text-pink-500 mb-3 text-sm">1. MASUKKAN DATA AKUN</h3>
+            <input type="text" id="userIdInput" placeholder="Masukkan User ID / Zone ID" class="w-full bg-gray-900 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500">
+          </div>
+
+          <div class="bg-gray-800/80 p-5 rounded-xl border border-gray-700">
+            <h3 class="font-bold text-pink-500 mb-3 text-sm">2. PILIH NOMINAL TOP UP</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <button onclick="selectNominal('Pack Kecil', '16.000')" class="nominal-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-lg text-left transition">
+                <div class="text-xs text-gray-400">Paket Hemat</div>
+                <div class="font-bold text-sm text-white">Item Kecil</div>
+                <div class="text-pink-400 text-xs font-bold mt-1">Rp 16.000</div>
+              </button>
+              <button onclick="selectNominal('Pack Sedang', '39.000')" class="nominal-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-lg text-left transition">
+                <div class="text-xs text-gray-400">Popular</div>
+                <div class="font-bold text-sm text-white">Item Sedang</div>
+                <div class="text-pink-400 text-xs font-bold mt-1">Rp 39.000</div>
+              </button>
+              <button onclick="selectNominal('Pack Sultan', '150.000')" class="nominal-btn bg-gray-900 hover:border-pink-500 border border-gray-700 p-3 rounded-lg text-left transition">
+                <div class="text-xs text-gray-400">Best Value</div>
+                <div class="font-bold text-sm text-white">Item Besar</div>
+                <div class="text-pink-400 text-xs font-bold mt-1">Rp 150.000</div>
+              </button>
+            </div>
+          </div>
+
+          <button onclick="processOrder()" class="w-full bg-pink-600 hover:bg-pink-700 font-bold py-3 rounded-xl transition text-white shadow-lg shadow-pink-600/30">
+            BELI SEKARANG
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let selectedGame = '';
+    let selectedItem = '';
+    let selectedPrice = '';
+    let activeLetter = '';
+
+    // Generate Sidebar Abjad A-Z secara otomatis
+    function initAlphabetSidebar() {
+      const sidebar = document.getElementById('alphabetSidebar');
+      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      
+      let html = '<button onclick="filterByLetter(\'\')">ALL</button>';
+      alphabet.forEach(letter => {
+        html += `<button id="btn-${letter}" onclick="filterByLetter('${letter}')">${letter}</button>`;
+      });
+      sidebar.innerHTML = html;
+    }
+
+    // Filter berdasarkan huruf abjad yang diklik
+    function filterByLetter(letter) {
+      activeLetter = letter;
+      
+      // Update tampilan tombol aktif di sidebar
+      document.querySelectorAll('.alphabet-sidebar button').forEach(btn => btn.classList.remove('active'));
+      if(letter) {
+        document.getElementById(`btn-${letter}`).classList.add('active');
+      }
+      
+      filterAndSortGames();
+    }
+
+    // Fungsi Gabungan untuk Filter Pencarian, Filter Abjad, dan Pengurutan
+    function filterAndSortGames() {
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const sortValue = document.getElementById('sortSelect').value;
+      const grid = document.getElementById('gameGrid');
+      const cards = Array.from(grid.querySelectorAll('.game-card'));
+
+      // 1. Filter kartu berdasarkan kata kunci dan abjad yang dipilih
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const matchesSearch = title.includes(searchInput);
+        const matchesLetter = activeLetter === '' || title.startsWith(activeLetter.toLowerCase());
+
+        if (matchesSearch && matchesLetter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
         }
+      });
 
-        // Render Cards Nominal Coins
-        function renderItems() {
-            const container = document.getElementById('itemContainer');
-            container.innerHTML = coinItems.map(item => `
-                <div onclick="selectItem('${item.id}')" 
-                     id="item-${item.id}" 
-                     class="item-card relative bg-gray-800/60 border border-gray-700/80 rounded-xl p-4 cursor-pointer hover:border-pink-500 transition duration-200 text-center flex flex-col justify-between">
-                    ${item.promo ? `<span class="absolute -top-2.5 right-2 bg-gradient-to-r from-pink-500 to-yellow-500 text-gray-900 font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">${item.promo}</span>` : ''}
-                    <div>
-                        <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-400">
-                            <i class="fa-solid fa-coins text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-white text-sm mb-1">${item.name}</h4>
-                    </div>
-                    <p class="text-pink-400 font-extrabold text-sm mt-2">${formatRupiah(item.price)}</p>
-                </div>
-            `).join('');
+      // 2. Urutkan posisi kartu di DOM
+      cards.sort((a, b) => {
+        const titleA = a.getAttribute('data-title').toLowerCase();
+        const titleB = b.getAttribute('data-title').toLowerCase();
+
+        if (sortValue === 'az') {
+          return titleA.localeCompare(titleB);
+        } else if (sortValue === 'za') {
+          return titleB.localeCompare(titleA);
+        } else {
+          return 0; // Tampilan default
         }
+      });
 
-        // Render Metode Pembayaran
-        function renderPayments() {
-            const container = document.getElementById('paymentContainer');
-            container.innerHTML = paymentMethods.map(group => `
-                <div class="space-y-2">
-                    <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">${group.category}</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        ${group.items.map(pay => `
-                            <div onclick="selectPayment('${pay.id}')" 
-                                 id="pay-${pay.id}" 
-                                 class="payment-card bg-gray-800/60 border border-gray-700/80 rounded-xl p-3 cursor-pointer hover:border-pink-500 transition flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-gray-700/50 flex items-center justify-center text-gray-300">
-                                        <i class="fa-solid ${pay.icon}"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-white text-xs">${pay.name}</p>
-                                        <p class="text-[10px] text-gray-400">Biaya admin: ${pay.fee === 0 ? 'Gratis' : formatRupiah(pay.fee)}</p>
-                                    </div>
-                                </div>
-                                <div class="w-4 h-4 rounded-full border border-gray-600 flex items-center justify-center pay-radio">
-                                    <div class="w-2 h-2 rounded-full bg-pink-500 hidden"></div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
+      // Masukkan kembali kartu yang sudah terurut ke dalam grid
+      cards.forEach(card => grid.appendChild(card));
+    }
 
-        // Action Pilih Nominal
-        function selectItem(id) {
-            selectedItem = coinItems.find(i => i.id === id);
-            
-            // Highlight Card
-            document.querySelectorAll('.item-card').forEach(el => el.classList.remove('border-pink-500', 'bg-pink-500/10', 'glow-effect'));
-            const activeCard = document.getElementById(`item-${id}`);
-            activeCard.classList.add('border-pink-500', 'bg-pink-500/10', 'glow-effect');
+    function openTopup(gameName, imgUrl) {
+      selectedGame = gameName;
+      document.getElementById('selectedGameTitle').innerText = gameName;
+      document.getElementById('selectedGameImg').src = imgUrl;
+      document.getElementById('catalogSection').classList.add('hidden');
+      document.getElementById('topupSection').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
 
-            updateSummary();
-        }
+    function showCatalog() {
+      document.getElementById('topupSection').classList.add('hidden');
+      document.getElementById('catalogSection').classList.remove('hidden');
+    }
 
-        // Action Pilih Metode Pembayaran
-        function selectPayment(id) {
-            let found = null;
-            paymentMethods.forEach(g => {
-                const match = g.items.find(p => p.id === id);
-                if (match) found = match;
-            });
-            selectedPayment = found;
+    function selectNominal(item, price) {
+      selectedItem = item;
+      selectedPrice = price;
+      alert(`Kamu memilih: ${item} (Rp ${price})`);
+    }
 
-            // Highlight Payment Card
-            document.querySelectorAll('.payment-card').forEach(el => {
-                el.classList.remove('border-pink-500', 'bg-pink-500/10');
-                el.querySelector('.pay-radio div').classList.add('hidden');
-            });
-            
-            const activeCard = document.getElementById(`pay-${id}`);
-            activeCard.classList.add('border-pink-500', 'bg-pink-500/10');
-            activeCard.querySelector('.pay-radio div').classList.remove('hidden');
+    function processOrder() {
+      const userId = document.getElementById('userIdInput').value;
+      if (!userId) {
+        alert('Mohon isi User ID kamu!');
+        return;
+      }
+      if (!selectedItem) {
+        alert('Mohon pilih nominal top up!');
+        return;
+      }
+      alert(`Pesanan Diproses!\nGame: ${selectedGame}\nID: ${userId}\nPaket: ${selectedItem}\nHarga: Rp ${selectedPrice}`);
+    }
 
-            updateSummary();
-        }
-
-        // Input Listener untuk User ID
-        document.getElementById('userId').addEventListener('input', function(e) {
-            const val = e.target.value.trim();
-            const icon = document.getElementById('validIcon');
-            
-            if (val.length >= 8) {
-                icon.classList.remove('hidden');
-            } else {
-                icon.classList.add('hidden');
-            }
-            updateSummary();
-        });
-
-        // Update Ringkasan Pesanan (Live Update)
-        function updateSummary() {
-            const userId = document.getElementById('userId').value.trim();
-            
-            document.getElementById('summaryUserId').innerText = userId ? userId : '-[Belum Diisi]-';
-            document.getElementById('summaryItem').innerText = selectedItem ? selectedItem.name : '-[Pilih Item]-';
-            document.getElementById('summaryPayment').innerText = selectedPayment ? selectedPayment.name : '-[Pilih Metode]-';
-
-            let totalPrice = 0;
-            if (selectedItem) totalPrice += selectedItem.price;
-            if (selectedPayment) totalPrice += selectedPayment.fee;
-
-            document.getElementById('summaryPrice').innerText = formatRupiah(totalPrice);
-
-            // Validasi tombol checkout
-            const btn = document.getElementById('submitBtn');
-            if (userId.length >= 8 && selectedItem && selectedPayment) {
-                btn.disabled = false;
-            } else {
-                btn.disabled = true;
-            }
-        }
-
-        // Submit Form -> Tampilkan Modal Konfirmasi
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const userId = document.getElementById('userId').value.trim();
-            const wa = document.getElementById('waNumber').value.trim();
-
-            if (!userId || !selectedItem || !selectedPayment || !wa) return;
-
-            document.getElementById('modalUserId').innerText = userId;
-            document.getElementById('modalItem').innerText = selectedItem.name;
-            document.getElementById('modalPayment').innerText = selectedPayment.name;
-            document.getElementById('modalWa').innerText = wa;
-            document.getElementById('modalPrice').innerText = formatRupiah(selectedItem.price + selectedPayment.fee);
-
-            document.getElementById('modalOverlay').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.add('hidden');
-        }
-
-        // Simulasi Redirect Pembayaran
-        function processPayment() {
-            alert('Pesanan berhasil dibuat! Anda akan diarahkan ke halaman pembayaran.');
-            closeModal();
-        }
-
-        // Init App
-        renderItems();
-        renderPayments();
-    </script>
+    // Jalankan inisialisasi sidebar saat halaman dimuat
+    window.onload = function() {
+      initAlphabetSidebar();
+    };
+  </script>
 </body>
 </html>
