@@ -14,14 +14,73 @@
     }
 
     body {
-      background-color: #120326;
+      background-color: #0d021a;
       color: #ffffff;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* BACKGROUND VIDEO & FALLBACK ANIMATION */
+    /* 1. ANIMASI BACKGROUND GERAK (EFEK PARTIKEL & ORB NEON) */
+    .animated-bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0d021a 0%, #17052e 50%, #090114 100%);
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.6;
+      animation: floatOrb 12s infinite alternate ease-in-out;
+    }
+
+    .orb-1 {
+      width: 350px;
+      height: 350px;
+      background: #7c3aed;
+      top: -50px;
+      left: -50px;
+    }
+
+    .orb-2 {
+      width: 450px;
+      height: 450px;
+      background: #c084fc;
+      bottom: -100px;
+      right: -100px;
+      animation-delay: -4s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: #2563eb;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: -8s;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(60px, 80px) scale(1.2);
+      }
+      100% {
+        transform: translate(-40px, 40px) scale(0.9);
+      }
+    }
+
+    /* 2. BACKGROUND VIDEO (JIKA KAMU UNGGAT FILE MP4 SENDIRI) */
     #bgVideo {
       position: fixed;
       top: 0;
@@ -30,33 +89,24 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
-      display: none; /* Muncul jika file video dimasukkan */
+      display: none;
     }
 
-    .animated-bg-default {
+    /* OVERLAY AGAR KONTEN TETAP JELAS DIBACA */
+    .bg-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 20% 30%, #3a0d66 0%, transparent 50%),
-                  radial-gradient(circle at 80% 70%, #200440 0%, transparent 50%),
-                  linear-gradient(135deg, #100220 0%, #1a0333 100%);
-      background-size: 200% 200%;
-      animation: gradientMove 10s ease infinite;
-      z-index: -3;
+      background: rgba(13, 2, 26, 0.45);
+      z-index: -1;
     }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* HEADER & NAVBAR */
+    /* NAVBAR & HEADER */
     header {
       background: rgba(22, 5, 43, 0.85);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       position: sticky;
       top: 0;
@@ -79,16 +129,16 @@
       color: #00ffcc;
     }
 
-    /* FITUR DASHBOARD/SETTINGS BACKGROUND */
+    /* UPLOADER WALLPAPER */
     .bg-uploader {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 8px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
       border-radius: 20px;
       font-size: 13px;
       display: flex;
       align-items: center;
       gap: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .bg-uploader label {
@@ -101,7 +151,7 @@
       display: none;
     }
 
-    /* CONTAINER UTAMA */
+    /* MAIN CONTAINER */
     .container {
       max-width: 1200px;
       margin: 30px auto;
@@ -118,19 +168,19 @@
       gap: 10px;
     }
 
-    /* GRID KARTU GAME (Sesuai Referensi Foto) */
+    /* GRID KARTU GAME */
     .game-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 18px;
     }
 
-    /* KARTU GAME */
+    /* KARTU GAME SAMA SEPERTI REFERENSI FOTO */
     .game-card {
-      background: #2b1248; /* Warna latar belakang label bawah */
+      background: #2b1248;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       cursor: pointer;
       display: flex;
@@ -140,14 +190,14 @@
 
     .game-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 25px rgba(168, 85, 247, 0.3);
+      box-shadow: 0 12px 25px rgba(168, 85, 247, 0.4);
     }
 
     /* CONTAINER GAMBAR (PERSEGI 1:1) */
     .poster-container {
       position: relative;
       width: 100%;
-      aspect-ratio: 1 / 1; /* Rasio Persegi Sesuai Foto Referensi */
+      aspect-ratio: 1 / 1;
       overflow: hidden;
       background: #1a0830;
     }
@@ -159,7 +209,7 @@
       display: block;
     }
 
-    /* BADGE DISKON / PROMO */
+    /* BADGE PROMO */
     .badge-discount {
       position: absolute;
       top: 0;
@@ -192,7 +242,7 @@
       z-index: 2;
     }
 
-    /* EFEK GELOMBANG (WAVY SEPARATOR) */
+    /* GELOMBANG (WAVY DIVIDER) */
     .wavy-divider {
       position: absolute;
       bottom: -1px;
@@ -207,10 +257,10 @@
       display: block;
       width: 100%;
       height: 16px;
-      fill: #2b1248; /* Samakan dengan warna .game-card */
+      fill: #2b1248;
     }
 
-    /* NAMA GAME / LABEL BAWAH */
+    /* JUDUL GAME */
     .game-title {
       padding: 10px 8px 14px 8px;
       text-align: center;
@@ -238,32 +288,37 @@
 </head>
 <body>
 
-  <!-- BACKGROUND DEFAULT (ANIMASI GRADASI) -->
-  <div class="animated-bg-default"></div>
+  <!-- BACKGROUND BERGERAK (EFEK ORB & NEON GLOW) -->
+  <div class="animated-bg-container">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
 
-  <!-- BACKGROUND VIDEO (DARI FILE KAMU SAMBIL UPLOAD/SET) -->
+  <!-- OVERLAY MENTERANGKAN TEKS -->
+  <div class="bg-overlay"></div>
+
+  <!-- BACKGROUND VIDEO JIKA DI-UPLOAD KONSUMEN -->
   <video id="bgVideo" autoplay muted loop playsinline></video>
 
   <!-- NAVBAR -->
   <header>
     <a href="#" class="logo">exo<span>GAME</span></a>
     
-    <!-- OPSI GANTI BACKGROUND FILE SENDIRI -->
     <div class="bg-uploader">
-      <span>Ganti Wallpaper:</span>
-      <label for="bgInput">📁 Pilih Video/GIF MP4</label>
+      <span>Ganti Video Wallpaper:</span>
+      <label for="bgInput">📁 Upload MP4/GIF</label>
       <input type="file" id="bgInput" accept="video/mp4, video/webm, image/gif" />
     </div>
   </header>
 
-  <!-- KONTEN UTAMA -->
+  <!-- CONTENT -->
   <div class="container">
     <div class="section-title">⚡ Top Up Game Populer</div>
 
-    <!-- LIST KARTU GAME -->
     <div class="game-grid">
 
-      <!-- CARD 1: Mobile Legends -->
+      <!-- 1. Mobile Legends -->
       <div class="game-card">
         <div class="poster-container">
           <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&auto=format&fit=crop&q=80" alt="Mobile Legends" />
@@ -276,7 +331,7 @@
         <div class="game-title">Mobile Legends: Bang Bang</div>
       </div>
 
-      <!-- CARD 2: Free Fire Top-up -->
+      <!-- 2. Free Fire Top-up -->
       <div class="game-card">
         <div class="poster-container">
           <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&auto=format&fit=crop&q=80" alt="Free Fire" />
@@ -289,7 +344,7 @@
         <div class="game-title">Free Fire Top-up</div>
       </div>
 
-      <!-- CARD 3: Magic Chess Go Go (Diskon 10%) -->
+      <!-- 3. Magic Chess -->
       <div class="game-card">
         <div class="poster-container">
           <div class="badge-discount">Diskon 10%</div>
@@ -303,7 +358,7 @@
         <div class="game-title">Magic Chess: Go Go</div>
       </div>
 
-      <!-- CARD 4: Free Fire MAX -->
+      <!-- 4. Free Fire MAX -->
       <div class="game-card">
         <div class="poster-container">
           <div class="badge-max">MAX</div>
@@ -317,7 +372,7 @@
         <div class="game-title">Free Fire MAX Top-up</div>
       </div>
 
-      <!-- CARD 5: Call of Duty Mobile -->
+      <!-- 5. Call of Duty Mobile -->
       <div class="game-card">
         <div class="poster-container">
           <img src="https://images.unsplash.com/photo-1589241062272-c0a000072dfa?w=400&auto=format&fit=crop&q=80" alt="CODM" />
@@ -330,7 +385,7 @@
         <div class="game-title">Call of Duty Mobile</div>
       </div>
 
-      <!-- CARD 6: Hago -->
+      <!-- 6. Hago -->
       <div class="game-card">
         <div class="poster-container">
           <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400&auto=format&fit=crop&q=80" alt="Hago" />
@@ -343,45 +398,6 @@
         <div class="game-title">Hago</div>
       </div>
 
-      <!-- CARD 7: Genshin Impact -->
-      <div class="game-card">
-        <div class="poster-container">
-          <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&auto=format&fit=crop&q=80" alt="Genshin Impact" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="game-title">Genshin Impact</div>
-      </div>
-
-      <!-- CARD 8: ZEPETO -->
-      <div class="game-card">
-        <div class="poster-container">
-          <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=400&auto=format&fit=crop&q=80" alt="ZEPETO" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="game-title">ZEPETO</div>
-      </div>
-
-      <!-- CARD 9: Honkai: Star Rail -->
-      <div class="game-card">
-        <div class="poster-container">
-          <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&auto=format&fit=crop&q=80" alt="Honkai Star Rail" />
-          <div class="wavy-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,150.2,112.55,214.5,102.32A782.3,782.3,0,0,0,321.39,56.44Z"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="game-title">Honkai: Star Rail</div>
-      </div>
-
     </div>
   </div>
 
@@ -389,7 +405,6 @@
     &copy; 2026 exoGAME. All rights reserved.
   </footer>
 
-  <!-- SCRIPT UNTUK MEMANGGIL VIDEO BACKGROUND MILIK SENDIRI -->
   <script>
     const bgInput = document.getElementById('bgInput');
     const bgVideo = document.getElementById('bgVideo');
