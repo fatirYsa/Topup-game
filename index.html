@@ -121,9 +121,6 @@
           <span class="text-2xl font-black tracking-wider text-pink-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]">
             exo<span class="text-white">GAME</span>
           </span>
-          <span class="hidden sm:inline-block bg-pink-500/20 text-pink-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-500/30">
-            LIVE BG ACTIVE⚡
-          </span>
         </div>
 
         <!-- Controls: Effect & Search -->
@@ -324,92 +321,65 @@
               </div>
             </div>
 
-            <!-- Step 3: Payment Method (Sesuai Referensi Gambar) -->
+            <!-- Step 3: Payment Method -->
             <div class="glass-card p-5 rounded-xl">
               <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
                 <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">3</span>
                 PILIH PEMBAYARAN
               </h3>
               <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="paymentGrid">
-                
-                <!-- GoPay -->
                 <button onclick="selectPayment('GoPay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-wallet text-sky-400 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">GoPay</span>
                 </button>
-
-                <!-- DANA -->
                 <button onclick="selectPayment('DANA', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-mobile-screen-button text-blue-500 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">Dana</span>
                 </button>
-
-                <!-- QRIS -->
                 <button onclick="selectPayment('QRIS', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-qrcode text-red-500 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">QRIS</span>
                 </button>
-
-                <!-- Bank Transfer -->
                 <button onclick="selectPayment('Bank Transfer', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-building-columns text-emerald-400 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">Bank Transfer</span>
                 </button>
-
-                <!-- ShopeePay -->
                 <button onclick="selectPayment('ShopeePay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-bag-shopping text-orange-500 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">ShopeePay</span>
                 </button>
-
-                <!-- OVO -->
                 <button onclick="selectPayment('OVO', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-coins text-purple-400 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">OVO</span>
                 </button>
-
-                <!-- Kredivo -->
                 <button onclick="selectPayment('Kredivo', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-credit-card text-amber-500 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">Kredivo</span>
                 </button>
-
-                <!-- Indomaret -->
                 <button onclick="selectPayment('Indomaret', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-store text-blue-400 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">Indomaret</span>
                 </button>
-
-                <!-- Alfamart -->
                 <button onclick="selectPayment('Alfamart', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-shop text-red-500 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">Alfamart</span>
                 </button>
-
-                <!-- Kartu Kredit -->
                 <button onclick="selectPayment('Kartu Kredit', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-credit-card text-indigo-400 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">Kartu Kredit</span>
                 </button>
-
-                <!-- LinkAja -->
                 <button onclick="selectPayment('LinkAja', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-link text-red-600 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">LinkAja</span>
                 </button>
-
-                <!-- DOKU Wallet -->
                 <button onclick="selectPayment('DOKU Wallet', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-solid fa-wallet text-red-400 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">DOKU Wallet</span>
                 </button>
-
-                <!-- PayPal -->
                 <button onclick="selectPayment('PayPal', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
                   <i class="fa-brands fa-paypal text-blue-600 text-2xl mb-1"></i>
                   <span class="text-xs font-bold text-white">PayPal</span>
                 </button>
-
               </div>
             </div>
 
@@ -419,7 +389,6 @@
                 <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">4</span>
                 MASUKKAN DETAIL
               </h3>
-              
               <div class="mb-3">
                 <input type="email" id="userEmailInput" placeholder="Harap masukkan email" class="w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm">
               </div>
@@ -435,7 +404,7 @@
 
     </main>
 
-    <!-- FOOTER SECTION (Sesuai Referensi Gambar) -->
+    <!-- FOOTER SECTION -->
     <footer class="bg-gradient-to-r from-purple-950 via-gray-950 to-slate-950 border-t border-purple-800/40 pt-12 pb-8 text-gray-300 backdrop-blur-lg mt-auto">
       <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         
@@ -627,7 +596,7 @@
       filterAndSortGames();
     }
 
-    // Background Canvas FX
+    // ================= BACKGROUND ANIMATION ENGINE =================
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -635,31 +604,114 @@
     let bgEffectMode = 'nebula';
     let t = 0;
 
+    // Particle Setup
+    const particles = [];
+    for (let i = 0; i < 40; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        size: Math.random() * 2 + 1
+      });
+    }
+
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     });
 
-    function renderBg() {
-      ctx.clearRect(0, 0, width, height);
-      t += 0.008;
-      
-      let grad1 = ctx.createRadialGradient(
-        width * 0.3 + Math.sin(t) * 100, height * 0.3 + Math.cos(t * 0.8) * 100, 50,
-        width * 0.3, height * 0.3, width * 0.6
-      );
-      grad1.addColorStop(0, 'rgba(236, 72, 153, 0.35)');
-      grad1.addColorStop(1, 'rgba(8, 3, 20, 0)');
+    function changeBgEffect(effect) {
+      bgEffectMode = effect;
+    }
 
-      ctx.fillStyle = '#080314';
-      ctx.fillRect(0, 0, width, height);
-      ctx.fillStyle = grad1;
-      ctx.fillRect(0, 0, width, height);
+    function renderBg() {
+      t += 0.008;
+
+      if (bgEffectMode === 'nebula') {
+        ctx.fillStyle = '#080314';
+        ctx.fillRect(0, 0, width, height);
+
+        let grad1 = ctx.createRadialGradient(
+          width * 0.3 + Math.sin(t) * 120, height * 0.3 + Math.cos(t * 0.8) * 120, 50,
+          width * 0.3, height * 0.3, width * 0.6
+        );
+        grad1.addColorStop(0, 'rgba(236, 72, 153, 0.35)');
+        grad1.addColorStop(1, 'rgba(8, 3, 20, 0)');
+
+        let grad2 = ctx.createRadialGradient(
+          width * 0.7 + Math.cos(t * 0.5) * 100, height * 0.7 + Math.sin(t * 0.6) * 100, 50,
+          width * 0.7, height * 0.7, width * 0.5
+        );
+        grad2.addColorStop(0, 'rgba(124, 58, 237, 0.3)');
+        grad2.addColorStop(1, 'rgba(8, 3, 20, 0)');
+
+        ctx.fillStyle = grad1;
+        ctx.fillRect(0, 0, width, height);
+        ctx.fillStyle = grad2;
+        ctx.fillRect(0, 0, width, height);
+
+      } else if (bgEffectMode === 'particles') {
+        ctx.fillStyle = '#06020e';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.strokeStyle = 'rgba(236, 72, 153, 0.15)';
+        ctx.fillStyle = '#ec4899';
+
+        for (let i = 0; i < particles.length; i++) {
+          let p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            let p2 = particles[j];
+            let dx = p.x - p2.x;
+            let dy = p.y - p2.y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 130) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+      } else if (bgEffectMode === 'cyber') {
+        ctx.fillStyle = '#030a06';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.strokeStyle = 'rgba(16, 185, 129, 0.15)';
+        ctx.lineWidth = 1;
+
+        let gridSize = 40;
+        let offsetY = (t * 20) % gridSize;
+
+        for (let x = 0; x < width; x += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.stroke();
+        }
+
+        for (let y = offsetY; y < height; y += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.stroke();
+        }
+      }
 
       requestAnimationFrame(renderBg);
     }
-
-    function changeBgEffect(effect) { bgEffectMode = effect; }
 
     window.onload = function() {
       initAlphabetSidebar();
