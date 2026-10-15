@@ -1,188 +1,472 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>exoGAME - Top Up Game Murah & Cepat</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  
-  <style>
-    body {
-      color: #f3f4f6;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden;
-      background-color: #080314;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>exoGAME - Top Up Game Murah & Cepat</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      color: #f3f4f6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      background-color: #080314;
+    }
 
-    /* Fixed Canvas for Animated Background */
-    #bgCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-    }
+    /* Fixed Canvas for Animated Background */
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-    /* Glassmorphism Cards */
-    .glass-card {
-      background: rgba(17, 24, 39, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(236, 72, 153, 0.2);
-    }
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(236, 72, 153, 0.2);
+    }
 
-    .glass-card:hover {
-      border-color: rgba(236, 72, 153, 0.6);
-      box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);
-    }
+    .glass-card:hover {
+      border-color: rgba(236, 72, 153, 0.6);
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);
+    }
 
-    .glass-header {
-      background: rgba(15, 10, 30, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(236, 72, 153, 0.2);
-    }
+    .glass-header {
+      background: rgba(15, 10, 30, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(236, 72, 153, 0.2);
+    }
 
-    /* Sidebar Alphabet A-Z */
-    .alphabet-sidebar {
-      position: fixed;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 40;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      background: rgba(15, 10, 30, 0.85);
-      backdrop-filter: blur(10px);
-      padding: 6px 4px;
-      border-radius: 12px;
-      border: 1px solid rgba(236, 72, 153, 0.3);
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
+    /* Sidebar Alphabet A-Z */
+    .alphabet-sidebar {
+      position: fixed;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      background: rgba(15, 10, 30, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 6px 4px;
+      border-radius: 12px;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
 
-    .alphabet-sidebar button {
-      font-size: 10px;
-      font-weight: bold;
-      color: #9ca3af;
-      padding: 1px 4px;
-      border-radius: 4px;
-      transition: all 0.2s;
-    }
+    .alphabet-sidebar button {
+      font-size: 10px;
+      font-weight: bold;
+      color: #9ca3af;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
 
-    .alphabet-sidebar button:hover, .alphabet-sidebar button.active {
-      color: #ec4899;
-      background-color: rgba(236, 72, 153, 0.3);
-      text-shadow: 0 0 8px #ec4899;
-    }
+    .alphabet-sidebar button:hover, .alphabet-sidebar button.active {
+      color: #ec4899;
+      background-color: rgba(236, 72, 153, 0.3);
+      text-shadow: 0 0 8px #ec4899;
+    }
 
-    /* Selection Highlighting */
-    .nominal-btn.selected, .payment-btn.selected {
-      border-color: #ec4899 !important;
-      background-color: rgba(236, 72, 153, 0.25) !important;
-      box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
-      transform: translateY(-2px);
-    }
+    /* Selection Highlighting */
+    .nominal-btn.selected, .payment-btn.selected {
+      border-color: #ec4899 !important;
+      background-color: rgba(236, 72, 153, 0.25) !important;
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+      transform: translateY(-2px);
+    }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #090514;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #ec4899;
-      border-radius: 10px;
-    }
-  </style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090514;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ec4899;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between pr-8 sm:pr-10">
 
-  <!-- Interactive Animated Background Canvas -->
-  <canvas id="bgCanvas"></canvas>
+  <!-- Interactive Animated Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
 
-  <!-- Main Container -->
-  <div class="relative z-10 flex-1 flex flex-col justify-between">
-    
-    <!-- Alphabet Sidebar -->
-    <div class="alphabet-sidebar" id="alphabetSidebar"></div>
+  <!-- Main Container -->
+  <div class="relative z-10 flex-1 flex flex-col justify-between">
+    
+    <!-- Alphabet Sidebar -->
+    <div class="alphabet-sidebar" id="alphabetSidebar"></div>
 
-    <!-- Header / Navbar -->
-    <header class="glass-header sticky top-0 z-50 transition-all duration-300">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
-        <!-- Logo -->
-        <div class="flex items-center gap-2 cursor-pointer" onclick="showCatalog()">
-          <span class="text-2xl font-black tracking-wider text-pink-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]">
-            exo<span class="text-white">GAME</span>
-          </span>
-        </div>
+    <!-- Header / Navbar -->
+    <header class="glass-header sticky top-0 z-50 transition-all duration-300">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 cursor-pointer" onclick="showCatalog()">
+          <span class="text-2xl font-black tracking-wider text-pink-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]">
+            exo<span class="text-white">GAME</span>
+          </span>
+          <span class="bg-pink-500/20 text-pink-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-500/30 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-pink-400 animate-ping"></span> LIVE BG ACTIVE
+          </span>
+        </div>
 
-        <!-- Controls: Effect & Search -->
-        <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
-          
-          <!-- Background Effect Selector -->
-          <div class="flex items-center bg-gray-900/80 border border-pink-500/40 rounded-full px-2.5 py-1 text-xs text-gray-300 gap-1.5 shadow-lg">
-            <i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i>
-            <span class="text-gray-400">Effect:</span>
-            <select id="bgEffectSelect" onchange="changeBgEffect(this.value)" class="bg-transparent text-pink-300 font-semibold focus:outline-none cursor-pointer text-xs">
-              <option value="nebula" class="bg-gray-900 text-white">✨ Glowing Nebula</option>
-              <option value="particles" class="bg-gray-900 text-white">🌌 Particle Network</option>
-              <option value="cyber" class="bg-gray-900 text-white">🟩 Matrix Cyber Grid</option>
-            </select>
-          </div>
+        <!-- Controls: Effect & Search -->
+        <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+          
+          <!-- Background Effect Selector -->
+          <div class="flex items-center bg-gray-900/80 border border-pink-500/40 rounded-full px-2.5 py-1 text-xs text-gray-300 gap-1.5 shadow-lg">
+            <i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i>
+            <span class="text-gray-400">Effect:</span>
+            <select id="bgEffectSelect" onchange="changeBgEffect(this.value)" class="bg-transparent text-pink-300 font-semibold focus:outline-none cursor-pointer text-xs">
+              <option value="nebula" class="bg-gray-900 text-white">✨ Glowing Nebula</option>
+              <option value="particles" class="bg-gray-900 text-white">🌌 Particle Network</option>
+              <option value="cyber" class="bg-gray-900 text-white">🟩 Matrix Cyber Grid</option>
+            </select>
+          </div>
 
-          <!-- Search Bar -->
-          <div class="relative">
-            <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-48 transition-all">
-            <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
-          </div>
-        </div>
-      </div>
-    </header>
+          <!-- Search Bar -->
+          <div class="relative">
+            <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-48 transition-all">
+            <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <main class="max-w-6xl mx-auto px-4 mt-6 mb-12 w-full">
-      
-      <!-- Hero Banner -->
-      <div class="relative overflow-hidden rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl border border-pink-500/30 bg-gradient-to-r from-purple-900/80 via-pink-900/60 to-indigo-950/80 backdrop-blur-md">
-        <div class="relative z-10 max-w-2xl">
-          <h1 class="text-2xl sm:text-4xl font-extrabold mb-2 text-white drop-shadow-md">
-            TOP UP GAME INSTAN HARGA TERMURAH
-          </h1>
-          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-2">
-            Nikmati top up diamond, voucher, dan membership favoritmu dengan efek animasi live wallpaper interaktif.
-          </p>
-          <p class="text-[11px] text-pink-300/80 italic">
-            Gerakkan kursor di layar untuk melihat interaksi efek background!
-          </p>
-        </div>
-        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-pink-500/30 rounded-full blur-3xl pointer-events-none"></div>
-      </div>
+    <main class="max-w-6xl mx-auto px-4 mt-6 mb-12 w-full">
+      
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl border border-pink-500/30 bg-gradient-to-r from-purple-900/80 via-pink-900/60 to-indigo-950/80 backdrop-blur-md">
+        <div class="relative z-10 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/20 border border-pink-500/40 text-pink-300 text-xs font-semibold mb-3">
+            <span class="w-2 h-2 rounded-full bg-pink-500 animate-ping"></span>
+            Proses Otomatis 24/7 Fast & Safe
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-extrabold mb-2 text-white drop-shadow-md">
+            TOP UP GAME INSTAN HARGA TERMURAH
+          </h1>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-2">
+            Nikmati top up diamond, voucher, dan membership favoritmu dengan efek animasi live wallpaper interaktif.
+          </p>
+          <p class="text-[11px] text-pink-300/80 italic">
+            Gerakkan kursor di layar untuk melihat interaksi efek background!
+          </p>
+        </div>
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-pink-500/30 rounded-full blur-3xl pointer-events-none"></div>
+      </div>
 
-      <!-- CATALOG SECTION -->
-      <section id="catalogSection">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 glass-card p-4 rounded-xl">
-          <h2 class="text-lg sm:text-xl font-bold text-gray-100 border-l-4 border-pink-500 pl-3 flex items-center gap-2">
-            <i class="fa-solid fa-gamepad text-pink-500"></i> Katalog Game Top-Up
-          </h2>
-          
-          <div class="flex items-center gap-3">
-            <label for="sortSelect" class="text-xs sm:text-sm font-medium text-gray-400 whitespace-nowrap">Urutkan:</label>
-            <select id="sortSelect" onchange="filterAndSortGames()" class="bg-gray-900/90 border border-gray-700 text-xs sm:text-sm rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-pink-500 cursor-pointer">
-              <option value="az">Urutan Abjad (A - Z)</option>
-              <option value="za">Urutan Abjad (Z - A)</option>
-              <option value="default">Populer / Rekomendasi</option>
-            </select>
-          </div>
-        </div>
-        
-        <!-- Game Cards Grid (Rasio Foto 1:1) -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
-          
-          <!-- Mobile Legends -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Mobile Legends: Bang Bang" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', '
+      <!-- CATALOG SECTION -->
+      <section id="catalogSection">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 glass-card p-4 rounded-xl">
+          <h2 class="text-lg sm:text-xl font-bold text-gray-100 border-l-4 border-pink-500 pl-3 flex items-center gap-2">
+            <i class="fa-solid fa-gamepad text-pink-500"></i> Katalog Game Top-Up
+          </h2>
+          
+          <div class="flex items-center gap-3">
+            <label for="sortSelect" class="text-xs sm:text-sm font-medium text-gray-400 whitespace-nowrap">Urutkan:</label>
+            <select id="sortSelect" onchange="filterAndSortGames()" class="bg-gray-900/90 border border-gray-700 text-xs sm:text-sm rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-pink-500 cursor-pointer">
+              <option value="az">Urutan Abjad (A - Z)</option>
+              <option value="za">Urutan Abjad (Z - A)</option>
+              <option value="default">Populer / Rekomendasi</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Game Cards Grid (Rasio Foto 1:1) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
+          
+          <!-- Mobile Legends -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Mobile Legends: Bang Bang" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Mobile Legends</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Moonton</span>
+            </div>
+          </div>
+
+          <!-- Free Fire -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Free Fire Top-up" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Free Fire Top-up</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Garena</span>
+            </div>
+          </div>
+
+          <!-- PUBG Mobile -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="PUBG Mobile" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">PUBG Mobile</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Tencent Games</span>
+            </div>
+          </div>
+
+          <!-- eFootball -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="eFootball 2026" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">eFootball™ 2026</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Konami</span>
+            </div>
+          </div>
+
+          <!-- Genshin Impact -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Genshin Impact" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Genshin Impact</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">HoYoverse</span>
+            </div>
+          </div>
+
+          <!-- Honkai Star Rail -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Honkai: Star Rail</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">HoYoverse</span>
+            </div>
+          </div>
+
+          <!-- Roblox -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Roblox</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Roblox Corporation</span>
+            </div>
+          </div>
+
+          <!-- FC Mobile -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">EA SPORTS FC Mobile</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">ELECTRONIC ARTS</span>
+            </div>
+          </div>
+
+          <!-- Valorant -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Valorant</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Riot Games</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TOP UP FORM SECTION -->
+      <section id="topupSection" class="hidden">
+        <button onclick="showCatalog()" class="mb-4 text-xs sm:text-sm bg-gray-800/80 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Catalog Game
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Game Information Sidebar -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center h-fit sticky top-20">
+            <img id="selectedGameImg" src="" class="w-32 h-32 object-cover rounded-2xl mb-4 border-2 border-pink-500 shadow-xl shadow-pink-500/20">
+            <h2 id="selectedGameTitle" class="text-xl sm:text-2xl font-bold text-white mb-1">Nama Game</h2>
+            <p class="text-xs text-gray-400 mb-4">Proses Instant & Garansi Resmi exoGAME</p>
+            <div class="w-full border-t border-gray-700/80 pt-4 text-left space-y-2 text-xs text-gray-300">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-400"></i> Pengiriman Otomatis</div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-headset text-pink-400"></i> Layanan CS 24 Jam</div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Transaksi Safe & Secure</div>
+            </div>
+          </div>
+
+          <!-- Steps Container -->
+          <div class="md:col-span-2 space-y-6">
+            
+            <!-- Step 1: User Data -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">1</span>
+                MASUKKAN DATA AKUN
+              </h3>
+              <div>
+                <input type="text" id="userIdInput" placeholder="Masukkan User ID / Zone ID Anda" class="w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm">
+              </div>
+            </div>
+
+            <!-- Step 2: Nominal Top Up -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">2</span>
+                PILIH NOMINAL TOP UP
+              </h3>
+              <div id="nominalGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <!-- Rendered dynamically via JS -->
+              </div>
+            </div>
+
+            <!-- Step 3: Payment Method -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">3</span>
+                PILIH PEMBAYARAN
+              </h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="paymentGrid">
+                <button onclick="selectPayment('GoPay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-wallet text-sky-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">GoPay</span>
+                </button>
+                <button onclick="selectPayment('DANA', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-mobile-screen-button text-blue-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Dana</span>
+                </button>
+                <button onclick="selectPayment('QRIS', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-qrcode text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">QRIS</span>
+                </button>
+                <button onclick="selectPayment('Bank Transfer', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-building-columns text-emerald-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Bank Transfer</span>
+                </button>
+                <button onclick="selectPayment('ShopeePay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-bag-shopping text-orange-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">ShopeePay</span>
+                </button>
+                <button onclick="selectPayment('OVO', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-coins text-purple-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">OVO</span>
+                </button>
+                <button onclick="selectPayment('Kredivo', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-credit-card text-amber-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kredivo</span>
+                </button>
+                <button onclick="selectPayment('Indomaret', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-store text-blue-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Indomaret</span>
+                </button>
+                <button onclick="selectPayment('Alfamart', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-shop text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Alfamart</span>
+                </button>
+                <button onclick="selectPayment('Kartu Kredit', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-credit-card text-indigo-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kartu Kredit</span>
+                </button>
+                <button onclick="selectPayment('LinkAja', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-link text-red-600 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">LinkAja</span>
+                </button>
+                <button onclick="selectPayment('DOKU Wallet', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-wallet text-red-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">DOKU Wallet</span>
+                </button>
+                <button onclick="selectPayment('PayPal', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-brands fa-paypal text-blue-600 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">PayPal</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 4: Email & Confirmation -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-2 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">4</span>
+                MASUKKAN DETAIL
+              </h3>
+              <div class="mb-3">
+                <input type="email" id="userEmailInput" placeholder="Harap masukkan email" class="w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm">
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button onclick="processOrder()" class="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 font-bold py-3.5 rounded-xl transition text-white shadow-lg shadow-pink-600/40 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
+              <i class="fa-solid fa-cart-shopping"></i> BELI SEKARANG
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-gradient-to-r from-purple-950 via-gray-950 to-slate-950 border-t border-purple-800/40 pt-12 pb-8 text-gray-300 backdrop-blur-lg mt-auto">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        
+        <!-- Brand & About -->
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl font-black tracking-wider text-pink-500">
+              exo<span class="text-white">GAME</span>
+            </span>
+            <span class="bg-pink-500/20 text-pink-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-500/30">
+              ⚡ Powered by exo
+            </span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed mb-4">
+            exoGAME Top Up adalah platform top up game termurah, tercepat, dan terpercaya di Indonesia. Nikmati top up diamond, voucher, dan membership untuk Mobile Legends, Free Fire, PUBG Mobile, Valorant, Genshin Impact, Roblox, dan ratusan game lainnya. Proses instan kurang dari 1 menit, pembayaran mudah melalui e-wallet hingga transfer bank, dengan layanan 24 jam nonstop.
+          </p>
+          <div class="flex items-center gap-2">
+            <a href="#" class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs hover:opacity-80 transition"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-pink-600 flex items-center justify-center text-white text-xs hover:opacity-80 transition"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white text-xs hover:opacity-80 transition"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-black border border-gray-700 flex items-center justify-center text-white text-xs hover:opacity-80 transition"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Peta Situs -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Peta Situs</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" onclick="showCatalog()" class="hover:text-pink-400 transition">Home</a></li>
+            <li><a href="#" class="hover:text-pink-400 transition">Lacak Pesanan</a></li>
+          </ul>
+        </div>
+
+        <!-- Game Lainnya -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Game Lainnya</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')" class="hover:text-pink-400 transition">Mobile Legends</a></li>
+            <li><a href="#" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')" class="hover:text-pink-400 transition">Free Fire</a></li>
+            <li><a href="#" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')" class="hover:text-pink-400 transition">PUBG Mobile</a></li>
+            <li><a href="#" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')" class="hover:text-pink-400 transition">Genshin Impact</a></li>
+          </ul>
+        </div>
+
+        <!-- Legalitas -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Legalitas</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" class="hover:text-pink-400 transitio
