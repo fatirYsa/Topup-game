@@ -156,7 +156,7 @@
           </span>
         </div>
 
-        <!-- Controls: Effect & Search -->
+        <!-- Controls: Effect, Search, & Daftar Button -->
         <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
           
           <!-- Background Effect Selector -->
@@ -175,6 +175,11 @@
             <input type="text" id="searchInput" onkeyup="filterGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-48 transition-all">
             <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
           </div>
+
+          <!-- Tombol Daftar (Sesuai Referensi Gambar) -->
+          <button onclick="showAuthPage()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold px-4 py-1.5 rounded-full text-xs sm:text-sm shadow-lg shadow-violet-600/30 transition-all">
+            Daftar
+          </button>
         </div>
       </div>
     </header>
@@ -360,7 +365,7 @@
         </div>
       </section>
 
-      <!-- TOP UP FORM SECTION (Tampilan Saat Game Diklik) -->
+      <!-- TOP UP FORM SECTION -->
       <section id="topupSection" class="hidden">
         <button onclick="showCatalog()" class="mb-4 text-xs sm:text-sm bg-gray-800/80 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
           <i class="fa-solid fa-arrow-left"></i> Kembali ke Catalog Game
@@ -481,6 +486,44 @@
             <button onclick="processOrder()" class="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 font-bold py-3.5 rounded-xl transition text-white shadow-lg shadow-pink-600/40 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
               <i class="fa-solid fa-cart-shopping"></i> BELI SEKARANG
             </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- AUTH / REGISTER PAGE SECTION (Sesuai Referensi Gambar) -->
+      <section id="authSection" class="hidden max-w-xl mx-auto py-8">
+        <button onclick="showCatalog()" class="mb-6 text-xs sm:text-sm bg-gray-800/80 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </button>
+
+        <div class="glass-card p-6 sm:p-10 rounded-2xl shadow-2xl text-center border border-pink-500/30">
+          <div class="text-xs sm:text-sm text-gray-300 font-medium mb-1">Top up lebih cepat, penawaran lebih baik</div>
+          <h2 class="text-xl sm:text-2xl font-black text-white mb-8">Gabung exoGAME Sekarang.</h2>
+
+          <!-- Auth Buttons -->
+          <div class="space-y-3.5 mb-8">
+            <button onclick="alert('Login dengan Google diproses...')" class="w-full bg-white hover:bg-gray-100 text-gray-900 font-bold py-3 px-4 rounded-full transition flex items-center justify-center gap-3 shadow-md text-xs sm:text-sm">
+              <i class="fa-brands fa-google text-red-500 text-lg"></i> Lanjut dengan Google
+            </button>
+
+            <button onclick="alert('Login dengan Facebook diproses...')" class="w-full bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold py-3 px-4 rounded-full transition flex items-center justify-center gap-3 shadow-md text-xs sm:text-sm">
+              <i class="fa-brands fa-facebook text-white text-lg"></i> Lanjut dengan Facebook
+            </button>
+
+            <button onclick="alert('Form Daftar dengan Email dibuka...')" class="w-full bg-gray-800/90 hover:bg-gray-700 border border-gray-600 text-white font-bold py-3 px-4 rounded-full transition flex items-center justify-center gap-3 shadow-md text-xs sm:text-sm">
+              <i class="fa-regular fa-envelope text-pink-400 text-lg"></i> Daftar dengan Email
+            </button>
+          </div>
+
+          <p class="text-[11px] sm:text-xs text-gray-400 mb-6">
+            Dengan mendaftar, anda setuju dengan <a href="#" class="text-yellow-400 font-semibold hover:underline">Persyaratan Layanan</a> dan <a href="#" class="text-yellow-400 font-semibold hover:underline">Kebijakan Privasi</a>.
+          </p>
+
+          <hr class="border-gray-700/80 mb-6">
+
+          <div>
+            <p class="text-xs text-gray-400 mb-2">Sudah memiliki akun?</p>
+            <a href="#" onclick="showAuthPage(); alert('Silakan gunakan salah satu metode login di atas.'); return false;" class="text-yellow-400 font-bold text-sm hover:underline">Masuk</a>
           </div>
         </div>
       </section>
@@ -674,12 +717,14 @@
     function showCatalog() {
       document.getElementById('catalogSection').classList.remove('hidden');
       document.getElementById('topupSection').classList.add('hidden');
+      document.getElementById('authSection').classList.add('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function openTopup(gameKey, gameTitle, gameImg) {
       document.getElementById('catalogSection').classList.add('hidden');
       document.getElementById('topupSection').classList.remove('hidden');
+      document.getElementById('authSection').classList.add('hidden');
       
       document.getElementById('selectedGameTitle').innerText = gameTitle;
       document.getElementById('selectedGameImg').src = gameImg;
@@ -712,6 +757,13 @@
         nominalGrid.appendChild(btn);
       });
 
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showAuthPage() {
+      document.getElementById('catalogSection').classList.add('hidden');
+      document.getElementById('topupSection').classList.add('hidden');
+      document.getElementById('authSection').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
