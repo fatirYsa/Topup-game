@@ -66,6 +66,76 @@
       background: #ec4899;
       border-radius: 10px;
     }
+
+    /* Carousel Banner Styling (Image 2 Preference) */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .carousel-container {
+        height: 320px;
+      }
+    }
+
+    .carousel-slide {
+      position: absolute;
+      width: 80%;
+      max-width: 720px;
+      height: 85%;
+      border-radius: 1rem;
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      opacity: 0;
+      transform: scale(0.7) translateX(0);
+      pointer-events: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+      z-index: 20;
+      pointer-events: auto;
+      border-color: rgba(236, 72, 153, 0.8);
+      box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);
+    }
+
+    .carousel-slide.prev {
+      opacity: 0.5;
+      transform: scale(0.82) translateX(-60%);
+      z-index: 10;
+      filter: brightness(0.6);
+    }
+
+    .carousel-slide.next {
+      opacity: 0.5;
+      transform: scale(0.82) translateX(60%);
+      z-index: 10;
+      filter: brightness(0.6);
+    }
+
+    .carousel-indicator {
+      width: 24px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .carousel-indicator.active {
+      width: 40px;
+      background: #ec4899;
+      box-shadow: 0 0 10px #ec4899;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -111,20 +181,69 @@
 
     <main class="max-w-6xl mx-auto px-4 mt-6 mb-12 w-full">
       
-      <!-- Hero Banner -->
-      <div class="relative overflow-hidden rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl border border-pink-500/30 bg-gradient-to-r from-purple-900/80 via-pink-900/60 to-indigo-950/80 backdrop-blur-md">
-        <div class="relative z-10 max-w-2xl">
-          <h1 class="text-2xl sm:text-4xl font-extrabold mb-2 text-white drop-shadow-md">
-            TOP UP GAME INSTAN HARGA TERMURAH
-          </h1>
-          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-2">
-            Nikmati top up diamond, voucher, dan membership favoritmu dengan efek animasi live wallpaper interaktif.
-          </p>
-          <p class="text-[11px] text-pink-300/80 italic">
-            Gerakkan kursor di layar untuk melihat interaksi efek background!
-          </p>
+      <!-- PROMO CAROUSEL BANNER (Gaya Referensi Gambar 2) -->
+      <div class="relative mb-8 overflow-hidden rounded-2xl glass-card py-4 px-2">
+        <div class="carousel-container" id="carouselContainer">
+          
+          <!-- Slide 1: PC Game Pass Diskon 12% -->
+          <div class="carousel-slide active" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
+            <div class="w-full h-full bg-gradient-to-r from-blue-950 via-slate-900 to-emerald-950 p-4 sm:p-6 flex items-center justify-between relative overflow-hidden">
+              <div class="z-10 max-w-[60%]">
+                <span class="bg-pink-600 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mb-2 inline-block">Special Offer</span>
+                <h3 class="text-sm sm:text-2xl font-black text-white leading-tight mb-1">PC GAME PASS 3 BULAN</h3>
+                <div class="text-xl sm:text-4xl font-extrabold text-pink-500 my-1 drop-shadow-lg">DISC. 12%</div>
+                <p class="text-[10px] sm:text-xs text-gray-300 hidden sm:block">Akses ratusan game PC berkualitas tinggi sekarang juga!</p>
+                <button class="mt-2 text-[10px] sm:text-xs bg-pink-600 hover:bg-pink-500 text-white font-bold px-3 py-1.5 rounded-lg transition">Top Up Sekarang!</button>
+              </div>
+              <div class="relative z-10 flex items-center justify-center">
+                <i class="fa-solid fa-gamepad text-6xl sm:text-9xl text-emerald-400 opacity-80 drop-shadow-[0_0_15px_rgba(52,211,153,0.5)]"></i>
+              </div>
+              <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-emerald-500/20 rounded-full blur-2xl"></div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Langganan Pasti Paling Murah -->
+          <div class="carousel-slide next" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
+            <div class="w-full h-full bg-gradient-to-r from-purple-950 via-indigo-950 to-pink-950 p-4 sm:p-6 flex items-center justify-between relative overflow-hidden">
+              <div class="z-10 max-w-[60%]">
+                <span class="bg-purple-600 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mb-2 inline-block">Promo Mingguan</span>
+                <h3 class="text-sm sm:text-2xl font-black text-white leading-tight mb-1">LANGGANAN PASTI PALING MURAH</h3>
+                <div class="text-lg sm:text-3xl font-extrabold text-yellow-400 my-1">Mulai Rp 67.000-an</div>
+                <p class="text-[10px] sm:text-xs text-gray-300 hidden sm:block">Free Fire & Mobile Legends Diamond Pass siap klaim!</p>
+                <button class="mt-2 text-[10px] sm:text-xs bg-purple-600 hover:bg-purple-500 text-white font-bold px-3 py-1.5 rounded-lg transition">Beli Sekarang</button>
+              </div>
+              <div class="relative z-10 flex items-center justify-center">
+                <i class="fa-solid fa-bolt text-6xl sm:text-9xl text-yellow-400 opacity-80 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]"></i>
+              </div>
+              <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-pink-500/20 rounded-full blur-2xl"></div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Voucher & Streaming Pass -->
+          <div class="carousel-slide prev" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
+            <div class="w-full h-full bg-gradient-to-r from-slate-950 via-purple-900 to-rose-950 p-4 sm:p-6 flex items-center justify-between relative overflow-hidden">
+              <div class="z-10 max-w-[60%]">
+                <span class="bg-emerald-600 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mb-2 inline-block">Cashback E-Wallet</span>
+                <h3 class="text-sm sm:text-2xl font-black text-white leading-tight mb-1">GENSHIN & HSR SPECIAL PASS</h3>
+                <div class="text-lg sm:text-3xl font-extrabold text-cyan-400 my-1">PROMO WELKIN & EXPRESS</div>
+                <p class="text-[10px] sm:text-xs text-gray-300 hidden sm:block">Proses serba cepat dan garansi aman 100% di exoGAME.</p>
+                <button class="mt-2 text-[10px] sm:text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-lg transition">Cek Promo</button>
+              </div>
+              <div class="relative z-10 flex items-center justify-center">
+                <i class="fa-solid fa-gem text-6xl sm:text-9xl text-cyan-400 opacity-80 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]"></i>
+              </div>
+              <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-cyan-500/20 rounded-full blur-2xl"></div>
+            </div>
+          </div>
+
         </div>
-        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-pink-500/30 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Carousel Indicators (Gaya Bintang / Bar Gambar 2) -->
+        <div class="flex justify-center items-center gap-2 mt-3" id="carouselIndicators">
+          <div class="carousel-indicator active" onclick="setSlide(0)"></div>
+          <div class="carousel-indicator" onclick="setSlide(1)"></div>
+          <div class="carousel-indicator" onclick="setSlide(2)"></div>
+        </div>
       </div>
 
       <!-- CATALOG SECTION -->
@@ -444,7 +563,7 @@
 
   <!-- JavaScript for Interactive Canvas & Functionality -->
   <script>
-    // --- 1. Dynamic Game Data & Nominal Config (Lengkap Real Official Tier) ---
+    // --- 1. Dynamic Game Data & Nominal Config ---
     const gameNominals = {
       mlbb: [
         { name: "3 Diamonds", price: "Rp 1.500", icon: "fa-gem text-cyan-400" },
@@ -644,7 +763,37 @@
       });
     }
 
-    // --- 3. Interactive Animated Background Engine ---
+    // --- 3. Promo Carousel Banner Engine ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+
+    function setSlide(index) {
+      currentSlide = index;
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active', 'prev', 'next');
+        if (i === currentSlide) {
+          slide.classList.add('active');
+        } else if (i === (currentSlide - 1 + slides.length) % slides.length) {
+          slide.classList.add('prev');
+        } else if (i === (currentSlide + 1) % slides.length) {
+          slide.classList.add('next');
+        }
+      });
+
+      indicators.forEach((ind, i) => {
+        if (i === currentSlide) ind.classList.add('active');
+        else ind.classList.remove('active');
+      });
+    }
+
+    // Auto Play Slide Banner
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      setSlide(currentSlide);
+    }, 4000);
+
+    // --- 4. Interactive Animated Background Engine ---
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let currentEffect = 'nebula';
