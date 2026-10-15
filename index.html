@@ -477,62 +477,62 @@
 
   <!-- JavaScript for Interactive Canvas & Functionality -->
   <script>
-    // --- 1. Dynamic Game Data & Nominal Config ---
+    // --- 1. Dynamic Game Data & Nominal Config (dengan penambahan icon) ---
     const gameNominals = {
       mlbb: [
-        { name: "8 Diamonds", price: "Rp 8.000" },
-        { name: "59 Diamonds", price: "Rp 15.000" },
-        { name: "86 Diamonds", price: "Rp 22.000" },
-        { name: "172 Diamonds", price: "Rp 44.000" },
-        { name: "257 Diamonds", price: "Rp 66.000" },
-        { name: "344 Diamonds", price: "Rp 88.000" },
-        { name: "Starlight Member", price: "Rp 149.000" },
-        { name: "Twilight Pass", price: "Rp 150.000" }
+        { name: "8 Diamonds", price: "Rp 8.000", icon: "fa-gem text-cyan-400" },
+        { name: "59 Diamonds", price: "Rp 15.000", icon: "fa-gem text-cyan-400" },
+        { name: "86 Diamonds", price: "Rp 22.000", icon: "fa-gem text-cyan-400" },
+        { name: "172 Diamonds", price: "Rp 44.000", icon: "fa-gem text-cyan-400" },
+        { name: "257 Diamonds", price: "Rp 66.000", icon: "fa-gem text-cyan-400" },
+        { name: "344 Diamonds", price: "Rp 88.000", icon: "fa-gem text-cyan-400" },
+        { name: "Starlight Member", price: "Rp 149.000", icon: "fa-id-badge text-yellow-400" },
+        { name: "Twilight Pass", price: "Rp 150.000", icon: "fa-ticket text-purple-400" }
       ],
       ff: [
-        { name: "70 Diamonds", price: "Rp 10.000" },
-        { name: "140 Diamonds", price: "Rp 20.000" },
-        { name: "355 Diamonds", price: "Rp 50.000" },
-        { name: "720 Diamonds", price: "Rp 100.000" },
-        { name: "Membership Mingguan", price: "Rp 29.000" },
-        { name: "Membership Bulanan", price: "Rp 299.000" }
+        { name: "70 Diamonds", price: "Rp 10.000", icon: "fa-gem text-cyan-400" },
+        { name: "140 Diamonds", price: "Rp 20.000", icon: "fa-gem text-cyan-400" },
+        { name: "355 Diamonds", price: "Rp 50.000", icon: "fa-gem text-cyan-400" },
+        { name: "720 Diamonds", price: "Rp 100.000", icon: "fa-gem text-cyan-400" },
+        { name: "Membership Mingguan", price: "Rp 29.000", icon: "fa-calendar-week text-yellow-400" },
+        { name: "Membership Bulanan", price: "Rp 299.000", icon: "fa-calendar-days text-amber-500" }
       ],
       pubg: [
-        { name: "60 UC", price: "Rp 14.000" },
-        { name: "325 UC", price: "Rp 75.000" },
-        { name: "660 UC", price: "Rp 150.000" },
-        { name: "1800 UC", price: "Rp 400.000" }
+        { name: "60 UC", price: "Rp 14.000", icon: "fa-coins text-yellow-400" },
+        { name: "325 UC", price: "Rp 75.000", icon: "fa-coins text-yellow-400" },
+        { name: "660 UC", price: "Rp 150.000", icon: "fa-coins text-yellow-400" },
+        { name: "1800 UC", price: "Rp 400.000", icon: "fa-coins text-yellow-400" }
       ],
       efootball: [
-        { name: "130 eFootball Coins", price: "Rp 15.000" },
-        { name: "550 eFootball Coins", price: "Rp 65.000" },
-        { name: "1040 eFootball Coins", price: "Rp 120.000" }
+        { name: "130 eFootball Coins", price: "Rp 15.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "550 eFootball Coins", price: "Rp 65.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "1040 eFootball Coins", price: "Rp 120.000", icon: "fa-circle-dollar-to-slot text-yellow-400" }
       ],
       genshin: [
-        { name: "60 Genesis Crystals", price: "Rp 15.000" },
-        { name: "300 Genesis Crystals", price: "Rp 75.000" },
-        { name: "Blessing of the Welkin Moon", price: "Rp 79.000" }
+        { name: "60 Genesis Crystals", price: "Rp 15.000", icon: "fa-diamond text-indigo-400" },
+        { name: "300 Genesis Crystals", price: "Rp 75.000", icon: "fa-diamond text-indigo-400" },
+        { name: "Blessing of the Welkin Moon", price: "Rp 79.000", icon: "fa-moon text-blue-300" }
       ],
       hsr: [
-        { name: "60 Oneiric Shards", price: "Rp 15.000" },
-        { name: "300 Oneiric Shards", price: "Rp 75.000" },
-        { name: "Supply Pass", price: "Rp 79.000" }
+        { name: "60 Oneiric Shards", price: "Rp 15.000", icon: "fa-snowflake text-sky-300" },
+        { name: "300 Oneiric Shards", price: "Rp 75.000", icon: "fa-snowflake text-sky-300" },
+        { name: "Supply Pass", price: "Rp 79.000", icon: "fa-ticket text-amber-400" }
       ],
       roblox: [
-        { name: "400 Robux", price: "Rp 75.000" },
-        { name: "800 Robux", price: "Rp 145.000" },
-        { name: "1700 Robux", price: "Rp 300.000" }
+        { name: "400 Robux", price: "Rp 75.000", icon: "fa-cube text-emerald-400" },
+        { name: "800 Robux", price: "Rp 145.000", icon: "fa-cube text-emerald-400" },
+        { name: "1700 Robux", price: "Rp 300.000", icon: "fa-cube text-emerald-400" }
       ],
       fcmobile: [
-        { name: "100 FC Points", price: "Rp 15.000" },
-        { name: "520 FC Points", price: "Rp 75.000" },
-        { name: "1050 FC Points", price: "Rp 150.000" }
+        { name: "100 FC Points", price: "Rp 15.000", icon: "fa-star text-amber-400" },
+        { name: "520 FC Points", price: "Rp 75.000", icon: "fa-star text-amber-400" },
+        { name: "1050 FC Points", price: "Rp 150.000", icon: "fa-star text-amber-400" }
       ],
       valorant: [
-        { name: "125 Points", price: "Rp 15.000" },
-        { name: "420 Points", price: "Rp 50.000" },
-        { name: "700 Points", price: "Rp 80.000" },
-        { name: "1375 Points", price: "Rp 150.000" }
+        { name: "125 Points", price: "Rp 15.000", icon: "fa-fire text-red-500" },
+        { name: "420 Points", price: "Rp 50.000", icon: "fa-fire text-red-500" },
+        { name: "700 Points", price: "Rp 80.000", icon: "fa-fire text-red-500" },
+        { name: "1375 Points", price: "Rp 150.000", icon: "fa-fire text-red-500" }
       ]
     };
 
@@ -558,15 +558,18 @@
       selectedNominalObj = null;
 
       const items = gameNominals[gameKey] || [
-        { name: "Paket Regular", price: "Rp 10.000" },
-        { name: "Paket Premium", price: "Rp 50.000" }
+        { name: "Paket Regular", price: "Rp 10.000", icon: "fa-gem text-cyan-400" },
+        { name: "Paket Premium", price: "Rp 50.000", icon: "fa-gem text-cyan-400" }
       ];
 
       items.forEach(item => {
         const btn = document.createElement('button');
         btn.className = "nominal-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition text-left flex flex-col justify-between";
         btn.innerHTML = `
-          <span class="text-xs font-semibold text-white mb-2">${item.name}</span>
+          <div class="flex items-center gap-2 mb-2">
+            <i class="fa-solid ${item.icon || 'fa-gem text-pink-400'} text-base"></i>
+            <span class="text-xs font-semibold text-white">${item.name}</span>
+          </div>
           <span class="text-xs font-bold text-pink-400">${item.price}</span>
         `;
         btn.onclick = () => {
