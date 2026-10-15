@@ -180,14 +180,12 @@
         <!-- Controls: Effect, Search, & Daftar Button -->
         <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
           
-          <!-- Background Effect Selector -->
+          <!-- Background Effect Selector (Hanya Matrix Cyber Grid) -->
           <div class="flex items-center bg-gray-900/80 border border-pink-500/40 rounded-full px-2.5 py-1 text-xs text-gray-300 gap-1.5 shadow-lg">
             <i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i>
             <span class="text-gray-400">Effect:</span>
-            <select id="bgEffectSelect" onchange="changeBgEffect(this.value)" class="bg-transparent text-pink-300 font-semibold focus:outline-none cursor-pointer text-xs">
-              <option value="nebula" class="bg-gray-900 text-white">✨ Glowing Nebula</option>
-              <option value="particles" class="bg-gray-900 text-white">🌌 Particle Network</option>
-              <option value="cyber" class="bg-gray-900 text-white">🟩 Matrix Cyber Grid</option>
+            <select id="bgEffectSelect" class="bg-transparent text-pink-300 font-semibold focus:outline-none cursor-pointer text-xs">
+              <option value="cyber" class="bg-gray-900 text-white" selected>🟩 Matrix Cyber Grid</option>
             </select>
           </div>
 
@@ -392,7 +390,7 @@
 
       <!-- TOP UP FORM SECTION -->
       <section id="topupSection" class="hidden">
-        <!-- Tombol Kembali: Diubah Menjadi Hanya Icon Swipe Panah Kiri -->
+        <!-- Tombol Kembali: Icon Swipe Panah Kiri -->
         <button onclick="showCatalog()" title="Kembali ke Catalog Game" class="mb-4 w-10 h-10 sm:w-11 sm:h-11 bg-gray-900/80 hover:bg-gray-800 text-gray-200 hover:text-pink-400 rounded-full transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-center shadow-lg hover:scale-105 active:scale-95">
           <i class="fa-solid fa-arrow-left text-base sm:text-lg"></i>
         </button>
@@ -518,7 +516,7 @@
 
       <!-- AUTH / REGISTER PAGE SECTION -->
       <section id="authSection" class="hidden max-w-xl mx-auto py-8">
-        <!-- Tombol Kembali: Diubah Menjadi Hanya Icon Swipe Panah Kiri -->
+        <!-- Tombol Kembali: Icon Swipe Panah Kiri -->
         <button onclick="showCatalog()" title="Kembali ke Home" class="mb-6 w-10 h-10 sm:w-11 sm:h-11 bg-gray-900/80 hover:bg-gray-800 text-gray-200 hover:text-pink-400 rounded-full transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-center shadow-lg hover:scale-105 active:scale-95">
           <i class="fa-solid fa-arrow-left text-base sm:text-lg"></i>
         </button>
@@ -566,9 +564,6 @@
           <div class="flex items-center gap-2 mb-4">
             <span class="text-2xl font-black tracking-wider text-pink-500">
               exo<span class="text-white">GAME</span>
-            </span>
-            <span class="bg-pink-500/20 text-pink-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-500/30">
-              ⚡ Powered by exo
             </span>
           </div>
           <p class="text-xs text-gray-400 leading-relaxed mb-6">
@@ -873,17 +868,10 @@
       setSlide(currentSlide);
     }, 4000);
 
-    // --- 4. Interactive Animated Background Engine ---
+    // --- 4. Interactive Animated Background Engine (Matrix Cyber Grid Only) ---
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
-    let currentEffect = 'nebula';
     let animationFrameId;
-    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -892,116 +880,7 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    function changeBgEffect(val) {
-      currentEffect = val;
-      cancelAnimationFrame(animationFrameId);
-      initEffect();
-    }
-
-    // Effect 1: Glowing Nebula / Orbs
-    let orbs = [];
-    function initNebula() {
-      orbs = [];
-      for (let i = 0; i < 5; i++) {
-        orbs.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: 200 + Math.random() * 250,
-          color: i % 2 === 0 ? 'rgba(236, 72, 153, 0.15)' : 'rgba(124, 58, 237, 0.15)',
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8
-        });
-      }
-    }
-
-    function drawNebula() {
-      ctx.fillStyle = '#080314';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      orbs.forEach(orb => {
-        orb.x += orb.vx + (mouse.x - canvas.width / 2) * 0.0005;
-        orb.y += orb.vy + (mouse.y - canvas.height / 2) * 0.0005;
-
-        if (orb.x < -orb.radius) orb.x = canvas.width + orb.radius;
-        if (orb.x > canvas.width + orb.radius) orb.x = -orb.radius;
-        if (orb.y < -orb.radius) orb.y = canvas.height + orb.radius;
-        if (orb.y > canvas.height + orb.radius) orb.y = -orb.radius;
-
-        const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.radius);
-        gradient.addColorStop(0, orb.color);
-        gradient.addColorStop(1, 'transparent');
-
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      animationFrameId = requestAnimationFrame(drawNebula);
-    }
-
-    // Effect 2: Particle Network
-    let particles = [];
-    function initParticles() {
-      particles = [];
-      const count = Math.floor((canvas.width * canvas.height) / 15000);
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 1.2,
-          vy: (Math.random() - 0.5) * 1.2,
-          radius: Math.random() * 2 + 1
-        });
-      }
-    }
-
-    function drawParticles() {
-      ctx.fillStyle = '#080314';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((p, index) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        ctx.fillStyle = '#ec4899';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Connect particles
-        for (let j = index + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 100) {
-            ctx.strokeStyle = `rgba(236, 72, 153, ${1 - dist / 100})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
-
-        // Mouse connection
-        const mouseDist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
-        if (mouseDist < 120) {
-          ctx.strokeStyle = `rgba(168, 85, 247, ${1 - mouseDist / 120})`;
-          ctx.lineWidth = 0.8;
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
-        }
-      });
-
-      animationFrameId = requestAnimationFrame(drawParticles);
-    }
-
-    // Effect 3: Matrix Cyber Grid
+    // Effect: Matrix Cyber Grid
     let gridDrops = [];
     function initCyber() {
       gridDrops = [];
@@ -1036,14 +915,9 @@
       animationFrameId = requestAnimationFrame(drawCyber);
     }
 
-    function initEffect() {
-      if (currentEffect === 'nebula') initNebula(), drawNebula();
-      else if (currentEffect === 'particles') initParticles(), drawParticles();
-      else if (currentEffect === 'cyber') initCyber(), drawCyber();
-    }
-
-    // Start default effect
-    initEffect();
+    // Start Matrix Cyber Grid effect
+    initCyber();
+    drawCyber();
   </script>
 </body>
 </html>
