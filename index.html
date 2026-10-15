@@ -177,14 +177,22 @@
           </span>
         </div>
 
-        <!-- Controls: Search & Daftar Button -->
-        <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <!-- Controls: Search, Reward Coin Icon, & Daftar Button -->
+        <div class="flex items-center gap-2.5 sm:gap-3.5 flex-wrap">
 
           <!-- Search Bar -->
           <div class="relative">
             <input type="text" id="searchInput" onkeyup="filterGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-48 transition-all">
             <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
           </div>
+
+          <!-- Icon Koin Reward / Bonus (Sesuai Referensi Gambar 1) -->
+          <button onclick="showRewardsPage()" title="Tentang Rewards / Bonus" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-amber-500/20 hover:bg-amber-500/40 border border-amber-400/60 flex items-center justify-center transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer">
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center shadow-inner text-amber-950 font-black text-xs sm:text-sm border border-yellow-200">
+              <i class="fa-solid fa-rotate-left text-[10px] absolute -ml-2 -mt-2 text-amber-900"></i>
+              <span class="relative z-10 text-[11px] font-bold font-serif">$</span>
+            </div>
+          </button>
 
           <!-- Tombol Daftar -->
           <button onclick="showAuthPage()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold px-4 py-1.5 rounded-full text-xs sm:text-sm shadow-lg shadow-violet-600/30 transition-all">
@@ -374,6 +382,86 @@
               <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Valorant</h3>
               <span class="text-[10px] text-gray-400 mt-0.5">Riot Games</span>
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- REWARDS / BONUS PAGE SECTION (Sesuai Referensi Gambar 2) -->
+      <section id="rewardsSection" class="hidden py-4 sm:py-8">
+        <!-- Back Button (Icon Panah Kiri) -->
+        <button onclick="showCatalog()" title="Kembali ke Catalog Game" class="mb-6 w-10 h-10 sm:w-11 sm:h-11 bg-gray-900/80 hover:bg-gray-800 text-gray-200 hover:text-pink-400 rounded-full transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-center shadow-lg hover:scale-105 active:scale-95">
+          <i class="fa-solid fa-arrow-left text-base sm:text-lg"></i>
+        </button>
+
+        <div class="relative w-full rounded-3xl overflow-hidden glass-card p-6 sm:p-12 text-center border border-pink-500/30 shadow-2xl">
+          <!-- Spotlight Lighting Effect Background -->
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-indigo-500/30 via-purple-500/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+          <!-- Coin Reward Illustration Header -->
+          <div class="relative z-10 flex flex-col items-center justify-center mb-6">
+            <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-tr from-amber-600 via-yellow-400 to-amber-200 flex items-center justify-center shadow-[0_0_35px_rgba(250,204,21,0.6)] border-4 border-yellow-100 mb-4 animate-bounce">
+              <i class="fa-solid fa-rotate-left text-xs absolute -ml-4 -mt-4 text-amber-950"></i>
+              <span class="text-3xl sm:text-4xl font-black font-serif text-amber-950">$</span>
+              <!-- Sparkles -->
+              <i class="fa-solid fa-sparkle absolute -top-2 -right-2 text-yellow-200 text-sm animate-pulse"></i>
+              <i class="fa-solid fa-sparkle absolute -bottom-1 -left-2 text-yellow-200 text-xs animate-pulse"></i>
+            </div>
+            
+            <span class="text-xs sm:text-sm font-bold tracking-widest text-amber-300 uppercase mb-2">TENTANG REWARDS / BONUS</span>
+            <h2 class="text-2xl sm:text-4xl font-black text-white tracking-wider max-w-2xl uppercase">HEMAT UNTUK BELANJA DI exoGAME</h2>
+          </div>
+
+          <!-- Feature Cards Grid -->
+          <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 my-8 text-left">
+            
+            <!-- Point 1 -->
+            <div class="bg-gray-900/60 border border-gray-700/60 p-4 sm:p-5 rounded-2xl flex flex-col gap-3 hover:border-pink-500/50 transition">
+              <div class="w-10 h-10 rounded-xl bg-purple-600/30 text-purple-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-wallet"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-200 leading-relaxed font-medium">
+                Dapatkan Coda Rewards untuk pembelian Anda di exoGAME dengan menggunakan metode pembayaran yang memenuhi syarat.
+              </p>
+            </div>
+
+            <!-- Point 2 -->
+            <div class="bg-gray-900/60 border border-gray-700/60 p-4 sm:p-5 rounded-2xl flex flex-col gap-3 hover:border-pink-500/50 transition">
+              <div class="w-10 h-10 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-vault"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-200 leading-relaxed font-medium">
+                Coda Rewards Anda akan disimpan di akun exoGAME Anda.
+              </p>
+            </div>
+
+            <!-- Point 3 -->
+            <div class="bg-gray-900/60 border border-gray-700/60 p-4 sm:p-5 rounded-2xl flex flex-col gap-3 hover:border-pink-500/50 transition">
+              <div class="w-10 h-10 rounded-xl bg-pink-600/30 text-pink-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-percent"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-200 leading-relaxed font-medium">
+                Gunakan Coda Rewards Anda untuk mendapatkan diskon pada pesanan Anda berikutnya!
+              </p>
+            </div>
+
+            <!-- Point 4 -->
+            <div class="bg-gray-900/60 border border-gray-700/60 p-4 sm:p-5 rounded-2xl flex flex-col gap-3 hover:border-pink-500/50 transition">
+              <div class="w-10 h-10 rounded-xl bg-emerald-600/30 text-emerald-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-gift"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-200 leading-relaxed font-medium">
+                Temukan produk dan Payment provider yang menawarkan promo unik!
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Tombol "Beli langsung" (Kembali ke Catalog Game) -->
+          <div class="relative z-10 mt-8">
+            <button onclick="showCatalog()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold px-8 py-3.5 rounded-full text-sm sm:text-base shadow-lg shadow-violet-600/40 hover:scale-105 active:scale-95 transition-all tracking-wide">
+              Beli langsung
+            </button>
           </div>
 
         </div>
@@ -730,6 +818,15 @@
     function showCatalog() {
       document.getElementById('catalogSection').classList.remove('hidden');
       document.getElementById('topupSection').classList.add('hidden');
+      document.getElementById('rewardsSection').classList.add('hidden');
+      document.getElementById('authSection').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showRewardsPage() {
+      document.getElementById('catalogSection').classList.add('hidden');
+      document.getElementById('topupSection').classList.add('hidden');
+      document.getElementById('rewardsSection').classList.remove('hidden');
       document.getElementById('authSection').classList.add('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -737,6 +834,7 @@
     function openTopup(gameKey, gameTitle, gameImg) {
       document.getElementById('catalogSection').classList.add('hidden');
       document.getElementById('topupSection').classList.remove('hidden');
+      document.getElementById('rewardsSection').classList.add('hidden');
       document.getElementById('authSection').classList.add('hidden');
       
       document.getElementById('selectedGameTitle').innerText = gameTitle;
@@ -776,6 +874,7 @@
     function showAuthPage() {
       document.getElementById('catalogSection').classList.add('hidden');
       document.getElementById('topupSection').classList.add('hidden');
+      document.getElementById('rewardsSection').classList.add('hidden');
       document.getElementById('authSection').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
