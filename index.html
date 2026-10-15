@@ -275,7 +275,7 @@
           </div>
         </div>
 
-        <!-- HEADER SECTION KATALOG: Diperbarui dengan 'Lagi Populer' & Icon Api Bergerak -->
+        <!-- HEADER SECTION KATALOG: 'Lagi Populer' & Icon Api Bergerak -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 glass-card p-4 rounded-xl">
           <h2 class="text-lg sm:text-xl font-extrabold text-gray-100 border-l-4 border-pink-500 pl-3 flex items-center gap-2.5 tracking-wide">
             <span class="flame-animated text-orange-500 text-xl sm:text-2xl">
@@ -392,8 +392,9 @@
 
       <!-- TOP UP FORM SECTION -->
       <section id="topupSection" class="hidden">
-        <button onclick="showCatalog()" class="mb-4 text-xs sm:text-sm bg-gray-800/80 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
-          <i class="fa-solid fa-arrow-left"></i> Kembali ke Catalog Game
+        <!-- Tombol Kembali: Diubah Menjadi Hanya Icon Swipe Panah Kiri -->
+        <button onclick="showCatalog()" title="Kembali ke Catalog Game" class="mb-4 w-10 h-10 sm:w-11 sm:h-11 bg-gray-900/80 hover:bg-gray-800 text-gray-200 hover:text-pink-400 rounded-full transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-center shadow-lg hover:scale-105 active:scale-95">
+          <i class="fa-solid fa-arrow-left text-base sm:text-lg"></i>
         </button>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -517,8 +518,9 @@
 
       <!-- AUTH / REGISTER PAGE SECTION -->
       <section id="authSection" class="hidden max-w-xl mx-auto py-8">
-        <button onclick="showCatalog()" class="mb-6 text-xs sm:text-sm bg-gray-800/80 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
-          <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        <!-- Tombol Kembali: Diubah Menjadi Hanya Icon Swipe Panah Kiri -->
+        <button onclick="showCatalog()" title="Kembali ke Home" class="mb-6 w-10 h-10 sm:w-11 sm:h-11 bg-gray-900/80 hover:bg-gray-800 text-gray-200 hover:text-pink-400 rounded-full transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-center shadow-lg hover:scale-105 active:scale-95">
+          <i class="fa-solid fa-arrow-left text-base sm:text-lg"></i>
         </button>
 
         <div class="glass-card p-6 sm:p-10 rounded-2xl shadow-2xl text-center border border-pink-500/30">
