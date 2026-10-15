@@ -136,6 +136,27 @@
       background: #ec4899;
       box-shadow: 0 0 10px #ec4899;
     }
+
+    /* Animasi Icon Api Bergerak Membara */
+    @keyframes flameBurn {
+      0% {
+        transform: scale(1) rotate(-2deg);
+        filter: drop-shadow(0 0 4px #f97316) drop-shadow(0 0 10px #ef4444);
+      }
+      50% {
+        transform: scale(1.18) rotate(3deg);
+        filter: drop-shadow(0 0 8px #facc15) drop-shadow(0 0 16px #f97316);
+      }
+      100% {
+        transform: scale(1) rotate(-2deg);
+        filter: drop-shadow(0 0 4px #f97316) drop-shadow(0 0 10px #ef4444);
+      }
+    }
+
+    .flame-animated {
+      display: inline-block;
+      animation: flameBurn 1.2s infinite ease-in-out;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -176,7 +197,7 @@
             <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
           </div>
 
-          <!-- Tombol Daftar (Sesuai Referensi Gambar) -->
+          <!-- Tombol Daftar -->
           <button onclick="showAuthPage()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold px-4 py-1.5 rounded-full text-xs sm:text-sm shadow-lg shadow-violet-600/30 transition-all">
             Daftar
           </button>
@@ -254,9 +275,13 @@
           </div>
         </div>
 
+        <!-- HEADER SECTION KATALOG: Diperbarui dengan 'Lagi Populer' & Icon Api Bergerak -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 glass-card p-4 rounded-xl">
-          <h2 class="text-lg sm:text-xl font-bold text-gray-100 border-l-4 border-pink-500 pl-3 flex items-center gap-2">
-            <i class="fa-solid fa-gamepad text-pink-500"></i> Katalog Game Top-Up
+          <h2 class="text-lg sm:text-xl font-extrabold text-gray-100 border-l-4 border-pink-500 pl-3 flex items-center gap-2.5 tracking-wide">
+            <span class="flame-animated text-orange-500 text-xl sm:text-2xl">
+              <i class="fa-solid fa-fire"></i>
+            </span>
+            <span class="uppercase tracking-wider">Lagi Populer</span>
           </h2>
         </div>
         
@@ -490,7 +515,7 @@
         </div>
       </section>
 
-      <!-- AUTH / REGISTER PAGE SECTION (Sesuai Referensi Gambar) -->
+      <!-- AUTH / REGISTER PAGE SECTION -->
       <section id="authSection" class="hidden max-w-xl mx-auto py-8">
         <button onclick="showCatalog()" class="mb-6 text-xs sm:text-sm bg-gray-800/80 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
           <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
