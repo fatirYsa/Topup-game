@@ -47,40 +47,6 @@
       border-bottom: 1px solid rgba(236, 72, 153, 0.2);
     }
 
-    /* Sidebar Alphabet A-Z */
-    .alphabet-sidebar {
-      position: fixed;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 40;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      background: rgba(15, 10, 30, 0.85);
-      backdrop-filter: blur(10px);
-      padding: 6px 4px;
-      border-radius: 12px;
-      border: 1px solid rgba(236, 72, 153, 0.3);
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-
-    .alphabet-sidebar button {
-      font-size: 10px;
-      font-weight: bold;
-      color: #9ca3af;
-      padding: 1px 4px;
-      border-radius: 4px;
-      transition: all 0.2s;
-    }
-
-    .alphabet-sidebar button:hover, .alphabet-sidebar button.active {
-      color: #ec4899;
-      background-color: rgba(236, 72, 153, 0.3);
-      text-shadow: 0 0 8px #ec4899;
-    }
-
     /* Selection Highlighting */
     .nominal-btn.selected, .payment-btn.selected {
       border-color: #ec4899 !important;
@@ -102,16 +68,13 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between pr-8 sm:pr-10">
+<body class="min-h-screen flex flex-col justify-between">
 
   <!-- Interactive Animated Background Canvas -->
   <canvas id="bgCanvas"></canvas>
 
   <!-- Main Container -->
   <div class="relative z-10 flex-1 flex flex-col justify-between">
-    
-    <!-- Alphabet Sidebar -->
-    <div class="alphabet-sidebar" id="alphabetSidebar"></div>
 
     <!-- Header / Navbar -->
     <header class="glass-header sticky top-0 z-50 transition-all duration-300">
@@ -139,7 +102,7 @@
 
           <!-- Search Bar -->
           <div class="relative">
-            <input type="text" id="searchInput" onkeyup="filterAndSortGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-48 transition-all">
+            <input type="text" id="searchInput" onkeyup="filterGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-48 transition-all">
             <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
           </div>
         </div>
@@ -170,15 +133,6 @@
           <h2 class="text-lg sm:text-xl font-bold text-gray-100 border-l-4 border-pink-500 pl-3 flex items-center gap-2">
             <i class="fa-solid fa-gamepad text-pink-500"></i> Katalog Game Top-Up
           </h2>
-          
-          <div class="flex items-center gap-3">
-            <label for="sortSelect" class="text-xs sm:text-sm font-medium text-gray-400 whitespace-nowrap">Urutkan:</label>
-            <select id="sortSelect" onchange="filterAndSortGames()" class="bg-gray-900/90 border border-gray-700 text-xs sm:text-sm rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-pink-500 cursor-pointer">
-              <option value="az">Urutan Abjad (A - Z)</option>
-              <option value="za">Urutan Abjad (Z - A)</option>
-              <option value="default">Populer / Rekomendasi</option>
-            </select>
-          </div>
         </div>
         
         <!-- Game Cards Grid (Rasio Foto 1:1) -->
@@ -674,53 +628,20 @@
       alert(`Pesanan Berhasil Dibuat!\n\nGame: ${gameTitle}\nUser ID: ${userId}\nNominal: ${selectedNominalObj.name} (${selectedNominalObj.price})\nMetode Pembayaran: ${selectedPaymentMethod}\nEmail: ${email}\n\nSilakan selesaikan pembayaran Anda.`);
     }
 
-    // --- 2. Alphabet Sidebar Generator ---
-    const alphabetSidebar = document.getElementById('alphabetSidebar');
-    const alphabet = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-    alphabet.forEach(char => {
-      const btn = document.createElement('button');
-      btn.innerText = char;
-      btn.onclick = () => {
-        document.querySelectorAll('.alphabet-sidebar button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        filterAndSortGames(char);
-      };
-      alphabetSidebar.appendChild(btn);
-    });
-
-    function filterAndSortGames(startLetter = null) {
+    // --- 2. Filter Games via Search Bar ---
+    function filterGames() {
       const query = document.getElementById('searchInput').value.toLowerCase();
-      const sortVal = document.getElementById('sortSelect').value;
       const grid = document.getElementById('gameGrid');
       const cards = Array.from(grid.getElementsByClassName('game-card'));
 
-      // Filter by search query & letter
       cards.forEach(card => {
         const title = card.getAttribute('data-title').toLowerCase();
-        const matchesSearch = title.includes(query);
-        let matchesLetter = true;
-        if (startLetter && startLetter !== '#') {
-          matchesLetter = title.toUpperCase().startsWith(startLetter);
-        }
-        
-        if (matchesSearch && matchesLetter) {
+        if (title.includes(query)) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
         }
       });
-
-      // Sort visible cards
-      const visibleCards = cards.filter(c => c.style.display !== 'none');
-      visibleCards.sort((a, b) => {
-        const tA = a.getAttribute('data-title');
-        const tB = b.getAttribute('data-title');
-        if (sortVal === 'az') return tA.localeCompare(tB);
-        if (sortVal === 'za') return tB.localeCompare(tA);
-        return 0; // default order
-      });
-
-      visibleCards.forEach(card => grid.appendChild(card));
     }
 
     // --- 3. Interactive Animated Background Engine ---
