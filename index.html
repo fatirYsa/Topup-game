@@ -242,4 +242,658 @@
           <!-- Honkai Star Rail -->
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
-              <img src="
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Honkai: Star Rail</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">HoYoverse</span>
+            </div>
+          </div>
+
+          <!-- Roblox -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Roblox</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Roblox Corporation</span>
+            </div>
+          </div>
+
+          <!-- FC Mobile -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">EA SPORTS FC Mobile</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">ELECTRONIC ARTS</span>
+            </div>
+          </div>
+
+          <!-- Valorant -->
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
+            <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            </div>
+            <div class="p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
+              <h3 class="font-bold text-xs sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Valorant</h3>
+              <span class="text-[10px] text-gray-400 mt-0.5">Riot Games</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TOP UP FORM SECTION -->
+      <section id="topupSection" class="hidden">
+        <button onclick="showCatalog()" class="mb-4 text-xs sm:text-sm bg-gray-800/80 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Catalog Game
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Game Information Sidebar -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center h-fit sticky top-20">
+            <img id="selectedGameImg" src="" class="w-32 h-32 object-cover rounded-2xl mb-4 border-2 border-pink-500 shadow-xl shadow-pink-500/20">
+            <h2 id="selectedGameTitle" class="text-xl sm:text-2xl font-bold text-white mb-1">Nama Game</h2>
+            <p class="text-xs text-gray-400 mb-4">Proses Instant & Garansi Resmi exoGAME</p>
+            <div class="w-full border-t border-gray-700/80 pt-4 text-left space-y-2 text-xs text-gray-300">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-400"></i> Pengiriman Otomatis</div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-headset text-pink-400"></i> Layanan CS 24 Jam</div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Transaksi Safe & Secure</div>
+            </div>
+          </div>
+
+          <!-- Steps Container -->
+          <div class="md:col-span-2 space-y-6">
+            
+            <!-- Step 1: User Data -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">1</span>
+                MASUKKAN DATA AKUN
+              </h3>
+              <div>
+                <input type="text" id="userIdInput" placeholder="Masukkan User ID / Zone ID Anda" class="w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm">
+              </div>
+            </div>
+
+            <!-- Step 2: Nominal Top Up -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">2</span>
+                PILIH NOMINAL TOP UP
+              </h3>
+              <div id="nominalGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <!-- Rendered dynamically via JS -->
+              </div>
+            </div>
+
+            <!-- Step 3: Payment Method -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-3 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">3</span>
+                PILIH PEMBAYARAN
+              </h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="paymentGrid">
+                <button onclick="selectPayment('GoPay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-wallet text-sky-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">GoPay</span>
+                </button>
+                <button onclick="selectPayment('DANA', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-mobile-screen-button text-blue-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Dana</span>
+                </button>
+                <button onclick="selectPayment('QRIS', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-qrcode text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">QRIS</span>
+                </button>
+                <button onclick="selectPayment('Bank Transfer', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-building-columns text-emerald-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Bank Transfer</span>
+                </button>
+                <button onclick="selectPayment('ShopeePay', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-bag-shopping text-orange-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">ShopeePay</span>
+                </button>
+                <button onclick="selectPayment('OVO', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-coins text-purple-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">OVO</span>
+                </button>
+                <button onclick="selectPayment('Kredivo', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-credit-card text-amber-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kredivo</span>
+                </button>
+                <button onclick="selectPayment('Indomaret', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-store text-blue-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Indomaret</span>
+                </button>
+                <button onclick="selectPayment('Alfamart', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-shop text-red-500 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Alfamart</span>
+                </button>
+                <button onclick="selectPayment('Kartu Kredit', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-credit-card text-indigo-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">Kartu Kredit</span>
+                </button>
+                <button onclick="selectPayment('LinkAja', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-link text-red-600 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">LinkAja</span>
+                </button>
+                <button onclick="selectPayment('DOKU Wallet', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-wallet text-red-400 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">DOKU Wallet</span>
+                </button>
+                <button onclick="selectPayment('PayPal', this)" class="payment-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition flex flex-col items-center justify-center text-center">
+                  <i class="fa-brands fa-paypal text-blue-600 text-2xl mb-1"></i>
+                  <span class="text-xs font-bold text-white">PayPal</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 4: Email & Confirmation -->
+            <div class="glass-card p-5 rounded-xl">
+              <h3 class="font-bold text-pink-400 mb-2 text-xs sm:text-sm flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">4</span>
+                MASUKKAN DETAIL
+              </h3>
+              <div class="mb-3">
+                <input type="email" id="userEmailInput" placeholder="Harap masukkan email" class="w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm">
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button onclick="processOrder()" class="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 font-bold py-3.5 rounded-xl transition text-white shadow-lg shadow-pink-600/40 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
+              <i class="fa-solid fa-cart-shopping"></i> BELI SEKARANG
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-gradient-to-r from-purple-950 via-gray-950 to-slate-950 border-t border-purple-800/40 pt-12 pb-8 text-gray-300 backdrop-blur-lg mt-auto">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        
+        <!-- Brand & About -->
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl font-black tracking-wider text-pink-500">
+              exo<span class="text-white">GAME</span>
+            </span>
+            <span class="bg-pink-500/20 text-pink-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-500/30">
+              ⚡ Powered by exo
+            </span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed mb-6">
+            exoGAME Top Up adalah platform top up game termurah, tercepat, dan terpercaya di Indonesia. Nikmati top up diamond, voucher, dan membership untuk Mobile Legends, Free Fire, PUBG Mobile, Valorant, Genshin Impact, Roblox, dan ratusan game lainnya. Proses instan kurang dari 1 menit, pembayaran mudah melalui e-wallet hingga transfer bank, dengan layanan 24 jam nonstop.
+          </p>
+
+          <!-- BUTUH BANTUAN / CHAT WHATSAPP BOX -->
+          <div>
+            <h4 class="font-bold text-sm text-white mb-2.5">Butuh Bantuan?</h4>
+            <a href="https://wa.me/6281234567890?text=Halo%20Admin%20exoGAME,%20saya%20butuh%20bantuan" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-gradient-to-r from-purple-900/60 to-indigo-950/80 hover:from-purple-800/80 hover:to-indigo-900/90 border border-purple-500/40 hover:border-pink-500/80 p-2.5 sm:p-3 rounded-xl transition-all duration-300 group shadow-lg">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-emerald-500 flex items-center justify-center text-white text-xl shadow-md group-hover:scale-105 transition-transform">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <span class="font-bold text-sm text-white tracking-wide group-hover:text-pink-300 transition-colors">Chat WhatsApp</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-xs text-gray-400 group-hover:text-pink-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+            <div class="flex items-center gap-1.5 text-[11px] text-gray-400 mt-2.5">
+              <i class="fa-regular fa-clock text-pink-400"></i>
+              <span>Jam Operasional: 24 Jam</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Peta Situs -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Peta Situs</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" onclick="showCatalog()" class="hover:text-pink-400 transition">Home</a></li>
+            <li><a href="#" class="hover:text-pink-400 transition">Lacak Pesanan</a></li>
+          </ul>
+        </div>
+
+        <!-- Game Lainnya -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Game Lainnya</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')" class="hover:text-pink-400 transition">Mobile Legends</a></li>
+            <li><a href="#" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')" class="hover:text-pink-400 transition">Free Fire</a></li>
+            <li><a href="#" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')" class="hover:text-pink-400 transition">PUBG Mobile</a></li>
+            <li><a href="#" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')" class="hover:text-pink-400 transition">Genshin Impact</a></li>
+          </ul>
+        </div>
+
+        <!-- Legalitas -->
+        <div>
+          <h4 class="font-bold text-sm text-pink-400 mb-3">Legalitas</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" class="hover:text-pink-400 transition">Kebijakan Privasi</a></li>
+            <li><a href="#" class="hover:text-pink-400 transition">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 border-t border-gray-800 pt-6 text-center text-[11px] text-gray-500">
+        &copy; 2026 exoGAME. All rights reserved. Platform Top Up Game Tercepat & Terpercaya di Indonesia.
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript for Interactive Canvas & Functionality -->
+  <script>
+    // --- 1. Dynamic Game Data & Nominal Config (Lengkap Real Official Tier) ---
+    const gameNominals = {
+      mlbb: [
+        { name: "3 Diamonds", price: "Rp 1.500", icon: "fa-gem text-cyan-400" },
+        { name: "5 Diamonds", price: "Rp 2.000", icon: "fa-gem text-cyan-400" },
+        { name: "12 Diamonds", price: "Rp 4.000", icon: "fa-gem text-cyan-400" },
+        { name: "19 Diamonds", price: "Rp 6.000", icon: "fa-gem text-cyan-400" },
+        { name: "28 Diamonds", price: "Rp 8.500", icon: "fa-gem text-cyan-400" },
+        { name: "44 Diamonds", price: "Rp 12.500", icon: "fa-gem text-cyan-400" },
+        { name: "59 Diamonds", price: "Rp 16.000", icon: "fa-gem text-cyan-400" },
+        { name: "85 Diamonds", price: "Rp 23.000", icon: "fa-gem text-cyan-400" },
+        { name: "170 Diamonds", price: "Rp 46.000", icon: "fa-gem text-cyan-400" },
+        { name: "240 Diamonds", price: "Rp 64.000", icon: "fa-gem text-cyan-400" },
+        { name: "296 Diamonds", price: "Rp 79.000", icon: "fa-gem text-cyan-400" },
+        { name: "408 Diamonds", price: "Rp 109.000", icon: "fa-gem text-cyan-400" },
+        { name: "568 Diamonds", price: "Rp 149.000", icon: "fa-gem text-cyan-400" },
+        { name: "875 Diamonds", price: "Rp 229.000", icon: "fa-gem text-cyan-400" },
+        { name: "2010 Diamonds", price: "Rp 519.000", icon: "fa-gem text-cyan-400" },
+        { name: "4830 Diamonds", price: "Rp 1.229.000", icon: "fa-gem text-cyan-400" },
+        { name: "Weekly Diamond Pass", price: "Rp 28.500", icon: "fa-id-badge text-pink-400" },
+        { name: "Starlight Member", price: "Rp 149.000", icon: "fa-star text-yellow-400" },
+        { name: "Twilight Pass", price: "Rp 150.000", icon: "fa-ticket text-purple-400" }
+      ],
+      ff: [
+        { name: "5 Diamonds", price: "Rp 1.000", icon: "fa-gem text-cyan-400" },
+        { name: "12 Diamonds", price: "Rp 2.000", icon: "fa-gem text-cyan-400" },
+        { name: "50 Diamonds", price: "Rp 7.500", icon: "fa-gem text-cyan-400" },
+        { name: "70 Diamonds", price: "Rp 10.000", icon: "fa-gem text-cyan-400" },
+        { name: "140 Diamonds", price: "Rp 20.000", icon: "fa-gem text-cyan-400" },
+        { name: "210 Diamonds", price: "Rp 30.000", icon: "fa-gem text-cyan-400" },
+        { name: "355 Diamonds", price: "Rp 50.000", icon: "fa-gem text-cyan-400" },
+        { name: "720 Diamonds", price: "Rp 100.000", icon: "fa-gem text-cyan-400" },
+        { name: "1440 Diamonds", price: "Rp 200.000", icon: "fa-gem text-cyan-400" },
+        { name: "2000 Diamonds", price: "Rp 280.000", icon: "fa-gem text-cyan-400" },
+        { name: "7290 Diamonds", price: "Rp 1.000.000", icon: "fa-gem text-cyan-400" },
+        { name: "Membership Mingguan", price: "Rp 30.000", icon: "fa-calendar-week text-yellow-400" },
+        { name: "Membership Bulanan", price: "Rp 150.000", icon: "fa-calendar-days text-amber-500" }
+      ],
+      pubg: [
+        { name: "30 UC", price: "Rp 7.000", icon: "fa-coins text-yellow-400" },
+        { name: "60 UC", price: "Rp 14.000", icon: "fa-coins text-yellow-400" },
+        { name: "325 UC", price: "Rp 75.000", icon: "fa-coins text-yellow-400" },
+        { name: "660 UC", price: "Rp 150.000", icon: "fa-coins text-yellow-400" },
+        { name: "1800 UC", price: "Rp 400.000", icon: "fa-coins text-yellow-400" },
+        { name: "3850 UC", price: "Rp 800.000", icon: "fa-coins text-yellow-400" },
+        { name: "8100 UC", price: "Rp 1.600.000", icon: "fa-coins text-yellow-400" }
+      ],
+      efootball: [
+        { name: "100 eFootball Coins", price: "Rp 12.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "130 eFootball Coins", price: "Rp 15.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "320 eFootball Coins", price: "Rp 39.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "550 eFootball Coins", price: "Rp 65.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "1040 eFootball Coins", price: "Rp 120.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "2130 eFootball Coins", price: "Rp 249.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "3250 eFootball Coins", price: "Rp 379.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "5700 eFootball Coins", price: "Rp 649.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "12000 eFootball Coins", price: "Rp 1.299.000", icon: "fa-circle-dollar-to-slot text-yellow-400" }
+      ],
+      genshin: [
+        { name: "60 Genesis Crystals", price: "Rp 16.000", icon: "fa-diamond text-indigo-400" },
+        { name: "300 Genesis Crystals", price: "Rp 79.000", icon: "fa-diamond text-indigo-400" },
+        { name: "980 Genesis Crystals", price: "Rp 249.000", icon: "fa-diamond text-indigo-400" },
+        { name: "1980 Genesis Crystals", price: "Rp 479.000", icon: "fa-diamond text-indigo-400" },
+        { name: "3280 Genesis Crystals", price: "Rp 799.000", icon: "fa-diamond text-indigo-400" },
+        { name: "6480 Genesis Crystals", price: "Rp 1.599.000", icon: "fa-diamond text-indigo-400" },
+        { name: "Blessing of the Welkin Moon", price: "Rp 79.000", icon: "fa-moon text-blue-300" }
+      ],
+      hsr: [
+        { name: "60 Oneiric Shards", price: "Rp 16.000", icon: "fa-snowflake text-sky-300" },
+        { name: "300 Oneiric Shards", price: "Rp 79.000", icon: "fa-snowflake text-sky-300" },
+        { name: "980 Oneiric Shards", price: "Rp 249.000", icon: "fa-snowflake text-sky-300" },
+        { name: "1980 Oneiric Shards", price: "Rp 479.000", icon: "fa-snowflake text-sky-300" },
+        { name: "3280 Oneiric Shards", price: "Rp 799.000", icon: "fa-snowflake text-sky-300" },
+        { name: "6480 Oneiric Shards", price: "Rp 1.599.000", icon: "fa-snowflake text-sky-300" },
+        { name: "Express Supply Pass", price: "Rp 79.000", icon: "fa-ticket text-amber-400" }
+      ],
+      roblox: [
+        { name: "80 Robux", price: "Rp 15.000", icon: "fa-cube text-emerald-400" },
+        { name: "400 Robux", price: "Rp 75.000", icon: "fa-cube text-emerald-400" },
+        { name: "800 Robux", price: "Rp 149.000", icon: "fa-cube text-emerald-400" },
+        { name: "1700 Robux", price: "Rp 299.000", icon: "fa-cube text-emerald-400" },
+        { name: "4500 Robux", price: "Rp 749.000", icon: "fa-cube text-emerald-400" },
+        { name: "10000 Robux", price: "Rp 1.499.000", icon: "fa-cube text-emerald-400" }
+      ],
+      fcmobile: [
+        { name: "40 FC Points", price: "Rp 6.000", icon: "fa-star text-amber-400" },
+        { name: "100 FC Points", price: "Rp 15.000", icon: "fa-star text-amber-400" },
+        { name: "520 FC Points", price: "Rp 75.000", icon: "fa-star text-amber-400" },
+        { name: "1050 FC Points", price: "Rp 149.000", icon: "fa-star text-amber-400" },
+        { name: "2200 FC Points", price: "Rp 299.000", icon: "fa-star text-amber-400" },
+        { name: "5750 FC Points", price: "Rp 749.000", icon: "fa-star text-amber-400" },
+        { name: "12000 FC Points", price: "Rp 1.499.000", icon: "fa-star text-amber-400" }
+      ],
+      valorant: [
+        { name: "125 Valorant Points", price: "Rp 15.000", icon: "fa-fire text-red-500" },
+        { name: "420 Valorant Points", price: "Rp 50.000", icon: "fa-fire text-red-500" },
+        { name: "700 Valorant Points", price: "Rp 80.000", icon: "fa-fire text-red-500" },
+        { name: "1375 Valorant Points", price: "Rp 150.000", icon: "fa-fire text-red-500" },
+        { name: "2400 Valorant Points", price: "Rp 250.000", icon: "fa-fire text-red-500" },
+        { name: "4000 Valorant Points", price: "Rp 400.000", icon: "fa-fire text-red-500" },
+        { name: "8150 Valorant Points", price: "Rp 800.000", icon: "fa-fire text-red-500" }
+      ]
+    };
+
+    let selectedNominalObj = null;
+    let selectedPaymentMethod = null;
+
+    function showCatalog() {
+      document.getElementById('catalogSection').classList.remove('hidden');
+      document.getElementById('topupSection').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openTopup(gameKey, gameTitle, gameImg) {
+      document.getElementById('catalogSection').classList.add('hidden');
+      document.getElementById('topupSection').classList.remove('hidden');
+      
+      document.getElementById('selectedGameTitle').innerText = gameTitle;
+      document.getElementById('selectedGameImg').src = gameImg;
+
+      // Render nominals
+      const nominalGrid = document.getElementById('nominalGrid');
+      nominalGrid.innerHTML = '';
+      selectedNominalObj = null;
+
+      const items = gameNominals[gameKey] || [
+        { name: "Paket Regular", price: "Rp 10.000", icon: "fa-gem text-cyan-400" },
+        { name: "Paket Premium", price: "Rp 50.000", icon: "fa-gem text-cyan-400" }
+      ];
+
+      items.forEach(item => {
+        const btn = document.createElement('button');
+        btn.className = "nominal-btn bg-gray-900/90 hover:border-pink-500 border border-gray-700/80 p-3 rounded-xl transition text-left flex flex-col justify-between";
+        btn.innerHTML = `
+          <div class="flex items-center gap-2 mb-2">
+            <i class="fa-solid ${item.icon || 'fa-gem text-pink-400'} text-base"></i>
+            <span class="text-xs font-semibold text-white">${item.name}</span>
+          </div>
+          <span class="text-xs font-bold text-pink-400">${item.price}</span>
+        `;
+        btn.onclick = () => {
+          document.querySelectorAll('.nominal-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedNominalObj = item;
+        };
+        nominalGrid.appendChild(btn);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectPayment(methodName, btnElement) {
+      document.querySelectorAll('.payment-btn').forEach(b => b.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      selectedPaymentMethod = methodName;
+    }
+
+    function processOrder() {
+      const userId = document.getElementById('userIdInput').value.trim();
+      const email = document.getElementById('userEmailInput').value.trim();
+      const gameTitle = document.getElementById('selectedGameTitle').innerText;
+
+      if (!userId) {
+        alert('Harap masukkan User ID / Zone ID akun Anda terlebih dahulu!');
+        document.getElementById('userIdInput').focus();
+        return;
+      }
+      if (!selectedNominalObj) {
+        alert('Harap pilih nominal top up terlebih dahulu!');
+        return;
+      }
+      if (!selectedPaymentMethod) {
+        alert('Harap pilih metode pembayaran terlebih dahulu!');
+        return;
+      }
+      if (!email) {
+        alert('Harap masukkan alamat email Anda untuk pengiriman invoice!');
+        document.getElementById('userEmailInput').focus();
+        return;
+      }
+
+      alert(`Pesanan Berhasil Dibuat!\n\nGame: ${gameTitle}\nUser ID: ${userId}\nNominal: ${selectedNominalObj.name} (${selectedNominalObj.price})\nMetode Pembayaran: ${selectedPaymentMethod}\nEmail: ${email}\n\nSilakan selesaikan pembayaran Anda.`);
+    }
+
+    // --- 2. Alphabet Sidebar Generator ---
+    const alphabetSidebar = document.getElementById('alphabetSidebar');
+    const alphabet = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+    alphabet.forEach(char => {
+      const btn = document.createElement('button');
+      btn.innerText = char;
+      btn.onclick = () => {
+        document.querySelectorAll('.alphabet-sidebar button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterAndSortGames(char);
+      };
+      alphabetSidebar.appendChild(btn);
+    });
+
+    function filterAndSortGames(startLetter = null) {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const sortVal = document.getElementById('sortSelect').value;
+      const grid = document.getElementById('gameGrid');
+      const cards = Array.from(grid.getElementsByClassName('game-card'));
+
+      // Filter by search query & letter
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const matchesSearch = title.includes(query);
+        let matchesLetter = true;
+        if (startLetter && startLetter !== '#') {
+          matchesLetter = title.toUpperCase().startsWith(startLetter);
+        }
+        
+        if (matchesSearch && matchesLetter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Sort visible cards
+      const visibleCards = cards.filter(c => c.style.display !== 'none');
+      visibleCards.sort((a, b) => {
+        const tA = a.getAttribute('data-title');
+        const tB = b.getAttribute('data-title');
+        if (sortVal === 'az') return tA.localeCompare(tB);
+        if (sortVal === 'za') return tB.localeCompare(tA);
+        return 0; // default order
+      });
+
+      visibleCards.forEach(card => grid.appendChild(card));
+    }
+
+    // --- 3. Interactive Animated Background Engine ---
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let currentEffect = 'nebula';
+    let animationFrameId;
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function changeBgEffect(val) {
+      currentEffect = val;
+      cancelAnimationFrame(animationFrameId);
+      initEffect();
+    }
+
+    // Effect 1: Glowing Nebula / Orbs
+    let orbs = [];
+    function initNebula() {
+      orbs = [];
+      for (let i = 0; i < 5; i++) {
+        orbs.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: 200 + Math.random() * 250,
+          color: i % 2 === 0 ? 'rgba(236, 72, 153, 0.15)' : 'rgba(124, 58, 237, 0.15)',
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8
+        });
+      }
+    }
+
+    function drawNebula() {
+      ctx.fillStyle = '#080314';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      orbs.forEach(orb => {
+        orb.x += orb.vx + (mouse.x - canvas.width / 2) * 0.0005;
+        orb.y += orb.vy + (mouse.y - canvas.height / 2) * 0.0005;
+
+        if (orb.x < -orb.radius) orb.x = canvas.width + orb.radius;
+        if (orb.x > canvas.width + orb.radius) orb.x = -orb.radius;
+        if (orb.y < -orb.radius) orb.y = canvas.height + orb.radius;
+        if (orb.y > canvas.height + orb.radius) orb.y = -orb.radius;
+
+        const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.radius);
+        gradient.addColorStop(0, orb.color);
+        gradient.addColorStop(1, 'transparent');
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(drawNebula);
+    }
+
+    // Effect 2: Particle Network
+    let particles = [];
+    function initParticles() {
+      particles = [];
+      const count = Math.floor((canvas.width * canvas.height) / 15000);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: (Math.random() - 0.5) * 1.2,
+          radius: Math.random() * 2 + 1
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.fillStyle = '#080314';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, index) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.fillStyle = '#ec4899';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Connect particles
+        for (let j = index + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 100) {
+            ctx.strokeStyle = `rgba(236, 72, 153, ${1 - dist / 100})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+
+        // Mouse connection
+        const mouseDist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        if (mouseDist < 120) {
+          ctx.strokeStyle = `rgba(168, 85, 247, ${1 - mouseDist / 120})`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+      });
+
+      animationFrameId = requestAnimationFrame(drawParticles);
+    }
+
+    // Effect 3: Matrix Cyber Grid
+    let gridDrops = [];
+    function initCyber() {
+      gridDrops = [];
+      const cols = Math.floor(canvas.width / 25);
+      for (let i = 0; i < cols; i++) {
+        gridDrops.push({
+          x: i * 25,
+          y: Math.random() * canvas.height,
+          speed: Math.random() * 3 + 2,
+          chars: '01EXOGAME✨🎮⚡'
+        });
+      }
+    }
+
+    function drawCyber() {
+      ctx.fillStyle = 'rgba(8, 3, 20, 0.2)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#ec4899';
+      ctx.font = '12px monospace';
+
+      gridDrops.forEach(drop => {
+        const char = drop.chars[Math.floor(Math.random() * drop.chars.length)];
+        ctx.fillText(char, drop.x, drop.y);
+
+        drop.y += drop.speed;
+        if (drop.y > canvas.height) {
+          drop.y = 0;
+        }
+      });
+
+      animationFrameId = requestAnimationFrame(drawCyber);
+    }
+
+    function initEffect() {
+      if (currentEffect === 'nebula') initNebula(), drawNebula();
+      else if (currentEffect === 'particles') initParticles(), drawParticles();
+      else if (currentEffect === 'cyber') initCyber(), drawCyber();
+    }
+
+    // Start default effect
+    initEffect();
+  </script>
+</body>
+</html>
