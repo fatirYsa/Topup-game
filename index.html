@@ -477,62 +477,107 @@
 
   <!-- JavaScript for Interactive Canvas & Functionality -->
   <script>
-    // --- 1. Dynamic Game Data & Nominal Config (dengan penambahan icon) ---
+    // --- 1. Dynamic Game Data & Nominal Config (Lengkap Real Official Tier) ---
     const gameNominals = {
       mlbb: [
-        { name: "8 Diamonds", price: "Rp 8.000", icon: "fa-gem text-cyan-400" },
-        { name: "59 Diamonds", price: "Rp 15.000", icon: "fa-gem text-cyan-400" },
-        { name: "86 Diamonds", price: "Rp 22.000", icon: "fa-gem text-cyan-400" },
-        { name: "172 Diamonds", price: "Rp 44.000", icon: "fa-gem text-cyan-400" },
-        { name: "257 Diamonds", price: "Rp 66.000", icon: "fa-gem text-cyan-400" },
-        { name: "344 Diamonds", price: "Rp 88.000", icon: "fa-gem text-cyan-400" },
-        { name: "Starlight Member", price: "Rp 149.000", icon: "fa-id-badge text-yellow-400" },
+        { name: "3 Diamonds", price: "Rp 1.500", icon: "fa-gem text-cyan-400" },
+        { name: "5 Diamonds", price: "Rp 2.000", icon: "fa-gem text-cyan-400" },
+        { name: "12 Diamonds", price: "Rp 4.000", icon: "fa-gem text-cyan-400" },
+        { name: "19 Diamonds", price: "Rp 6.000", icon: "fa-gem text-cyan-400" },
+        { name: "28 Diamonds", price: "Rp 8.500", icon: "fa-gem text-cyan-400" },
+        { name: "44 Diamonds", price: "Rp 12.500", icon: "fa-gem text-cyan-400" },
+        { name: "59 Diamonds", price: "Rp 16.000", icon: "fa-gem text-cyan-400" },
+        { name: "85 Diamonds", price: "Rp 23.000", icon: "fa-gem text-cyan-400" },
+        { name: "170 Diamonds", price: "Rp 46.000", icon: "fa-gem text-cyan-400" },
+        { name: "240 Diamonds", price: "Rp 64.000", icon: "fa-gem text-cyan-400" },
+        { name: "296 Diamonds", price: "Rp 79.000", icon: "fa-gem text-cyan-400" },
+        { name: "408 Diamonds", price: "Rp 109.000", icon: "fa-gem text-cyan-400" },
+        { name: "568 Diamonds", price: "Rp 149.000", icon: "fa-gem text-cyan-400" },
+        { name: "875 Diamonds", price: "Rp 229.000", icon: "fa-gem text-cyan-400" },
+        { name: "2010 Diamonds", price: "Rp 519.000", icon: "fa-gem text-cyan-400" },
+        { name: "4830 Diamonds", price: "Rp 1.229.000", icon: "fa-gem text-cyan-400" },
+        { name: "Weekly Diamond Pass", price: "Rp 28.500", icon: "fa-id-badge text-pink-400" },
+        { name: "Starlight Member", price: "Rp 149.000", icon: "fa-star text-yellow-400" },
         { name: "Twilight Pass", price: "Rp 150.000", icon: "fa-ticket text-purple-400" }
       ],
       ff: [
+        { name: "5 Diamonds", price: "Rp 1.000", icon: "fa-gem text-cyan-400" },
+        { name: "12 Diamonds", price: "Rp 2.000", icon: "fa-gem text-cyan-400" },
+        { name: "50 Diamonds", price: "Rp 7.500", icon: "fa-gem text-cyan-400" },
         { name: "70 Diamonds", price: "Rp 10.000", icon: "fa-gem text-cyan-400" },
         { name: "140 Diamonds", price: "Rp 20.000", icon: "fa-gem text-cyan-400" },
+        { name: "210 Diamonds", price: "Rp 30.000", icon: "fa-gem text-cyan-400" },
         { name: "355 Diamonds", price: "Rp 50.000", icon: "fa-gem text-cyan-400" },
         { name: "720 Diamonds", price: "Rp 100.000", icon: "fa-gem text-cyan-400" },
-        { name: "Membership Mingguan", price: "Rp 29.000", icon: "fa-calendar-week text-yellow-400" },
-        { name: "Membership Bulanan", price: "Rp 299.000", icon: "fa-calendar-days text-amber-500" }
+        { name: "1440 Diamonds", price: "Rp 200.000", icon: "fa-gem text-cyan-400" },
+        { name: "2000 Diamonds", price: "Rp 280.000", icon: "fa-gem text-cyan-400" },
+        { name: "7290 Diamonds", price: "Rp 1.000.000", icon: "fa-gem text-cyan-400" },
+        { name: "Membership Mingguan", price: "Rp 30.000", icon: "fa-calendar-week text-yellow-400" },
+        { name: "Membership Bulanan", price: "Rp 150.000", icon: "fa-calendar-days text-amber-500" }
       ],
       pubg: [
+        { name: "30 UC", price: "Rp 7.000", icon: "fa-coins text-yellow-400" },
         { name: "60 UC", price: "Rp 14.000", icon: "fa-coins text-yellow-400" },
         { name: "325 UC", price: "Rp 75.000", icon: "fa-coins text-yellow-400" },
         { name: "660 UC", price: "Rp 150.000", icon: "fa-coins text-yellow-400" },
-        { name: "1800 UC", price: "Rp 400.000", icon: "fa-coins text-yellow-400" }
+        { name: "1800 UC", price: "Rp 400.000", icon: "fa-coins text-yellow-400" },
+        { name: "3850 UC", price: "Rp 800.000", icon: "fa-coins text-yellow-400" },
+        { name: "8100 UC", price: "Rp 1.600.000", icon: "fa-coins text-yellow-400" }
       ],
       efootball: [
+        { name: "100 eFootball Coins", price: "Rp 12.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
         { name: "130 eFootball Coins", price: "Rp 15.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "320 eFootball Coins", price: "Rp 39.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
         { name: "550 eFootball Coins", price: "Rp 65.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
-        { name: "1040 eFootball Coins", price: "Rp 120.000", icon: "fa-circle-dollar-to-slot text-yellow-400" }
+        { name: "1040 eFootball Coins", price: "Rp 120.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "2130 eFootball Coins", price: "Rp 249.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "3250 eFootball Coins", price: "Rp 379.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "5700 eFootball Coins", price: "Rp 649.000", icon: "fa-circle-dollar-to-slot text-yellow-400" },
+        { name: "12000 eFootball Coins", price: "Rp 1.299.000", icon: "fa-circle-dollar-to-slot text-yellow-400" }
       ],
       genshin: [
-        { name: "60 Genesis Crystals", price: "Rp 15.000", icon: "fa-diamond text-indigo-400" },
-        { name: "300 Genesis Crystals", price: "Rp 75.000", icon: "fa-diamond text-indigo-400" },
+        { name: "60 Genesis Crystals", price: "Rp 16.000", icon: "fa-diamond text-indigo-400" },
+        { name: "300 Genesis Crystals", price: "Rp 79.000", icon: "fa-diamond text-indigo-400" },
+        { name: "980 Genesis Crystals", price: "Rp 249.000", icon: "fa-diamond text-indigo-400" },
+        { name: "1980 Genesis Crystals", price: "Rp 479.000", icon: "fa-diamond text-indigo-400" },
+        { name: "3280 Genesis Crystals", price: "Rp 799.000", icon: "fa-diamond text-indigo-400" },
+        { name: "6480 Genesis Crystals", price: "Rp 1.599.000", icon: "fa-diamond text-indigo-400" },
         { name: "Blessing of the Welkin Moon", price: "Rp 79.000", icon: "fa-moon text-blue-300" }
       ],
       hsr: [
-        { name: "60 Oneiric Shards", price: "Rp 15.000", icon: "fa-snowflake text-sky-300" },
-        { name: "300 Oneiric Shards", price: "Rp 75.000", icon: "fa-snowflake text-sky-300" },
-        { name: "Supply Pass", price: "Rp 79.000", icon: "fa-ticket text-amber-400" }
+        { name: "60 Oneiric Shards", price: "Rp 16.000", icon: "fa-snowflake text-sky-300" },
+        { name: "300 Oneiric Shards", price: "Rp 79.000", icon: "fa-snowflake text-sky-300" },
+        { name: "980 Oneiric Shards", price: "Rp 249.000", icon: "fa-snowflake text-sky-300" },
+        { name: "1980 Oneiric Shards", price: "Rp 479.000", icon: "fa-snowflake text-sky-300" },
+        { name: "3280 Oneiric Shards", price: "Rp 799.000", icon: "fa-snowflake text-sky-300" },
+        { name: "6480 Oneiric Shards", price: "Rp 1.599.000", icon: "fa-snowflake text-sky-300" },
+        { name: "Express Supply Pass", price: "Rp 79.000", icon: "fa-ticket text-amber-400" }
       ],
       roblox: [
+        { name: "80 Robux", price: "Rp 15.000", icon: "fa-cube text-emerald-400" },
         { name: "400 Robux", price: "Rp 75.000", icon: "fa-cube text-emerald-400" },
-        { name: "800 Robux", price: "Rp 145.000", icon: "fa-cube text-emerald-400" },
-        { name: "1700 Robux", price: "Rp 300.000", icon: "fa-cube text-emerald-400" }
+        { name: "800 Robux", price: "Rp 149.000", icon: "fa-cube text-emerald-400" },
+        { name: "1700 Robux", price: "Rp 299.000", icon: "fa-cube text-emerald-400" },
+        { name: "4500 Robux", price: "Rp 749.000", icon: "fa-cube text-emerald-400" },
+        { name: "10000 Robux", price: "Rp 1.499.000", icon: "fa-cube text-emerald-400" }
       ],
       fcmobile: [
+        { name: "40 FC Points", price: "Rp 6.000", icon: "fa-star text-amber-400" },
         { name: "100 FC Points", price: "Rp 15.000", icon: "fa-star text-amber-400" },
         { name: "520 FC Points", price: "Rp 75.000", icon: "fa-star text-amber-400" },
-        { name: "1050 FC Points", price: "Rp 150.000", icon: "fa-star text-amber-400" }
+        { name: "1050 FC Points", price: "Rp 149.000", icon: "fa-star text-amber-400" },
+        { name: "2200 FC Points", price: "Rp 299.000", icon: "fa-star text-amber-400" },
+        { name: "5750 FC Points", price: "Rp 749.000", icon: "fa-star text-amber-400" },
+        { name: "12000 FC Points", price: "Rp 1.499.000", icon: "fa-star text-amber-400" }
       ],
       valorant: [
-        { name: "125 Points", price: "Rp 15.000", icon: "fa-fire text-red-500" },
-        { name: "420 Points", price: "Rp 50.000", icon: "fa-fire text-red-500" },
-        { name: "700 Points", price: "Rp 80.000", icon: "fa-fire text-red-500" },
-        { name: "1375 Points", price: "Rp 150.000", icon: "fa-fire text-red-500" }
+        { name: "125 Valorant Points", price: "Rp 15.000", icon: "fa-fire text-red-500" },
+        { name: "420 Valorant Points", price: "Rp 50.000", icon: "fa-fire text-red-500" },
+        { name: "700 Valorant Points", price: "Rp 80.000", icon: "fa-fire text-red-500" },
+        { name: "1375 Valorant Points", price: "Rp 150.000", icon: "fa-fire text-red-500" },
+        { name: "2400 Valorant Points", price: "Rp 250.000", icon: "fa-fire text-red-500" },
+        { name: "4000 Valorant Points", price: "Rp 400.000", icon: "fa-fire text-red-500" },
+        { name: "8150 Valorant Points", price: "Rp 800.000", icon: "fa-fire text-red-500" }
       ]
     };
 
