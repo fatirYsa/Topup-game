@@ -178,13 +178,18 @@
         </div>
 
         <!-- Controls: Search, Reward Coin Icon, & Daftar Button -->
-        <div class="flex items-center gap-2.5 sm:gap-3.5 flex-wrap">
+        <div class="flex items-center gap-2.5 sm:gap-3.5">
 
-          <!-- Search Bar -->
-          <div class="relative">
-            <input type="text" id="searchInput" onkeyup="filterGames()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-36 sm:w-48 transition-all">
+          <!-- Desktop Search Bar -->
+          <div class="relative hidden sm:block">
+            <input type="text" id="searchInputDesktop" onkeyup="filterGamesDesktop()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-48 transition-all">
             <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
           </div>
+
+          <!-- Mobile Search Toggle Button (Hanya Muncul di Mobile) -->
+          <button onclick="toggleMobileSearch()" id="mobileSearchBtn" class="sm:hidden w-9 h-9 rounded-full bg-gray-900/80 border border-gray-700 flex items-center justify-center text-gray-200 hover:text-pink-400 transition">
+            <i id="mobileSearchIcon" class="fa-solid fa-magnifying-glass text-sm"></i>
+          </button>
 
           <!-- Icon Koin Reward / Bonus -->
           <button onclick="showRewardsPage()" title="Tentang Rewards / Bonus" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-amber-500/20 hover:bg-amber-500/40 border border-amber-400/60 flex items-center justify-center transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer">
@@ -198,6 +203,18 @@
           <button onclick="showAuthPage()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold px-4 py-1.5 rounded-full text-xs sm:text-sm shadow-lg shadow-violet-600/30 transition-all">
             Daftar
           </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search Bar Container (Sesuai Referensi Gambar 2 & 3) -->
+      <div id="mobileSearchContainer" class="hidden sm:hidden px-4 pb-3 border-t border-gray-800/80 pt-3 relative">
+        <div class="relative">
+          <input type="text" id="searchInputMobile" onkeyup="handleMobileSearch()" placeholder="Cari Game..." class="w-full bg-gray-900/95 border-2 border-pink-500/70 text-white text-sm rounded-full py-2.5 px-5 focus:outline-none focus:border-pink-500 shadow-lg placeholder-gray-400">
+        </div>
+
+        <!-- Pop-up Live Results Mobile (Sesuai Referensi Gambar 3) -->
+        <div id="mobileSearchResults" class="hidden absolute left-4 right-4 top-16 bg-gray-900/95 border border-pink-500/40 rounded-2xl p-2 shadow-2xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-800 backdrop-blur-xl">
+          <!-- Item hasil pencarian akan dirender secara otomatis lewat JS -->
         </div>
       </div>
     </header>
@@ -282,11 +299,11 @@
           </h2>
         </div>
         
-        <!-- Game Cards Grid: 3 Kolom di Mobile dengan gap-3 dan rounded-2xl agar rapi & renggang -->
+        <!-- Game Cards Grid: 3 Kolom di Mobile dengan gap-3 dan rounded-2xl -->
         <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
           
           <!-- Mobile Legends -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Mobile Legends: Bang Bang" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Mobile Legends: Bang Bang" data-key="mlbb" data-img="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://cdn.unipin.com/images/icon_product_pages/1784702458-icon-1760002045-icon-MLBB%20200%20x%20200_11zon.png" alt="Mobile Legends" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -297,7 +314,7 @@
           </div>
 
           <!-- Free Fire -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Free Fire Top-up" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Free Fire Top-up" data-key="ff" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -308,7 +325,7 @@
           </div>
 
           <!-- PUBG Mobile -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="PUBG Mobile" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="PUBG Mobile" data-key="pubg" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -319,7 +336,7 @@
           </div>
 
           <!-- eFootball -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="eFootball 2026" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="eFootball 2026" data-key="efootball" data-img="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -330,7 +347,7 @@
           </div>
 
           <!-- Genshin Impact -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Genshin Impact" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Genshin Impact" data-key="genshin" data-img="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -341,7 +358,7 @@
           </div>
 
           <!-- Honkai Star Rail -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Honkai: Star Rail" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Honkai: Star Rail" data-key="hsr" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -352,7 +369,7 @@
           </div>
 
           <!-- Roblox -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Roblox" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Roblox" data-key="roblox" data-img="https://m.media-amazon.com/images/I/21aoUPG3svL.png" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -363,7 +380,7 @@
           </div>
 
           <!-- FC Mobile -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="FC Mobile" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="FC Mobile" data-key="fcmobile" data-img="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -374,7 +391,7 @@
           </div>
 
           <!-- Valorant -->
-          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Valorant" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
+          <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Valorant" data-key="valorant" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -787,6 +804,7 @@
       document.getElementById('topupSection').classList.add('hidden');
       document.getElementById('rewardsSection').classList.add('hidden');
       document.getElementById('authSection').classList.add('hidden');
+      closeMobileSearch();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -795,6 +813,7 @@
       document.getElementById('topupSection').classList.add('hidden');
       document.getElementById('rewardsSection').classList.remove('hidden');
       document.getElementById('authSection').classList.add('hidden');
+      closeMobileSearch();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -806,6 +825,8 @@
       
       document.getElementById('selectedGameTitle').innerText = gameTitle;
       document.getElementById('selectedGameImg').src = gameImg;
+
+      closeMobileSearch();
 
       // Render nominals
       const nominalGrid = document.getElementById('nominalGrid');
@@ -843,6 +864,7 @@
       document.getElementById('topupSection').classList.add('hidden');
       document.getElementById('rewardsSection').classList.add('hidden');
       document.getElementById('authSection').classList.remove('hidden');
+      closeMobileSearch();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -879,9 +901,9 @@
       alert(`Pesanan Berhasil Dibuat!\n\nGame: ${gameTitle}\nUser ID: ${userId}\nNominal: ${selectedNominalObj.name} (${selectedNominalObj.price})\nMetode Pembayaran: ${selectedPaymentMethod}\nEmail: ${email}\n\nSilakan selesaikan pembayaran Anda.`);
     }
 
-    // --- 2. Filter Games via Search Bar ---
-    function filterGames() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
+    // --- 2. Filter Games via Search Bar (Desktop) ---
+    function filterGamesDesktop() {
+      const query = document.getElementById('searchInputDesktop').value.toLowerCase();
       const grid = document.getElementById('gameGrid');
       const cards = Array.from(grid.getElementsByClassName('game-card'));
 
@@ -895,7 +917,89 @@
       });
     }
 
-    // --- 3. Promo Carousel Banner Engine ---
+    // --- 3. Mobile Navigation & Live Search Toggle ---
+    function toggleMobileSearch() {
+      const mobileSearchContainer = document.getElementById('mobileSearchContainer');
+      const mobileSearchIcon = document.getElementById('mobileSearchIcon');
+      const searchInputMobile = document.getElementById('searchInputMobile');
+
+      if (mobileSearchContainer.classList.contains('hidden')) {
+        mobileSearchContainer.classList.remove('hidden');
+        mobileSearchIcon.className = 'fa-solid fa-xmark text-lg text-pink-500';
+        searchInputMobile.focus();
+      } else {
+        closeMobileSearch();
+      }
+    }
+
+    function closeMobileSearch() {
+      const mobileSearchContainer = document.getElementById('mobileSearchContainer');
+      const mobileSearchIcon = document.getElementById('mobileSearchIcon');
+      const mobileSearchResults = document.getElementById('mobileSearchResults');
+      const searchInputMobile = document.getElementById('searchInputMobile');
+
+      mobileSearchContainer.classList.add('hidden');
+      mobileSearchIcon.className = 'fa-solid fa-magnifying-glass text-sm';
+      mobileSearchResults.classList.add('hidden');
+      if (searchInputMobile) searchInputMobile.value = '';
+    }
+
+    function handleMobileSearch() {
+      const query = document.getElementById('searchInputMobile').value.toLowerCase().trim();
+      const resultsContainer = document.getElementById('mobileSearchResults');
+      const cards = Array.from(document.querySelectorAll('#gameGrid .game-card'));
+
+      // Filter grid utama juga
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        if (title.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Render Dropdown Results di Mobile (Sesuai Referensi Gambar 3)
+      if (query.length === 0) {
+        resultsContainer.classList.add('hidden');
+        resultsContainer.innerHTML = '';
+        return;
+      }
+
+      const matchedGames = cards.filter(card => {
+        return card.getAttribute('data-title').toLowerCase().includes(query);
+      });
+
+      if (matchedGames.length > 0) {
+        resultsContainer.innerHTML = '';
+        matchedGames.forEach(card => {
+          const title = card.getAttribute('data-title');
+          const key = card.getAttribute('data-key');
+          const img = card.getAttribute('data-img');
+
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'flex items-center gap-3 p-2.5 hover:bg-pink-600/20 rounded-xl cursor-pointer transition';
+          itemDiv.innerHTML = `
+            <img src="${img}" class="w-11 h-11 object-cover rounded-xl border border-pink-500/40">
+            <span class="font-bold text-sm text-white">${title}</span>
+          `;
+          itemDiv.onclick = () => {
+            openTopup(key, title, img);
+          };
+          resultsContainer.appendChild(itemDiv);
+        });
+        resultsContainer.classList.remove('hidden');
+      } else {
+        resultsContainer.innerHTML = `
+          <div class="p-3 text-center text-xs text-gray-400">
+            Game tidak ditemukan
+          </div>
+        `;
+        resultsContainer.classList.remove('hidden');
+      }
+    }
+
+    // --- 4. Promo Carousel Banner Engine ---
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
     const indicators = document.querySelectorAll('.carousel-indicator');
@@ -925,7 +1029,7 @@
       setSlide(currentSlide);
     }, 4000);
 
-    // --- 4. Interactive Animated Background Engine (Matrix Cyber Grid Only) ---
+    // --- 5. Interactive Animated Background Engine (Matrix Cyber Grid Only) ---
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let animationFrameId;
