@@ -180,10 +180,15 @@
         <!-- Controls: Search, Reward Coin Icon, & Daftar Button -->
         <div class="flex items-center gap-2.5 sm:gap-3.5">
 
-          <!-- Desktop Search Bar -->
+          <!-- Desktop Search Bar & Dropdown -->
           <div class="relative hidden sm:block">
-            <input type="text" id="searchInputDesktop" onkeyup="filterGamesDesktop()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-48 transition-all">
+            <input type="text" id="searchInputDesktop" onkeyup="handleDesktopSearch()" placeholder="Cari game di exoGAME..." class="bg-gray-900/90 border border-gray-700/80 px-4 py-1.5 pl-8 rounded-full text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500 w-48 transition-all">
             <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
+
+            <!-- Pop-up Dropdown Search Desktop -->
+            <div id="desktopSearchResults" class="hidden absolute left-0 right-0 top-10 bg-gray-900/95 border border-pink-500/40 rounded-2xl p-2 shadow-2xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-800 backdrop-blur-xl w-64">
+              <!-- Result Items via JS -->
+            </div>
           </div>
 
           <!-- Mobile Search Toggle Button (Hanya Muncul di Mobile) -->
@@ -299,7 +304,7 @@
           </h2>
         </div>
         
-        <!-- Game Cards Grid: 3 Kolom di Mobile dengan gap-3 dan rounded-2xl -->
+        <!-- Game Cards Grid: Tetap Lengkap & Tidak Berubah Saat User Mencari Game -->
         <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
           
           <!-- Mobile Legends -->
@@ -805,6 +810,7 @@
       document.getElementById('rewardsSection').classList.add('hidden');
       document.getElementById('authSection').classList.add('hidden');
       closeMobileSearch();
+      closeDesktopSearch();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -814,6 +820,7 @@
       document.getElementById('rewardsSection').classList.remove('hidden');
       document.getElementById('authSection').classList.add('hidden');
       closeMobileSearch();
+      closeDesktopSearch();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -827,6 +834,7 @@
       document.getElementById('selectedGameImg').src = gameImg;
 
       closeMobileSearch();
+      closeDesktopSearch();
 
       // Render nominals
       const nominalGrid = document.getElementById('nominalGrid');
@@ -865,6 +873,7 @@
       document.getElementById('rewardsSection').classList.add('hidden');
       document.getElementById('authSection').classList.remove('hidden');
       closeMobileSearch();
+      closeDesktopSearch();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -901,23 +910,59 @@
       alert(`Pesanan Berhasil Dibuat!\n\nGame: ${gameTitle}\nUser ID: ${userId}\nNominal: ${selectedNominalObj.name} (${selectedNominalObj.price})\nMetode Pembayaran: ${selectedPaymentMethod}\nEmail: ${email}\n\nSilakan selesaikan pembayaran Anda.`);
     }
 
-    // --- 2. Filter Games via Search Bar (Desktop) ---
-    function filterGamesDesktop() {
-      const query = document.getElementById('searchInputDesktop').value.toLowerCase();
-      const grid = document.getElementById('gameGrid');
-      const cards = Array.from(grid.getElementsByClassName('game-card'));
+    // --- 2. Desktop Search (Hanya Muncul di Dropdown Floating, Katalog Tetap Utuh) ---
+    function handleDesktopSearch() {
+      const query = document.getElementById('searchInputDesktop').value.toLowerCase().trim();
+      const resultsContainer = document.getElementById('desktopSearchResults');
+      const cards = Array.from(document.querySelectorAll('#gameGrid .game-card'));
 
-      cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        if (title.includes(query)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+      if (query.length === 0) {
+        resultsContainer.classList.add('hidden');
+        resultsContainer.innerHTML = '';
+        return;
+      }
+
+      const matchedGames = cards.filter(card => {
+        return card.getAttribute('data-title').toLowerCase().includes(query);
       });
+
+      if (matchedGames.length > 0) {
+        resultsContainer.innerHTML = '';
+        matchedGames.forEach(card => {
+          const title = card.getAttribute('data-title');
+          const key = card.getAttribute('data-key');
+          const img = card.getAttribute('data-img');
+
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'flex items-center gap-3 p-2.5 hover:bg-pink-600/20 rounded-xl cursor-pointer transition';
+          itemDiv.innerHTML = `
+            <img src="${img}" class="w-10 h-10 object-cover rounded-xl border border-pink-500/40">
+            <span class="font-bold text-xs text-white">${title}</span>
+          `;
+          itemDiv.onclick = () => {
+            openTopup(key, title, img);
+          };
+          resultsContainer.appendChild(itemDiv);
+        });
+        resultsContainer.classList.remove('hidden');
+      } else {
+        resultsContainer.innerHTML = `
+          <div class="p-3 text-center text-xs text-gray-400">
+            Game tidak ditemukan
+          </div>
+        `;
+        resultsContainer.classList.remove('hidden');
+      }
     }
 
-    // --- 3. Mobile Navigation & Live Search Toggle ---
+    function closeDesktopSearch() {
+      const resultsContainer = document.getElementById('desktopSearchResults');
+      const searchInputDesktop = document.getElementById('searchInputDesktop');
+      if (resultsContainer) resultsContainer.classList.add('hidden');
+      if (searchInputDesktop) searchInputDesktop.value = '';
+    }
+
+    // --- 3. Mobile Navigation & Live Search Toggle (Katalog Tetap Utuh) ---
     function toggleMobileSearch() {
       const mobileSearchContainer = document.getElementById('mobileSearchContainer');
       const mobileSearchIcon = document.getElementById('mobileSearchIcon');
@@ -949,17 +994,9 @@
       const resultsContainer = document.getElementById('mobileSearchResults');
       const cards = Array.from(document.querySelectorAll('#gameGrid .game-card'));
 
-      // Filter grid utama juga
-      cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        if (title.includes(query)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      // CATATAN: Katalog game utama di grid tidak disembunyikan/di-filter agar tetap tampil utuh di background
 
-      // Render Dropdown Results di Mobile (Sesuai Referensi Gambar 3)
+      // Render Pop-up Floating Hasil Pencarian di Mobile
       if (query.length === 0) {
         resultsContainer.classList.add('hidden');
         resultsContainer.innerHTML = '';
