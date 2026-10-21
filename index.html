@@ -137,25 +137,34 @@
       box-shadow: 0 0 10px #ec4899;
     }
 
-    /* Animasi Icon Api Bergerak Membara */
-    @keyframes flameBurn {
+    /* Animasi Pergerakan Nyala Api Ungu Realistis */
+    @keyframes purpleFlameReal {
       0% {
-        transform: scale(1) rotate(-2deg);
-        filter: drop-shadow(0 0 4px #f97316) drop-shadow(0 0 10px #ef4444);
+        transform: scale(1) rotate(-1.5deg) translateY(0);
+        filter: drop-shadow(0 0 5px #c084fc) drop-shadow(0 0 12px #a855f7) drop-shadow(0 0 20px #7e22ce);
+      }
+      25% {
+        transform: scale(1.08) rotate(2deg) translateY(-2px);
+        filter: drop-shadow(0 0 8px #e879f9) drop-shadow(0 0 18px #c084fc) drop-shadow(0 0 28px #9333ea);
       }
       50% {
-        transform: scale(1.18) rotate(3deg);
-        filter: drop-shadow(0 0 8px #facc15) drop-shadow(0 0 16px #f97316);
+        transform: scale(0.96) rotate(-2deg) translateY(1px);
+        filter: drop-shadow(0 0 6px #a855f7) drop-shadow(0 0 14px #9333ea) drop-shadow(0 0 22px #6b21a8);
+      }
+      75% {
+        transform: scale(1.12) rotate(1.5deg) translateY(-3px);
+        filter: drop-shadow(0 0 10px #f0abfc) drop-shadow(0 0 22px #c084fc) drop-shadow(0 0 32px #7e22ce);
       }
       100% {
-        transform: scale(1) rotate(-2deg);
-        filter: drop-shadow(0 0 4px #f97316) drop-shadow(0 0 10px #ef4444);
+        transform: scale(1) rotate(-1.5deg) translateY(0);
+        filter: drop-shadow(0 0 5px #c084fc) drop-shadow(0 0 12px #a855f7) drop-shadow(0 0 20px #7e22ce);
       }
     }
 
-    .flame-animated {
+    .purple-flame-animated {
       display: inline-block;
-      animation: flameBurn 1.2s infinite ease-in-out;
+      animation: purpleFlameReal 1.4s infinite ease-in-out;
+      color: #e879f9;
     }
   </style>
 </head>
@@ -211,13 +220,13 @@
         </div>
       </div>
 
-      <!-- Mobile Search Bar Container (Sesuai Referensi Gambar 2 & 3) -->
+      <!-- Mobile Search Bar Container -->
       <div id="mobileSearchContainer" class="hidden sm:hidden px-4 pb-3 border-t border-gray-800/80 pt-3 relative">
         <div class="relative">
           <input type="text" id="searchInputMobile" onkeyup="handleMobileSearch()" placeholder="Cari Game..." class="w-full bg-gray-900/95 border-2 border-pink-500/70 text-white text-sm rounded-full py-2.5 px-5 focus:outline-none focus:border-pink-500 shadow-lg placeholder-gray-400">
         </div>
 
-        <!-- Pop-up Live Results Mobile (Sesuai Referensi Gambar 3) -->
+        <!-- Pop-up Live Results Mobile -->
         <div id="mobileSearchResults" class="hidden absolute left-4 right-4 top-16 bg-gray-900/95 border border-pink-500/40 rounded-2xl p-2 shadow-2xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-800 backdrop-blur-xl">
           <!-- Item hasil pencarian akan dirender secara otomatis lewat JS -->
         </div>
@@ -294,13 +303,13 @@
           </div>
         </div>
 
-        <!-- HEADER SECTION KATALOG: 'Lagi Populer' & Icon Api Bergerak -->
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 glass-card p-4 rounded-xl">
-          <h2 class="text-lg sm:text-xl font-extrabold text-gray-100 border-l-4 border-pink-500 pl-3 flex items-center gap-2.5 tracking-wide">
-            <span class="flame-animated text-orange-500 text-xl sm:text-2xl">
-              <i class="fa-solid fa-fire"></i>
-            </span>
-            <span class="uppercase tracking-wider">Lagi Populer</span>
+        <!-- HEADER SECTION KATALOG: Tanpa Kotak Pembungkus, Judul "TOP UP GAME" & Icon Api Ungu Realistis -->
+        <div class="flex items-center gap-2.5 mb-5 px-1">
+          <span class="purple-flame-animated text-2xl sm:text-3xl">
+            <i class="fa-solid fa-fire"></i>
+          </span>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-wider uppercase">
+            TOP UP GAME
           </h2>
         </div>
         
@@ -962,7 +971,7 @@
       if (searchInputDesktop) searchInputDesktop.value = '';
     }
 
-    // --- 3. Mobile Navigation & Live Search Toggle (Katalog Tetap Utuh) ---
+    // --- 3. Mobile Navigation & Live Search Toggle ---
     function toggleMobileSearch() {
       const mobileSearchContainer = document.getElementById('mobileSearchContainer');
       const mobileSearchIcon = document.getElementById('mobileSearchIcon');
@@ -994,9 +1003,6 @@
       const resultsContainer = document.getElementById('mobileSearchResults');
       const cards = Array.from(document.querySelectorAll('#gameGrid .game-card'));
 
-      // CATATAN: Katalog game utama di grid tidak disembunyikan/di-filter agar tetap tampil utuh di background
-
-      // Render Pop-up Floating Hasil Pencarian di Mobile
       if (query.length === 0) {
         resultsContainer.classList.add('hidden');
         resultsContainer.innerHTML = '';
