@@ -83,6 +83,17 @@
       }
     }
 
+    /* Swipe / drag pada banner */
+    .carousel-container {
+      touch-action: pan-y;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: grab;
+    }
+    .carousel-container.dragging {
+      cursor: grabbing;
+    }
+
     .carousel-slide {
       position: absolute;
       width: 80%;
@@ -1066,11 +1077,70 @@
       });
     }
 
-    // Auto Play Slide Banner
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      setSlide(currentSlide);
-    }, 4000);
+    // Auto Play Slide Banner (berhenti sementara saat banner disentuh/digeser)
+    let autoPlayTimer = null;
+    function stopAutoPlay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(() => {
+        setSlide((currentSlide + 1) % slides.length);
+      }, 4000);
+    }
+    startAutoPlay();
+
+    // Swipe (HP) & drag (mouse) untuk menggeser banner
+    (function () {
+      const container = document.getElementById('carouselContainer');
+      const THRESHOLD = 50; // minimal jarak geser (px)
+      let startX = 0, startY = 0, dx = 0;
+      let active = false, moved = false, pid = null;
+
+      container.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        active = true;
+        moved = false;
+        dx = 0;
+        pid = e.pointerId;
+        startX = e.clientX;
+        startY = e.clientY;
+        stopAutoPlay();
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!active || e.pointerId !== pid) return;
+        dx = e.clientX - startX;
+        if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(e.clientY - startY)) {
+          moved = true;
+          container.classList.add('dragging');
+        }
+      });
+
+      function endDrag(e) {
+        if (!active || e.pointerId !== pid) return;
+        active = false;
+        container.classList.remove('dragging');
+        if (moved && Math.abs(dx) > THRESHOLD) {
+          const n = slides.length;
+          // geser ke kiri = slide berikutnya, geser ke kanan = slide sebelumnya
+          setSlide(dx < 0 ? (currentSlide + 1) % n : (currentSlide - 1 + n) % n);
+        }
+        startAutoPlay();
+      }
+      window.addEventListener('pointerup', endDrag);
+      window.addEventListener('pointercancel', endDrag);
+
+      // Setelah menggeser, jangan anggap itu klik (supaya tidak ikut membuka halaman top up)
+      container.addEventListener('click', (e) => {
+        if (moved) {
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+        }
+      }, true);
+    })();
 
     // --- 5. Interactive Animated Background Engine (Matrix Cyber Grid Only) ---
     const canvas = document.getElementById('bgCanvas');
