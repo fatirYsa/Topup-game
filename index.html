@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>exoGAME - Top Up Game Murah & Cepat</title>
+  <script>document.documentElement.classList.add('js');</script>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
@@ -298,6 +299,82 @@
       color: transparent;
     }
     @media (min-width: 640px) { .stat-num { font-size: 38px; } }
+
+    /* ===== Hero ===== */
+    .neon-logo {
+      font-weight: 900;
+      font-size: clamp(36px, 10vw, 68px);
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: #fff;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 18px rgba(236, 72, 153, 0.85), 0 0 42px rgba(168, 85, 247, 0.7);
+    }
+    .neon-logo span {
+      color: #f472b6;
+      text-shadow: 0 0 8px rgba(244, 114, 182, 0.95), 0 0 24px rgba(236, 72, 153, 0.8), 0 0 52px rgba(236, 72, 153, 0.55);
+    }
+    .grad-text {
+      background: linear-gradient(90deg, #f472b6, #a78bfa, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* ===== Muncul pelan saat di-scroll ===== */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .js .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Efek tekan di layar sentuh */
+    .game-card.glass-card:active {
+      transform: translateY(-2px) scale(0.97);
+    }
+
+    /* Hormati pengaturan "kurangi animasi" */
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* Di HP: kotak statistik & langkah tanpa blur supaya ringan */
+    @media (max-width: 640px) {
+      .stat-tile, .step-card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(17, 24, 39, 0.9);
+      }
+    }
+
+    /* ===== Versi ringan khusus HP (laptop tidak berubah) ===== */
+    @keyframes flameLite {
+      0%, 100% { transform: scale(1) rotate(-1.5deg); }
+      50%      { transform: scale(1.1) rotate(1.5deg) translateY(-2px); }
+    }
+    @media (max-width: 640px) {
+      .glass-card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(17, 24, 39, 0.92);
+      }
+      .glass-header {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(15, 10, 30, 0.96);
+      }
+      footer {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+      .purple-flame-animated {
+        animation: flameLite 1.6s infinite ease-in-out;
+        text-shadow: 0 0 8px #c084fc, 0 0 18px #a855f7;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -370,8 +447,19 @@
       <!-- CATALOG SECTION (Hanya Muncul di Home) -->
       <section id="catalogSection">
         
+        <!-- HERO -->
+        <section id="heroSection" class="reveal relative z-20 text-center pt-2 pb-8 sm:pt-6 sm:pb-10">
+          <div class="neon-logo">exo<span>GAME</span></div>
+          <h1 class="mt-4 text-xl sm:text-4xl font-black text-white leading-tight">
+            Top Up Game <span class="grad-text">Murah &amp; Cepat</span>
+          </h1>
+          <p class="mt-2 text-xs sm:text-base text-gray-300 max-w-xl mx-auto leading-relaxed">
+            Diamond, voucher, dan membership game favoritmu. Proses instan, pembayaran mudah, layanan 24 jam.
+          </p>
+        </section>
+
         <!-- PROMO CAROUSEL BANNER -->
-        <div class="relative mb-8 overflow-hidden rounded-2xl glass-card py-4 px-2">
+        <div class="reveal relative mb-8 overflow-hidden rounded-2xl glass-card py-4 px-2">
           <div class="carousel-container" id="carouselContainer">
             
             <!-- Slide 1: PC Game Pass Diskon 12% -->
@@ -436,7 +524,7 @@
         </div>
 
         <!-- GAME TERLARIS -->
-        <div class="mb-8">
+        <div class="reveal mb-8">
           <div class="flex items-center gap-2.5 mb-4 px-1">
             <span class="text-2xl sm:text-3xl text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.7)]">
               <i class="fa-solid fa-crown"></i>
@@ -447,7 +535,7 @@
         </div>
 
         <!-- HEADER SECTION KATALOG: Tanpa Kotak Pembungkus, Judul "TOP UP GAME" & Icon Api Ungu Realistis -->
-        <div class="flex items-center gap-2.5 mb-5 px-1">
+        <div class="reveal flex items-center gap-2.5 mb-5 px-1">
           <span class="purple-flame-animated text-2xl sm:text-3xl">
             <i class="fa-solid fa-fire"></i>
           </span>
@@ -457,13 +545,13 @@
         </div>
         
         <!-- Game Cards Grid: Tetap Lengkap & Tidak Berubah Saat User Mencari Game -->
-        <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" id="gameGrid">
+        <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 reveal" id="gameGrid">
           
           <!-- Mobile Legends -->
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Mobile Legends: Bang Bang" data-key="mlbb" style="--accent:#38bdf8;--glow:rgba(56,189,248,.5)" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTdh9LsYWaCcXLbLXmgQx9U6aWzRxehzdFwZzhSgm2Cg&s=10" onclick="openTopup('mlbb', 'Mobile Legends: Bang Bang', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTdh9LsYWaCcXLbLXmgQx9U6aWzRxehzdFwZzhSgm2Cg&s=10')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <span class="game-badge best">Terlaris</span>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTdh9LsYWaCcXLbLXmgQx9U6aWzRxehzdFwZzhSgm2Cg&s=10" alt="Mobile Legends" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTdh9LsYWaCcXLbLXmgQx9U6aWzRxehzdFwZzhSgm2Cg&s=10" alt="Mobile Legends" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Mobile Legends</h3>
@@ -475,7 +563,7 @@
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Free Fire Top-up" data-key="ff" style="--accent:#fb923c;--glow:rgba(251,146,60,.5)" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" onclick="openTopup('ff', 'Free Fire Top-up', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <span class="game-badge hot">Hot</span>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bXNV6CY6kJyhxqU-kojyqgiH80HC9YuOtFYgK88qQ&s=10" alt="Free Fire" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Free Fire Top-up</h3>
@@ -487,7 +575,7 @@
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="PUBG Mobile" data-key="pubg" style="--accent:#facc15;--glow:rgba(250,204,21,.5)" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" onclick="openTopup('pubg', 'PUBG Mobile', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <span class="game-badge pop">Populer</span>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzs7UHP_vh_qmKADBw_z5i0JGgPdRzjzKbfV9Bz7garM15db0cF5RvySep&s=10" alt="PUBG Mobile" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">PUBG Mobile</h3>
@@ -498,7 +586,7 @@
           <!-- eFootball -->
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="eFootball 2026" data-key="efootball" style="--accent:#4ade80;--glow:rgba(74,222,128,.5)" data-img="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" onclick="openTopup('efootball', 'eFootball™ 2026', 'https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
-              <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://www.konami.com/efootball/s/img/main_page_1_sp.png?v=1027" alt="eFootball" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">eFootball™ 2026</h3>
@@ -510,7 +598,7 @@
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Genshin Impact" data-key="genshin" style="--accent:#a78bfa;--glow:rgba(167,139,250,.5)" data-img="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" onclick="openTopup('genshin', 'Genshin Impact', 'https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <span class="game-badge promo">Promo</span>
-              <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/4d4f67a277b41db5d4f78d7827784e80188086ee6c526161.png" alt="Genshin Impact" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Genshin Impact</h3>
@@ -522,7 +610,7 @@
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Honkai: Star Rail" data-key="hsr" style="--accent:#22d3ee;--glow:rgba(34,211,238,.5)" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" onclick="openTopup('hsr', 'Honkai: Star Rail', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
               <span class="game-badge promo">Promo</span>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H9YqmCNyuxtRaU2CQjY1f79EDiyfz5L5zEoaQF1VXG1-x8VTCMO6SYwb&s=10" alt="Honkai Star Rail" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Honkai: Star Rail</h3>
@@ -533,7 +621,7 @@
           <!-- Roblox -->
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Roblox" data-key="roblox" style="--accent:#f87171;--glow:rgba(248,113,113,.5)" data-img="https://m.media-amazon.com/images/I/21aoUPG3svL.png" onclick="openTopup('roblox', 'Roblox', 'https://m.media-amazon.com/images/I/21aoUPG3svL.png')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
-              <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://m.media-amazon.com/images/I/21aoUPG3svL.png" alt="Roblox" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Roblox</h3>
@@ -544,7 +632,7 @@
           <!-- FC Mobile -->
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="FC Mobile" data-key="fcmobile" style="--accent:#2dd4bf;--glow:rgba(45,212,191,.5)" data-img="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" onclick="openTopup('fcmobile', 'EA SPORTS FC Mobile', 'https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
-              <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://static-src.vocagame.com/gopay/fcmobile-f757-original.webp" alt="FC Mobile" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">EA SPORTS FC Mobile</h3>
@@ -555,7 +643,7 @@
           <!-- Valorant -->
           <div class="game-card glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer flex flex-col group border border-purple-900/50 hover:border-pink-500/60 shadow-md" data-title="Valorant" data-key="valorant" style="--accent:#fb7185;--glow:rgba(251,113,133,.5)" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" onclick="openTopup('valorant', 'Valorant', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s')">
             <div class="relative w-full aspect-square overflow-hidden bg-gray-900/50">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPq2Jq_rlUQRrcX7d98LZQhX64tBEEiXIP5sO2KcrjvQ&s" alt="Valorant" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
             <div class="p-2 sm:p-2.5 bg-gradient-to-b from-gray-900/90 to-purple-950/90 flex-1 flex flex-col justify-center text-center">
               <h3 class="font-bold text-[11px] sm:text-sm line-clamp-2 text-gray-100 group-hover:text-pink-400 transition leading-tight">Valorant</h3>
@@ -566,7 +654,7 @@
         </div>
 
         <!-- STATISTIK -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-10">
+        <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-10">
           <div class="stat-tile p-4 text-center" style="--c:#38bdf8">
             <i class="fa-solid fa-gamepad text-xl text-sky-400 mb-2"></i>
             <div class="stat-num"><span id="statGames" data-count="9">9</span></div>
@@ -590,7 +678,7 @@
         </div>
 
         <!-- CARA ORDER -->
-        <div class="mt-10">
+        <div class="reveal mt-10">
           <div class="flex items-center gap-2.5 mb-4 px-1">
             <span class="text-2xl sm:text-3xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.7)]">
               <i class="fa-solid fa-list-check"></i>
@@ -1435,33 +1523,48 @@
     initStats();
 
     // --- 5. Interactive Animated Background Engine (Matrix Cyber Grid Only) ---
+    // Di HP: kolom lebih jarang & ~20 fps. Di laptop: sama seperti semula.
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
-    let animationFrameId;
+    let animationFrameId = null;
+    let lastFrame = 0;
+    const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const colWidth = () => (isMobile() ? 40 : 25);
+    let currentColWidth = colWidth();
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      if (colWidth() !== currentColWidth) initCyber(); // pindah HP <-> laptop (mis. rotasi layar)
+    });
     resizeCanvas();
 
     // Effect: Matrix Cyber Grid
     let gridDrops = [];
+    const cyberChars = Array.from('01EXOGAME✨🎮⚡'); // Array.from supaya emoji tidak terpotong
     function initCyber() {
       gridDrops = [];
-      const cols = Math.floor(canvas.width / 25);
+      currentColWidth = colWidth();
+      const cols = Math.floor(canvas.width / currentColWidth);
       for (let i = 0; i < cols; i++) {
         gridDrops.push({
-          x: i * 25,
+          x: i * currentColWidth,
           y: Math.random() * canvas.height,
-          speed: Math.random() * 3 + 2,
-          chars: '01EXOGAME✨🎮⚡'
+          speed: Math.random() * 3 + 2
         });
       }
     }
 
-    function drawCyber() {
+    function drawCyber(ts) {
+      animationFrameId = requestAnimationFrame(drawCyber);
+      const mobile = isMobile();
+      if (ts && mobile && ts - lastFrame < 50) return; // batasi ~20 fps di HP
+      lastFrame = ts || 0;
+
       ctx.fillStyle = 'rgba(8, 3, 20, 0.2)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -1469,21 +1572,73 @@
       ctx.font = '12px monospace';
 
       gridDrops.forEach(drop => {
-        const char = drop.chars[Math.floor(Math.random() * drop.chars.length)];
+        const char = cyberChars[Math.floor(Math.random() * cyberChars.length)];
         ctx.fillText(char, drop.x, drop.y);
 
-        drop.y += drop.speed;
+        drop.y += drop.speed * (mobile ? 2.5 : 1); // kompensasi fps yang lebih rendah
         if (drop.y > canvas.height) {
           drop.y = 0;
         }
       });
-
-      animationFrameId = requestAnimationFrame(drawCyber);
     }
+
+    // Berhenti saat tab tidak dibuka (hemat baterai)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      } else if (!reduceMotion && animationFrameId === null) {
+        animationFrameId = requestAnimationFrame(drawCyber);
+      }
+    });
 
     // Start Matrix Cyber Grid effect
     initCyber();
-    drawCyber();
+    if (reduceMotion) {
+      canvas.style.display = 'none'; // pengguna meminta "kurangi animasi"
+    } else {
+      drawCyber();
+    }
+
+    // --- 7. Muncul pelan saat di-scroll ---
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('in'));
+        return;
+      }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(el => io.observe(el));
+    })();
+
+    // --- 8. Kartu game miring 3D saat disentuh mouse (laptop/PC) ---
+    (function () {
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.querySelectorAll('#gameGrid .game-card').forEach(card => {
+        let t = null;
+        card.addEventListener('mouseenter', () => {
+          clearTimeout(t);
+          card.style.transition = 'transform 0.12s ease-out, box-shadow 0.3s, border-color 0.3s';
+        });
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = 'perspective(700px) rotateX(' + (-y * 10).toFixed(2) + 'deg) rotateY(' + (x * 10).toFixed(2) + 'deg) translateY(-6px)';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.45s ease, box-shadow 0.3s, border-color 0.3s';
+          card.style.transform = '';
+          t = setTimeout(() => { card.style.transition = ''; }, 450);
+        });
+      });
+    })();
   </script>
 </body>
 </html>
