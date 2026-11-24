@@ -831,9 +831,8 @@
                 <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">1</span>
                 MASUKKAN DATA AKUN
               </h3>
-              <div>
-                <input type="text" id="userIdInput" placeholder="Masukkan User ID / Zone ID Anda" class="w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm">
-              </div>
+              <div id="idFields" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+              <p id="idHint" class="text-[11px] text-gray-400 mt-2"></p>
             </div>
 
             <!-- Step 2: Nominal Top Up -->
@@ -910,7 +909,7 @@
             </div>
 
             <!-- Step 4: Email & Confirmation -->
-            <div class="glass-card p-5 rounded-xl">
+            <div id="emailStep" class="glass-card p-5 rounded-xl">
               <h3 class="font-bold text-pink-400 mb-2 text-xs sm:text-sm flex items-center gap-2">
                 <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold">4</span>
                 MASUKKAN DETAIL
@@ -1144,10 +1143,15 @@
       document.getElementById('authSection').classList.add('hidden');
       
       document.getElementById('selectedGameTitle').innerText = gameTitle;
-      document.getElementById('selectedGameImg').src = gameImg;
+      const sideImg = document.getElementById('selectedGameImg');
+      delete sideImg.dataset.fallback;
+      sideImg.alt = gameTitle;
+      sideImg.src = gameImg;
 
       closeMobileSearch();
       closeDesktopSearch();
+
+      renderIdFields(gameKey);
 
       // Render nominals
       const nominalGrid = document.getElementById('nominalGrid');
@@ -1196,16 +1200,36 @@
       selectedPaymentMethod = methodName;
     }
 
-    function processOrder() {
-      const userId = document.getElementById('userIdInput').value.trim();
-      const email = document.getElementById('userEmailInput').value.trim();
-      const gameTitle = document.getElementById('selectedGameTitle').innerText;
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!userId) {
-        alert('Harap masukkan User ID / Zone ID akun Anda terlebih dahulu!');
-        document.getElementById('userIdInput').focus();
-        return;
+    function processOrder() {
+      const emailInput = document.getElementById('userEmailInput');
+      const gameTitle = document.getElementById('selectedGameTitle').innerText;
+      const emailMode = currentIdConfig.email || 'required';
+
+      // Cek tiap kolom ID sesuai game yang dipilih
+      const idLines = [];
+      for (const f of currentIdConfig.fields) {
+        const el = document.getElementById('idField_' + f.id);
+        const v = el.value.trim();
+        if (!v) {
+          alert('Harap masukkan ' + f.label + ' akun Anda terlebih dahulu!');
+          el.focus();
+          return;
+        }
+        if (f.type === 'email' && !EMAIL_RE.test(v)) {
+          alert('Format ' + f.label + ' tidak valid. Contoh: nama@email.com');
+          el.focus();
+          return;
+        }
+        if (f.min && v.length < f.min) {
+          alert(f.label + ' tidak valid (minimal ' + f.min + (f.type === 'number' ? ' angka' : ' karakter') + ').');
+          el.focus();
+          return;
+        }
+        idLines.push(f.label + ': ' + v);
       }
+
       if (!selectedNominalObj) {
         alert('Harap pilih nominal top up terlebih dahulu!');
         return;
@@ -1214,13 +1238,25 @@
         alert('Harap pilih metode pembayaran terlebih dahulu!');
         return;
       }
-      if (!email) {
-        alert('Harap masukkan alamat email Anda untuk pengiriman invoice!');
-        document.getElementById('userEmailInput').focus();
-        return;
+
+      // Email untuk invoice / bukti pembayaran
+      let emailLine = '';
+      if (emailMode !== 'none') {
+        const email = emailInput.value.trim();
+        if (!email && emailMode === 'required') {
+          alert('Harap masukkan alamat email Anda untuk pengiriman invoice!');
+          emailInput.focus();
+          return;
+        }
+        if (email && !EMAIL_RE.test(email)) {
+          alert('Format email tidak valid. Contoh: nama@email.com');
+          emailInput.focus();
+          return;
+        }
+        if (email) emailLine = '\nEmail: ' + email;
       }
 
-      alert(`Pesanan Berhasil Dibuat!\n\nGame: ${gameTitle}\nUser ID: ${userId}\nNominal: ${selectedNominalObj.name} (${selectedNominalObj.price})\nMetode Pembayaran: ${selectedPaymentMethod}\nEmail: ${email}\n\nSilakan selesaikan pembayaran Anda.`);
+      alert(`Pesanan Berhasil Dibuat!\n\nGame: ${gameTitle}\n${idLines.join('\n')}\nNominal: ${selectedNominalObj.name} (${selectedNominalObj.price})\nMetode Pembayaran: ${selectedPaymentMethod}${emailLine}\n\nSilakan selesaikan pembayaran Anda.`);
     }
 
     // --- 2. Desktop Search (Hanya Muncul di Dropdown Floating, Katalog Tetap Utuh) ---
@@ -1521,6 +1557,139 @@
 
     renderHotGames();
     initStats();
+
+    // --- 9. Kolom ID per game ---
+    // type 'number' = hanya angka | 'text' = huruf/angka bebas | 'select' = pilihan
+    // min/max = batas panjang (sengaja longgar; sesuaikan dengan format dari supplier top up)
+    const HOYO_SERVERS = ['Asia', 'America', 'Europe', 'TW, HK, MO'];
+    const idConfig = {
+      mlbb: { fields: [
+        { id: 'user', label: 'User ID', type: 'number', placeholder: 'Contoh: 123456789', min: 5, max: 12 },
+        { id: 'zone', label: 'Zone ID', type: 'number', placeholder: 'Contoh: 1234', min: 3, max: 6 }
+      ] },
+      ff: { fields: [
+        { id: 'player', label: 'Player ID', type: 'number', placeholder: 'Contoh: 123456789', min: 5, max: 15 }
+      ] },
+      pubg: { fields: [
+        { id: 'player', label: 'Player ID', type: 'number', placeholder: 'Contoh: 5123456789', min: 5, max: 15 }
+      ] },
+      genshin: { fields: [
+        { id: 'uid', label: 'UID', type: 'number', placeholder: 'Contoh: 800123456', min: 9, max: 10 },
+        { id: 'server', label: 'Server', type: 'select', options: HOYO_SERVERS }
+      ] },
+      hsr: { fields: [
+        { id: 'uid', label: 'UID', type: 'number', placeholder: 'Contoh: 800123456', min: 9, max: 10 },
+        { id: 'server', label: 'Server', type: 'select', options: HOYO_SERVERS }
+      ] },
+      // email: 'required' (wajib, default) | 'optional' (boleh kosong) | 'none' (kotak email disembunyikan)
+      efootball: { hint: 'Masukkan Login ID Konami kamu.', fields: [
+        { id: 'user', label: 'Login ID Konami', type: 'text', placeholder: 'Masukkan Login ID Konami', min: 1 }
+      ] },
+      roblox: { email: 'none', hint: 'Masukkan email akun Roblox kamu.', fields: [
+        { id: 'email', label: 'Email Roblox', type: 'email', placeholder: 'Masukkan email akun Roblox' }
+      ] },
+      fcmobile: { email: 'optional', fields: [
+        { id: 'user', label: 'UID', type: 'text', placeholder: 'Masukkan UID', min: 1 }
+      ] },
+      valorant: { email: 'optional', hint: 'Format Riot ID: Nama#1234.', fields: [
+        { id: 'user', label: 'Riot ID', type: 'text', placeholder: 'Masukkan Riot ID Anda', min: 1 }
+      ] }
+    };
+    const defaultIdConfig = { fields: [
+      { id: 'user', label: 'User ID', type: 'text', placeholder: 'Masukkan User ID', min: 1 }
+    ] };
+    let currentIdConfig = defaultIdConfig;
+
+    function renderIdFields(gameKey) {
+      const cfg = idConfig[gameKey] || defaultIdConfig;
+      currentIdConfig = cfg;
+      const box = document.getElementById('idFields');
+      box.innerHTML = '';
+      const single = cfg.fields.length === 1;
+
+      cfg.fields.forEach(f => {
+        const wrap = document.createElement('div');
+        if (single) wrap.className = 'sm:col-span-2';
+
+        const label = document.createElement('label');
+        label.className = 'block text-[11px] font-semibold text-gray-300 mb-1';
+        label.htmlFor = 'idField_' + f.id;
+        label.textContent = f.label;
+
+        let el;
+        if (f.type === 'select') {
+          el = document.createElement('select');
+          f.options.forEach(o => {
+            const op = document.createElement('option');
+            op.value = o;
+            op.textContent = o;
+            el.appendChild(op);
+          });
+        } else {
+          el = document.createElement('input');
+          el.type = 'text';
+          el.autocomplete = 'off';
+          el.placeholder = f.placeholder || '';
+          if (f.max) el.maxLength = f.max;
+          if (f.type === 'email') {
+            el.type = 'email';
+            el.inputMode = 'email';
+            el.setAttribute('autocapitalize', 'off');
+          }
+          if (f.type === 'number') {
+            el.inputMode = 'numeric'; // keyboard angka di HP
+            el.pattern = '[0-9]*';
+            el.addEventListener('input', () => {
+              const clean = el.value.replace(/\D/g, ''); // buang semua selain angka (termasuk saat paste)
+              if (clean !== el.value) el.value = clean;
+            });
+          }
+        }
+        el.id = 'idField_' + f.id;
+        el.style.colorScheme = 'dark';
+        el.className = 'w-full bg-gray-900/90 border border-gray-700 px-4 py-2.5 rounded-lg text-white focus:outline-none focus:border-pink-500 text-xs sm:text-sm';
+
+        wrap.appendChild(label);
+        wrap.appendChild(el);
+        box.appendChild(wrap);
+      });
+
+      const hasNumber = cfg.fields.some(f => f.type === 'number');
+      document.getElementById('idHint').textContent = cfg.hint || (hasNumber
+        ? 'Isi dengan angka saja. ID bisa dilihat di menu profil game kamu.'
+        : 'Pastikan ID / username sesuai dengan akun game kamu.');
+
+      // Kotak email di langkah 4: wajib / opsional / disembunyikan
+      const emailMode = cfg.email || 'required';
+      const emailStep = document.getElementById('emailStep');
+      const emailInput = document.getElementById('userEmailInput');
+      emailStep.classList.toggle('hidden', emailMode === 'none');
+      if (emailMode === 'none') emailInput.value = '';
+      emailInput.placeholder = emailMode === 'optional'
+        ? 'Email untuk bukti pembayaran (opsional)'
+        : 'Harap masukkan email';
+    }
+
+    // --- 10. Gambar gagal dimuat -> tampilkan huruf awal (tidak ada kotak kosong) ---
+    function applyImageFallback(img) {
+      if (img.dataset.fallback) return;
+      img.dataset.fallback = '1';
+      const letter = ((img.alt || '').trim().charAt(0) || 'G').toUpperCase();
+      const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs>' +
+        '<rect width="200" height="200" fill="url(#g)"/>' +
+        '<text x="100" y="132" font-family="Arial,sans-serif" font-size="110" font-weight="700" fill="#fff" text-anchor="middle">' +
+        letter + '</text></svg>';
+      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+    }
+    window.addEventListener('error', e => {
+      if (e.target && e.target.tagName === 'IMG') applyImageFallback(e.target);
+    }, true);
+    // gambar yang sudah terlanjur gagal sebelum script ini jalan
+    document.querySelectorAll('img').forEach(img => {
+      if (img.getAttribute('src') && img.complete && img.naturalWidth === 0) applyImageFallback(img);
+    });
 
     // --- 5. Interactive Animated Background Engine (Matrix Cyber Grid Only) ---
     // Di HP: kolom lebih jarang & ~20 fps. Di laptop: sama seperti semula.
